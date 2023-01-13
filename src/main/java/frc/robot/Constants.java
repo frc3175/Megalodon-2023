@@ -97,16 +97,9 @@ public final class Constants {
     public static final double DRIVE_F = 0.001;
 
     /* Drive Motor Characterization Values */
-    /*public static final double DRIVE_S = (0.48665 / 12); //Values from SysId divided by 12 to convert to volts for CTRE
+    public static final double DRIVE_S = (0.48665 / 12); //Values from SysId divided by 12 to convert to volts for CTRE
     public static final double DRIVE_V = (2.4132 / 12);
-    public static final double DRIVE_A = (0.06921 / 12); */
-
-        /** Voltage needed to overcome the motor’s static friction. kS */
-        public static final double DRIVE_S = 0.6716;
-        /** Voltage needed to hold (or "cruise") at a given constant velocity. kV */
-        public static final double DRIVE_V = 2.5913;
-        /** Voltage needed to induce a given acceleration in the motor shaft. kA */
-        public static final double DRIVE_A = 0.19321;
+    public static final double DRIVE_A = (0.06921 / 12);
 
     /* Azimuth Current Limiting */
     public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25;
@@ -172,17 +165,19 @@ public final class Constants {
 
     public static final double AUTO_P_X_CONTROLLER = 2; //0.1 for auto 
     public static final double AUTO_P_Y_CONTROLLER = 2; //1.4884 for auto
-    public static final double AUTO_P_THETA_CONTROLLER = 0.65; //2.8 for auto
+    public static final double AUTO_P_THETA_CONTROLLER = .2; //2.8 for auto
+    public static final double AUTO_I_THETA_CONTROLLER = 0;
+    public static final double AUTO_D_THETA_CONTROLLER = 0;
     public static final double AUTO_MAX_SPEED = Units.feetToMeters(4.9);
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
 
     public static final TrapezoidProfile.Constraints X_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(3, 2);
     public static final TrapezoidProfile.Constraints Y_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(3, 2);
-    public static final TrapezoidProfile.Constraints THETA_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(3, (8 * 8)); //pi, (pi, pi)
+    public static final TrapezoidProfile.Constraints THETA_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(1, (Math.PI * Math.PI)); //pi, (pi, pi)
 
     public static final ProfiledPIDController AUTO_X_CONTROLLER = new ProfiledPIDController(AUTO_P_X_CONTROLLER, 0, 0, X_AUTO_CONSTRAINTS);
     public static final ProfiledPIDController AUTO_Y_CONTROLLER = new ProfiledPIDController(AUTO_P_Y_CONTROLLER, 0, 0, Y_AUTO_CONSTRAINTS);
-    public static final ProfiledPIDController AUTO_THETA_CONTROLLER = new ProfiledPIDController(AUTO_P_THETA_CONTROLLER, 0, 0, THETA_AUTO_CONSTRAINTS);
+    public static final ProfiledPIDController AUTO_THETA_CONTROLLER = new ProfiledPIDController(AUTO_P_THETA_CONTROLLER, AUTO_I_THETA_CONTROLLER, AUTO_D_THETA_CONTROLLER, THETA_AUTO_CONSTRAINTS);
 
     /*============================
                 Misc.
