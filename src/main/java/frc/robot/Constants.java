@@ -159,6 +159,9 @@ public final class Constants {
         new Transform3d(new Translation3d(-0.3, 0.0, 0.0), new Rotation3d());
     public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
 
+    public static final double CAMERA_HEIGHT = 0.5;
+    public static final double TAG_HEIGHT = 1; //TODO: temporary value
+
     /*============================
                 Auton
     ==============================*/
