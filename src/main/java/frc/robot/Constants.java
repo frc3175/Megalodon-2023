@@ -156,11 +156,11 @@ public final class Constants {
      * Physical location of the camera on the robot, relative to the center of the robot.
      */
     public static final Transform3d CAMERA_TO_ROBOT =
-        new Transform3d(new Translation3d(-0.3, 0.0, 0.0), new Rotation3d());
+        new Transform3d(new Translation3d(-0.33, 0.0, 0.0), new Rotation3d());
     public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
 
-    public static final double CAMERA_HEIGHT = 0.5;
-    public static final double TAG_HEIGHT = 1; //TODO: temporary value
+    public static final double CAMERA_HEIGHT = 0.22;
+    public static final double TAG_HEIGHT = 0.5; //TODO: temporary value
 
     /*============================
                 Auton
@@ -168,15 +168,15 @@ public final class Constants {
 
     public static final double AUTO_P_X_CONTROLLER = 2; //0.1 for auto 
     public static final double AUTO_P_Y_CONTROLLER = 2; //1.4884 for auto
-    public static final double AUTO_P_THETA_CONTROLLER = .2; //2.8 for auto
+    public static final double AUTO_P_THETA_CONTROLLER = 1.5; //2.8 for auto
     public static final double AUTO_I_THETA_CONTROLLER = 0;
     public static final double AUTO_D_THETA_CONTROLLER = 0;
     public static final double AUTO_MAX_SPEED = Units.feetToMeters(4.9);
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
 
-    public static final TrapezoidProfile.Constraints X_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(3, 2);
-    public static final TrapezoidProfile.Constraints Y_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(3, 2);
-    public static final TrapezoidProfile.Constraints THETA_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(1, (Math.PI * Math.PI)); //pi, (pi, pi)
+    public static final TrapezoidProfile.Constraints X_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(1, 0.5);
+    public static final TrapezoidProfile.Constraints Y_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(1, 0.5);
+    public static final TrapezoidProfile.Constraints THETA_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(8, 8); //pi, (pi, pi)
 
     public static final ProfiledPIDController AUTO_X_CONTROLLER = new ProfiledPIDController(AUTO_P_X_CONTROLLER, 0, 0, X_AUTO_CONSTRAINTS);
     public static final ProfiledPIDController AUTO_Y_CONTROLLER = new ProfiledPIDController(AUTO_P_Y_CONTROLLER, 0, 0, Y_AUTO_CONSTRAINTS);

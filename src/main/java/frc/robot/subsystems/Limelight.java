@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -16,8 +18,10 @@ public class Limelight extends SubsystemBase{
     private NetworkTable table;
     private double x;
     private double y;
-    private int id;
-    private int v;
+    private double id;
+    private double v;
+    private NetworkTableEntry tbotpose;
+    private double[] botpose;
 
     public Limelight() {
 
@@ -26,18 +30,19 @@ public class Limelight extends SubsystemBase{
         ty = table.getEntry("ty");
         tv = table.getEntry("tv");
         tid = table.getEntry("tid");
+        tbotpose = table.getEntry("botpose");
 
     }
 
-    public double getYDistance() {
+    public double getYDistance(double y) {
 
-        return((Math.abs(Constants.TAG_HEIGHT - Constants.CAMERA_HEIGHT)) / Math.tan(y));
+        return((Constants.TAG_HEIGHT -Constants.CAMERA_HEIGHT)/(Math.tan((y) * Math.PI/180)));
 
     }
 
-    public double getXDistance() {
+    public double getXDistance(double x, double y) {
 
-        return(getYDistance() / Math.tan(x));
+        return(getYDistance(y) / Math.tan(x * Math.PI / 180));
 
     }
 
@@ -51,7 +56,7 @@ public class Limelight extends SubsystemBase{
 
         if(v == 0) {
             return false;
-        } else if(v == 1) {
+        } else if(v == 1.0) {
             return true;
         } else {
             return false;
@@ -59,9 +64,21 @@ public class Limelight extends SubsystemBase{
 
     }
 
-    public int getID() {
+    public double getID() {
 
         return id;
+
+    }
+
+    public Pose3d getTagPose(double tagID) {
+
+        return new Pose3d(1, 2, 0.5, new Rotation3d(0, 0, 0));
+
+    }
+
+    public double[] getBotPose() {
+
+        return botpose;
 
     }
 
@@ -70,11 +87,19 @@ public class Limelight extends SubsystemBase{
 
         x = tx.getDouble(0.0);
         y = ty.getDouble(0.0);
-        v = (int) tv.getInteger(0);
-        id = (int) tid.getInteger(0);
+        v = tv.getDouble(0);
+        id = tid.getDouble(100);
+        double[] emptyArray = new double[0];
+        botpose = tbotpose.getDoubleArray(emptyArray);
 
         SmartDashboard.putNumber("LimelightX", x);
         SmartDashboard.putNumber("LimelightY", y);
+        SmartDashboard.putNumber("has target", v);
+        SmartDashboard.putNumber("tag id", id);
+
+        SmartDashboard.putNumber("LL x-dist", getXDistance(x, y));
+        SmartDashboard.putNumber("LL y-dist", getYDistance(y));
+        SmartDashboard.putNumber("LL theta", getTheta());
 
     }
     
