@@ -39,7 +39,7 @@ public class LimelightAprilTag extends CommandBase {
 
     //xController.setTolerance(0.2);
     //yController.setTolerance(0.2);
-    omegaController.setTolerance(Units.degreesToRadians(2));
+    omegaController.setTolerance(Units.degreesToRadians(3));
     omegaController.enableContinuousInput(-Math.PI, Math.PI);
 
     addRequirements(m_drivetrain);
