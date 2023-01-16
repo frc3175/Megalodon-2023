@@ -35,18 +35,19 @@ public class RobotContainer {
     private final JoystickButton m_trackAprilTag = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
     /* Subsystems */
-    private final SwerveDrivetrain s_Swerve = new SwerveDrivetrain();
+    private final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
     private final Limelight m_limelight = new Limelight();
 
     /* Commands */
-    private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, s_Swerve);
+    private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
-        s_Swerve.setDefaultCommand(
+
+        m_drivetrain.setDefaultCommand(
             new SwerveDrive(
-                s_Swerve, 
+                m_drivetrain, 
                 () -> -driver.getRawAxis(translationAxis), 
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
@@ -56,6 +57,7 @@ public class RobotContainer {
 
         // Configure the button bindings
         configureButtonBindings();
+        
     }
 
     /**
@@ -65,13 +67,17 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
+
         /* Driver Buttons */
-        zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+        zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         m_trackAprilTag.whileTrue(m_followAprilTag);
+
     }
 
     public Command getAutonomousCommand() {
+
         return null;
+
     }
 
 }
