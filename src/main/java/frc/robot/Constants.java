@@ -43,42 +43,42 @@ public final class Constants {
     /* Module Specific Constants */
         /* Front Left Module - Module 0 */
         public static final class Mod0 {
-            public static final int driveMotorID = 6;
-            public static final int angleMotorID = 8;
-            public static final int canCoderID = 10;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(30.05);
+            public static final int DRIVE_MOTOR_ID = 6;
+            public static final int ANGLE_MOTOR_ID = 8;
+            public static final int CANCODER_ID = 10;
+            public static final Rotation2d ANGLE_OFFSET = Rotation2d.fromDegrees(30.05);
             public static final SwerveModuleConstants constants = 
-                new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
+                new SwerveModuleConstants(DRIVE_MOTOR_ID, ANGLE_MOTOR_ID, CANCODER_ID, ANGLE_OFFSET);
         }
 
         /* Front Right Module - Module 1 */
         public static final class Mod1 {
-            public static final int driveMotorID = 17;
-            public static final int angleMotorID = 13;
-            public static final int canCoderID = 4;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(82.88);
+            public static final int DRIVE_MOTOR_ID = 17;
+            public static final int ANGLE_MOTOR_ID = 13;
+            public static final int CANCODER_ID = 4;
+            public static final Rotation2d ANGLE_OFFSET = Rotation2d.fromDegrees(82.88);
             public static final SwerveModuleConstants constants = 
-                new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
+                new SwerveModuleConstants(DRIVE_MOTOR_ID, ANGLE_MOTOR_ID, CANCODER_ID, ANGLE_OFFSET);
         }
         
         /* Back Left Module - Module 2 */
         public static final class Mod2 {
-            public static final int driveMotorID = 11;
-            public static final int angleMotorID = 9;
-            public static final int canCoderID = 7;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(132.89);
+            public static final int DRIVE_MOTOR_ID = 11;
+            public static final int ANGLE_MOTOR_ID = 9;
+            public static final int CANCODER_ID = 7;
+            public static final Rotation2d ANGLE_OFFSET = Rotation2d.fromDegrees(132.89);
             public static final SwerveModuleConstants constants = 
-                new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
+                new SwerveModuleConstants(DRIVE_MOTOR_ID, ANGLE_MOTOR_ID, CANCODER_ID, ANGLE_OFFSET);
         }
 
         /* Back Right Module - Module 3 */
         public static final class Mod3 {
-            public static final int driveMotorID = 3;
-            public static final int angleMotorID = 5;
-            public static final int canCoderID = 12;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(237.90);
+            public static final int DRIVE_MOTOR_ID = 3;
+            public static final int ANGLE_MOTOR_ID = 5;
+            public static final int CANCODER_ID = 12;
+            public static final Rotation2d ANGLE_OFFSET = Rotation2d.fromDegrees(237.90);
             public static final SwerveModuleConstants constants = 
-                new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
+                new SwerveModuleConstants(DRIVE_MOTOR_ID, ANGLE_MOTOR_ID, CANCODER_ID, ANGLE_OFFSET);
         }
 
     /* Gyro reversed */
@@ -88,18 +88,19 @@ public final class Constants {
     public static final double AZIMUTH_P = 0.2;
     public static final double AZIMUTH_I = 0.0;
     public static final double AZIMUTH_D = 0.1;
-    public static final double AZIMUTH_F = 0.0;
-
-    /* Drive Motor PID Values */
-    public static final double DRIVE_P = -0.1;  //0.1
-    public static final double DRIVE_I = 0.0;
-    public static final double DRIVE_D = 0.0;
-    public static final double DRIVE_F = 0.001;
+    public static final double AZIMUTH_F = 0;
 
     /* Drive Motor Characterization Values */
     public static final double DRIVE_S = (0.48665 / 12); //Values from SysId divided by 12 to convert to volts for CTRE
     public static final double DRIVE_V = (2.4132 / 12);
     public static final double DRIVE_A = (0.06921 / 12);
+
+    /* Drive Motor PID Values */
+    public static final double DRIVE_P = -0.1;  //0.1
+    public static final double DRIVE_I = 0.0;
+    public static final double DRIVE_D = 0.0;
+    //public static final SimpleMotorFeedforward DRIVE_F = new SimpleMotorFeedforward(DRIVE_S, DRIVE_V, DRIVE_A);
+    public static final double DRIVE_F = 3;
 
     /* Azimuth Current Limiting */
     public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25;
@@ -166,16 +167,16 @@ public final class Constants {
                 Auton
     ==============================*/
 
-    public static final double AUTO_P_X_CONTROLLER = 2; //0.1 for auto 
-    public static final double AUTO_P_Y_CONTROLLER = 2; //1.4884 for auto
-    public static final double AUTO_P_THETA_CONTROLLER = 1.5; //2.8 for auto
+    public static final double AUTO_P_X_CONTROLLER = 0.1; //0.1 for auto 
+    public static final double AUTO_P_Y_CONTROLLER = 0.1; //1.4884 for auto
+    public static final double AUTO_P_THETA_CONTROLLER = 1.375; //2.8 for auto
     public static final double AUTO_I_THETA_CONTROLLER = 0;
-    public static final double AUTO_D_THETA_CONTROLLER = 0;
+    public static final double AUTO_D_THETA_CONTROLLER = 0.0;
     public static final double AUTO_MAX_SPEED = Units.feetToMeters(4.9);
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
 
     public static final TrapezoidProfile.Constraints X_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(1, 0.5);
-    public static final TrapezoidProfile.Constraints Y_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(1, 0.5);
+    public static final TrapezoidProfile.Constraints Y_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(0.25, 0.5);
     public static final TrapezoidProfile.Constraints THETA_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(8, 8); //pi, (pi, pi)
 
     public static final ProfiledPIDController AUTO_X_CONTROLLER = new ProfiledPIDController(AUTO_P_X_CONTROLLER, 0, 0, X_AUTO_CONSTRAINTS);
