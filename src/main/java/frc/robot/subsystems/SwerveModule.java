@@ -46,12 +46,30 @@ public class SwerveModule {
         m_lastAngle = getState().angle;
     }
 
+    /**
+     * 
+     * Set the desired SwerveModuleState of the module
+     * 
+     * @param desiredState desired SwerveModuleState
+     * @param isOpenLoop is the robot driving open loop
+     * 
+     */
+
     public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop){
         /* This is a custom optimize function, since default WPILib optimize assumes continuous controller which CTRE and Rev onboard is not */
         desiredState = CTREModuleState.optimize(desiredState, getState().angle); 
         setAngle(desiredState);
         setSpeed(desiredState, isOpenLoop);
     }
+
+    /**
+     * 
+     * Set the speeds of the motors
+     * 
+     * @param desiredState desired SwerveModuleState of the module
+     * @param isOpenLoop is the robot driving open loop
+     * 
+     */
 
     private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop){
         if(isOpenLoop){
@@ -64,6 +82,14 @@ public class SwerveModule {
         }
     }
 
+    /**
+     * 
+     * Set the angle of the module
+     * 
+     * @param desiredState desired SwerveModuleState of the module 
+     * 
+     */
+
     private void setAngle(SwerveModuleState desiredState){
         Rotation2d angle = (Math.abs(desiredState.speedMetersPerSecond) <= (Constants.MAX_SPEED * 0.01)) ? m_lastAngle : desiredState.angle; //Prevent rotating module if speed is less then 1%. Prevents Jittering.
         
@@ -71,23 +97,53 @@ public class SwerveModule {
         m_lastAngle = angle;
     }
 
+    /**
+     * 
+     * @return angle of the module
+     * 
+     */
+
     private Rotation2d getAngle(){
         return Rotation2d.fromDegrees(Conversions.falconToDegrees(m_angleMotor.getSelectedSensorPosition(), Constants.AZIMUTH_GEAR_RATIO));
     }
 
+    /**
+     * 
+     * @return CANCoder angle
+     * 
+     */
+
     public Rotation2d getCanCoder(){
         return Rotation2d.fromDegrees(m_angleEncoder.getAbsolutePosition());
     }
+
+    /**
+     * 
+     * Reset the module to the absolute position
+     * 
+     */
 
     private void resetToAbsolute(){
         double absolutePosition = Conversions.degreesToFalcon(getCanCoder().getDegrees() - m_angleOffset.getDegrees(), Constants.AZIMUTH_GEAR_RATIO);
         m_angleMotor.setSelectedSensorPosition(absolutePosition);
     }
 
+    /**
+     * 
+     * Run the azimuth motor config
+     * 
+     */
+
     private void configAngleEncoder(){        
         m_angleEncoder.configFactoryDefault();
         m_angleEncoder.configAllSettings(CTREConfigs.swerveCanCoderConfig);
     }
+
+    /**
+     * 
+     * Configure 
+     * 
+     */
 
     private void configAngleMotor(){
         m_angleMotor.configFactoryDefault();
