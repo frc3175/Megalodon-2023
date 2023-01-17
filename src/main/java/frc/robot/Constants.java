@@ -1,6 +1,8 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -133,6 +135,41 @@ public final class Constants {
         new TrapezoidProfile.Constraints(
             Math.PI, (Math.PI * Math.PI));
 
+    /*============================
+                Intake 
+    ==============================*/
+
+    public static final int OUTTAKE_MOTOR = 0;
+    public static final int INTAKE_MOTOR = 1;
+    public static final int CLAW_MOTOR = 2;
+
+    public static final CANSparkMaxLowLevel.MotorType OUTTAKE_MOTOR_TYPE = CANSparkMaxLowLevel.MotorType.kBrushless;
+
+    public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
+    public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 10;
+    public static final int INTAKE_PEAK_CURRENT_LIMIT = 30;
+    public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
+
+    public static final boolean CLAW_ENABLE_CURRENT_LIMIT = true;
+    public static final int CLAW_CONTINUOUS_CURRENT_LIMIT = 10;
+    public static final int CLAW_PEAK_CURRENT_LIMIT = 30;
+    public static final double CLAW_PEAK_CURRENT_DURATION = 0.1;
+
+    public static final boolean INTAKE_INVERTED = false;
+    public static final boolean CLAW_INVERTED = false;
+    public static final boolean OUTTAKE_INVERTED = false;
+
+    public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Coast;
+    public static final NeutralMode CLAW_NEUTRAL_MODE = NeutralMode.Brake;
+    public static final IdleMode OUTTAKE_IDLE_MODE = IdleMode.kBrake;
+
+    public static final double OUTTAKE_P = 0;
+    public static final double OUTTAKE_I = 0;
+    public static final double OUTTAKE_D = 0;
+    public static final double OUTTAKE_F = 0;
+
+    public static final int OUTTAKE_STALL_LIMIT = 20;
+    public static final int OUTTAKE_FREE_LIMIT = 20;
 
     /*============================
                Kinematics

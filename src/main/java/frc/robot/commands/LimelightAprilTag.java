@@ -8,6 +8,7 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -18,7 +19,7 @@ public class LimelightAprilTag extends CommandBase {
   
   private final ProfiledPIDController xController = Constants.AUTO_X_CONTROLLER;
   private final ProfiledPIDController yController = Constants.AUTO_Y_CONTROLLER;
-  //private final ProfiledPIDController omegaController = Constants.AUTO_THETA_CONTROLLER;
+  private final ProfiledPIDController omegaController = Constants.AUTO_THETA_CONTROLLER;
 
   private static int TAG_TO_CHASE = 2;
   private static final Transform3d TAG_TO_GOAL = 
@@ -38,8 +39,8 @@ public class LimelightAprilTag extends CommandBase {
 
     xController.setTolerance(0.2);
     yController.setTolerance(0.2);
-    //omegaController.setTolerance(Units.degreesToRadians(2));
-    //omegaController.enableContinuousInput(-Math.PI, Math.PI);
+    omegaController.setTolerance(Units.degreesToRadians(2));
+    omegaController.enableContinuousInput(-Math.PI, Math.PI);
 
     addRequirements(m_drivetrain);
 
@@ -69,7 +70,7 @@ public class LimelightAprilTag extends CommandBase {
 
     }
 
-    //omegaController.reset((robotPose.getRotation().getZ()) * Math.PI/180);
+    omegaController.reset((robotPose.getRotation().getZ()) * Math.PI/180);
     xController.reset(robotPose.getX());
     yController.reset(robotPose.getY());
 
@@ -137,7 +138,7 @@ public class LimelightAprilTag extends CommandBase {
         // Drive
         xController.setGoal(goalPose.getX());
         yController.setGoal(goalPose.getY()  * -1);
-        //omegaController.setGoal(goalPose.getRotation().getRadians() - (Math.PI));
+        omegaController.setGoal(goalPose.getRotation().getRadians() - (Math.PI));
 
     }
     
@@ -156,18 +157,18 @@ public class LimelightAprilTag extends CommandBase {
         ySpeed = 0;
       }
 
-      /* var omegaSpeed = omegaController.calculate((robotPose.getRotation().getZ()) * Math.PI/180);
+      var omegaSpeed = omegaController.calculate((robotPose.getRotation().getZ()) * Math.PI/180);
       if (omegaController.atGoal()) {
         status = "atGoal";
         SmartDashboard.putString("status", status);
         omegaSpeed = 0;
-      } */
+      }
 
-     // SmartDashboard.putNumber("xspeed", xSpeed);
+      SmartDashboard.putNumber("xspeed", xSpeed);
       SmartDashboard.putNumber("yspeed", ySpeed);
-      //SmartDashboard.putNumber("omegaspeed", omegaSpeed);
+      SmartDashboard.putNumber("omegaspeed", omegaSpeed);
 
-      m_drivetrain.setChassisSpeeds(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, 0, robotPose.getRotation().toRotation2d()));
+      m_drivetrain.setChassisSpeeds(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, omegaSpeed, robotPose.getRotation().toRotation2d()));
       
     }
 
