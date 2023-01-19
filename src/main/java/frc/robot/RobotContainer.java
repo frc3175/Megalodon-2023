@@ -1,5 +1,11 @@
 package frc.robot;
 
+import com.pathplanner.lib.PathConstraints;
+import com.pathplanner.lib.PathPoint;
+
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+
 //import org.photonvision.PhotonCamera;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -7,7 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -33,9 +39,10 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
     private final JoystickButton m_trackAprilTag = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    //private final JoystickButton m_odometryAlign = new JoystickButton(driver, XboxController.Button.kRightBumper);
 
     /* Subsystems */
-    private final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
+    public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
     private final Limelight m_limelight = new Limelight();
 
     /* Commands */
@@ -70,13 +77,14 @@ public class RobotContainer {
 
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
-        m_trackAprilTag.whileTrue(m_followAprilTag);
+        //m_trackAprilTag.whileTrue(m_followAprilTag);
+        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(1.524, -1.334), new Rotation2d(0.0))));
 
     }
 
     public Command getAutonomousCommand() {
 
-        return null;
+        return Auto.exampleAuto();
 
     }
 
