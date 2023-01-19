@@ -66,7 +66,7 @@ public class LimelightAprilTag extends CommandBase {
     } else {
 
         var robotPose2d = m_drivetrain.getPose();
-        robotPose = new Pose3d(robotPose2d.getX(), robotPose2d.getY(), 0.0, new Rotation3d(0.0, 0.0, robotPose2d.getRotation().getRadians()));
+        robotPose = new Pose3d(robotPose2d.getX() * -1, robotPose2d.getY() * -1, 0.0, new Rotation3d(0.0, 0.0, robotPose2d.getRotation().getRadians()));
 
     }
 
@@ -95,7 +95,7 @@ public class LimelightAprilTag extends CommandBase {
     } else {
 
         var robotPose2d = m_drivetrain.getPose();
-        robotPose = new Pose3d(robotPose2d.getX(), robotPose2d.getY(), 0.0, new Rotation3d(0.0, 0.0, robotPose2d.getRotation().getRadians()));
+        robotPose = new Pose3d(robotPose2d.getX() * -1, robotPose2d.getY() * -1, 0.0, new Rotation3d(0.0, 0.0, robotPose2d.getRotation().getRadians()));
 
     }
 
@@ -137,7 +137,7 @@ public class LimelightAprilTag extends CommandBase {
 
         // Drive
         xController.setGoal(goalPose.getX());
-        yController.setGoal(goalPose.getY()  * -1);
+        yController.setGoal(goalPose.getY());
         omegaController.setGoal(goalPose.getRotation().getRadians() - (Math.PI));
 
     }

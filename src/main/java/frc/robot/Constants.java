@@ -1,8 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.revrobotics.CANSparkMaxLowLevel;
-import com.revrobotics.CANSparkMax.IdleMode;
+import com.pathplanner.lib.auto.PIDConstants;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -98,11 +97,11 @@ public final class Constants {
     public static final double DRIVE_A = (0.06921 / 12);
 
     /* Drive Motor PID Values */
-    public static final double DRIVE_P = -0.1;  //0.1
+    public static final double DRIVE_P = 0.1;  //0.1
     public static final double DRIVE_I = 0.0;
     public static final double DRIVE_D = 0.0;
     //public static final SimpleMotorFeedforward DRIVE_F = new SimpleMotorFeedforward(DRIVE_S, DRIVE_V, DRIVE_A);
-    public static final double DRIVE_F = 3;
+    public static final double DRIVE_F = 0;
 
     /* Azimuth Current Limiting */
     public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25;
@@ -121,7 +120,7 @@ public final class Constants {
     public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;
 
     /* Swerve Gear Ratios */
-    public static final double DRIVE_GEAR_RATIO = (-6.75 / 1.0);
+    public static final double DRIVE_GEAR_RATIO = (6.75 / 1.0);
     public static final double AZIMUTH_GEAR_RATIO = (-150.0 / 7);
 
     /* Swerve Profiling Values */
@@ -134,42 +133,6 @@ public final class Constants {
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
         new TrapezoidProfile.Constraints(
             Math.PI, (Math.PI * Math.PI));
-
-    /*============================
-                Intake 
-    ==============================*/
-
-    public static final int OUTTAKE_MOTOR = 0;
-    public static final int INTAKE_MOTOR = 1;
-    public static final int CLAW_MOTOR = 2;
-
-    public static final CANSparkMaxLowLevel.MotorType OUTTAKE_MOTOR_TYPE = CANSparkMaxLowLevel.MotorType.kBrushless;
-
-    public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
-    public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 10;
-    public static final int INTAKE_PEAK_CURRENT_LIMIT = 30;
-    public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
-
-    public static final boolean CLAW_ENABLE_CURRENT_LIMIT = true;
-    public static final int CLAW_CONTINUOUS_CURRENT_LIMIT = 10;
-    public static final int CLAW_PEAK_CURRENT_LIMIT = 30;
-    public static final double CLAW_PEAK_CURRENT_DURATION = 0.1;
-
-    public static final boolean INTAKE_INVERTED = false;
-    public static final boolean CLAW_INVERTED = false;
-    public static final boolean OUTTAKE_INVERTED = false;
-
-    public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Coast;
-    public static final NeutralMode CLAW_NEUTRAL_MODE = NeutralMode.Brake;
-    public static final IdleMode OUTTAKE_IDLE_MODE = IdleMode.kBrake;
-
-    public static final double OUTTAKE_P = 0;
-    public static final double OUTTAKE_I = 0;
-    public static final double OUTTAKE_D = 0;
-    public static final double OUTTAKE_F = 0;
-
-    public static final int OUTTAKE_STALL_LIMIT = 20;
-    public static final int OUTTAKE_FREE_LIMIT = 20;
 
     /*============================
                Kinematics
@@ -219,6 +182,9 @@ public final class Constants {
     public static final ProfiledPIDController AUTO_X_CONTROLLER = new ProfiledPIDController(AUTO_P_X_CONTROLLER, 0, 0, X_AUTO_CONSTRAINTS);
     public static final ProfiledPIDController AUTO_Y_CONTROLLER = new ProfiledPIDController(AUTO_P_Y_CONTROLLER, 0, 0, Y_AUTO_CONSTRAINTS);
     public static final ProfiledPIDController AUTO_THETA_CONTROLLER = new ProfiledPIDController(AUTO_P_THETA_CONTROLLER, AUTO_I_THETA_CONTROLLER, AUTO_D_THETA_CONTROLLER, THETA_AUTO_CONSTRAINTS);
+
+    public static final PIDConstants AUTO_TRANSLATION_CONSTANTS = new PIDConstants(0.01, 0, 0);
+    public static final PIDConstants AUTO_ROTATION_CONSTANTS = new PIDConstants(2.8, 0, 0);
 
     /*============================
                 Misc.
