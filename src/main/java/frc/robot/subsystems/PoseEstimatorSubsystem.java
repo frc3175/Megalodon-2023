@@ -60,7 +60,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
   private double previousPipelineTimestamp = 0;
 
   PhotonTrackedTarget target;
-  int fiducialId;
+  public int fiducialId;
   Optional<Pose3d> tagPose;
 
   public PoseEstimatorSubsystem(PhotonCamera photonCamera, SwerveDrivetrain drivetrainSubsystem) {
@@ -71,7 +71,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
       layout = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2023ChargedUp.m_resourceFile);
       var alliance = DriverStation.getAlliance();
       layout.setOrigin(alliance == Alliance.Blue ?
-          OriginPosition.kBlueAllianceWallRightSide : OriginPosition.kRedAllianceWallRightSide);
+          OriginPosition.kRedAllianceWallRightSide : OriginPosition.kRedAllianceWallRightSide);
     } catch(IOException e) {
       DriverStation.reportError("Failed to load AprilTagFieldLayout", e.getStackTrace());
       layout = null;
@@ -90,6 +90,10 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     
     tab.addString("Pose", this::getFomattedPose).withPosition(0, 0).withSize(2, 0);
     tab.add("Field", field2d).withPosition(2, 0).withSize(6, 4);
+
+    SmartDashboard.putNumber("id 2 x", layout.getTagPose(2).get().getX());
+    SmartDashboard.putNumber("id 2 y", layout.getTagPose(2).get().getY());
+
   }
 
   @Override
@@ -111,9 +115,6 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
         var visionMeasurement = camPose.transformBy(CAMERA_TO_ROBOT);
         poseEstimator.addVisionMeasurement(visionMeasurement.toPose2d(), resultTimestamp);
       }
-
-      SmartDashboard.putNumber("target x", tagPose.get().getX());
-      SmartDashboard.putNumber("target y", tagPose.get().getY());
       
     }
     // Update pose estimator with drivetrain sensors
@@ -148,6 +149,8 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
     return new Pose2d(poseEstimator.getEstimatedPosition().getX(), poseEstimator.getEstimatedPosition().getY(), Rotation2d.fromDegrees(poseEstimator.getEstimatedPosition().getRotation().getDegrees()+180));
 
+
+
   }
 
   /**
@@ -171,9 +174,11 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     setCurrentPose(new Pose2d());
   }
 
-  public boolean hasTarget() {
+  /* public boolean hasTarget() {
 
-    if(target.getPoseAmbiguity() <= .2 && fiducialId >= 0 && tagPose.isPresent()) {
+    var localTarget = photonCamera.getLatestResult().getBestTarget();
+
+    if(localTarget.getPoseAmbiguity() <= .2 && localTarget.getFiducialId() >= 0) {
       return true;
     } else {
       return false;
@@ -183,12 +188,14 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
   public Pose3d getIDPose() {
 
-    if(target.getPoseAmbiguity() <= .2 && fiducialId >= 0 && tagPose.isPresent()) {
+    var localTarget = photonCamera.getLatestResult().getBestTarget();
+
+    if(localTarget.getPoseAmbiguity() <= .2 && localTarget.getFiducialId() >= 0) {
       return tagPose.get();
     } else {
       return null;
     }
 
-  }
+  } */
 
 }

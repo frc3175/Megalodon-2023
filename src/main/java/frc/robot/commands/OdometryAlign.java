@@ -40,7 +40,7 @@ public class OdometryAlign extends CommandBase {
 
     m_trajectory = PathPlanner.generatePath(m_constraints, new PathPoint(new Translation2d(m_pose.getX(), m_pose.getY()), m_pose.getRotation(), m_pose.getRotation()), m_finalPoint);
 
-    pathDrivingCommand = m_drivetrain.followTrajectoryCommand(m_trajectory, false);
+    pathDrivingCommand = m_drivetrain.followTrajectoryCommand(m_trajectory, false, m_poseEstimator);
     pathDrivingCommand.schedule();
 
   }
