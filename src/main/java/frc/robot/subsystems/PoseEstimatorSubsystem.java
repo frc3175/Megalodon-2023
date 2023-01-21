@@ -138,7 +138,11 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     //var ppY = (Units.feetToMeters(27) - poseEstimatorPose2d.getY());
     //var pprot = poseEstimatorPose2d.getRotation().getDegrees() - 180;
     //return new Pose2d(ppX, ppY, new Rotation2d(pprot));
-    return poseEstimator.getEstimatedPosition();
+
+    //return poseEstimator.getEstimatedPosition();
+
+    return new Pose2d(poseEstimator.getEstimatedPosition().getX(), poseEstimator.getEstimatedPosition().getY(), Rotation2d.fromDegrees(poseEstimator.getEstimatedPosition().getRotation().getDegrees()+180));
+
   }
 
   /**
