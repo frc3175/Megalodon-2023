@@ -12,6 +12,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -81,7 +82,21 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
-        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(1.524, -1.334), new Rotation2d(0.0)), m_poseEstimator));
+    
+        if(m_poseEstimator.hasTarget()) {
+            m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, 
+                                                        new PathConstraints(1, 1), 
+                                                        new PathPoint(
+                                                            new Translation2d(m_poseEstimator.getIDPose().getX(), 
+                                                                              m_poseEstimator.getIDPose().getY()), 
+                                                            new Rotation2d(m_poseEstimator.getIDPose().getRotation().toRotation2d().getRadians())), 
+                                                        m_poseEstimator));
+        } else {
+            driver.setRumble(RumbleType.kLeftRumble, 1);
+            driver.setRumble(RumbleType.kRightRumble, 1);
+        }
+
+       
 
     }
 

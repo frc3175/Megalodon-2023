@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.photonvision.PhotonCamera;
+import org.photonvision.targeting.PhotonTrackedTarget;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFieldLayout.OriginPosition;
@@ -58,6 +59,10 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
   private double previousPipelineTimestamp = 0;
 
+  PhotonTrackedTarget target;
+  int fiducialId;
+  Optional<Pose3d> tagPose;
+
   public PoseEstimatorSubsystem(PhotonCamera photonCamera, SwerveDrivetrain drivetrainSubsystem) {
     this.photonCamera = photonCamera;
     this.drivetrainSubsystem = drivetrainSubsystem;
@@ -94,10 +99,10 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     var resultTimestamp = pipelineResult.getTimestampSeconds();
     if (resultTimestamp != previousPipelineTimestamp && pipelineResult.hasTargets()) {
       previousPipelineTimestamp = resultTimestamp;
-      var target = pipelineResult.getBestTarget();
-      var fiducialId = target.getFiducialId();
+      target = pipelineResult.getBestTarget();
+      fiducialId = target.getFiducialId();
       // Get the tag pose from field layout - consider that the layout will be null if it failed to load
-      Optional<Pose3d> tagPose = aprilTagFieldLayout == null ? Optional.empty() : aprilTagFieldLayout.getTagPose(fiducialId);
+      tagPose = aprilTagFieldLayout == null ? Optional.empty() : aprilTagFieldLayout.getTagPose(fiducialId);
       if (target.getPoseAmbiguity() <= .2 && fiducialId >= 0 && tagPose.isPresent()) {
         var targetPose = tagPose.get();
         Transform3d camToTarget = target.getBestCameraToTarget();
@@ -164,6 +169,26 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
    */
   public void resetFieldPosition() {
     setCurrentPose(new Pose2d());
+  }
+
+  public boolean hasTarget() {
+
+    if(target.getPoseAmbiguity() <= .2 && fiducialId >= 0 && tagPose.isPresent()) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  public Pose3d getIDPose() {
+
+    if(target.getPoseAmbiguity() <= .2 && fiducialId >= 0 && tagPose.isPresent()) {
+      return tagPose.get();
+    } else {
+      return null;
+    }
+
   }
 
 }
