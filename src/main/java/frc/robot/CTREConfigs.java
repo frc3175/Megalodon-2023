@@ -12,6 +12,8 @@ public final class CTREConfigs {
     public static TalonFXConfiguration swerveAngleFXConfig;
     public static TalonFXConfiguration swerveDriveFXConfig;
     public static CANCoderConfiguration swerveCanCoderConfig;
+    public static TalonFXConfiguration intakeFXConfig;
+    public static TalonFXConfiguration clawFXConfig;
 
 
     public CTREConfigs(){
@@ -19,6 +21,8 @@ public final class CTREConfigs {
         swerveAngleFXConfig = new TalonFXConfiguration();
         swerveDriveFXConfig = new TalonFXConfiguration();
         swerveCanCoderConfig = new CANCoderConfiguration();
+        intakeFXConfig = new TalonFXConfiguration();
+        clawFXConfig = new TalonFXConfiguration();
 
         /* Swerve Angle Motor Configurations */
         SupplyCurrentLimitConfiguration angleSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -53,6 +57,24 @@ public final class CTREConfigs {
         swerveCanCoderConfig.sensorDirection = Constants.FRONT_LEFT_CANCODER_REVERSED;
         swerveCanCoderConfig.initializationStrategy = SensorInitializationStrategy.BootToAbsolutePosition;
         swerveCanCoderConfig.sensorTimeBase = SensorTimeBase.PerSecond;
+
+        /* Intake Motor Configuration */
+        SupplyCurrentLimitConfiguration intakeSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.INTAKE_ENABLE_CURRENT_LIMIT, 
+            Constants.INTAKE_CONTINUOUS_CURRENT_LIMIT, 
+            Constants.INTAKE_PEAK_CURRENT_LIMIT, 
+            Constants.INTAKE_PEAK_CURRENT_DURATION);
+
+        intakeFXConfig.supplyCurrLimit = intakeSupplyLimit;
+
+        /* Claw Motor Configuration */
+        SupplyCurrentLimitConfiguration clawSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.HOOD_ENABLE_CURRENT_LIMIT, 
+            Constants.HOOD_CONTINUOUS_CURRENT_LIMIT, 
+            Constants.HOOD_PEAK_CURRENT_LIMIT, 
+            Constants.HOOD_PEAK_CURRENT_DURATION);
+
+        clawFXConfig.supplyCurrLimit = clawSupplyLimit;
 
 
     }

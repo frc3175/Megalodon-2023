@@ -135,6 +135,34 @@ public final class Constants {
             Math.PI, (Math.PI * Math.PI));
 
     /*============================
+                Intake 
+    ==============================*/
+
+    public static final int INTAKE_MOTOR = 1;
+    public static final int INTAKE_HOOD = 2;
+
+    public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
+    public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 10;
+    public static final int INTAKE_PEAK_CURRENT_LIMIT = 30;
+    public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
+
+    public static final boolean HOOD_ENABLE_CURRENT_LIMIT = true;
+    public static final int HOOD_CONTINUOUS_CURRENT_LIMIT = 10;
+    public static final int HOOD_PEAK_CURRENT_LIMIT = 30;
+    public static final double HOOD_PEAK_CURRENT_DURATION = 0.1;
+
+    public static final boolean INTAKE_INVERTED = false;
+    public static final boolean HOOD_INVERTED = false;
+
+    public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Coast;
+    public static final NeutralMode HOOD_NEUTRAL_MODE = NeutralMode.Brake;
+
+    public static final double INTAKE_SPEED = 0.5;
+    public static final double INTAKE_HOOD_SPEED = 0.3;
+
+    public static final double INTAKE_HOOD_STOP_CURRENT = 30;
+
+    /*============================
                Kinematics
     ==============================*/
 
