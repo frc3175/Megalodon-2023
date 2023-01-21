@@ -1,18 +1,21 @@
 package frc.robot;
 
+import java.io.IOException;
+
 import org.photonvision.PhotonCamera;
 
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPoint;
 
-import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.apriltag.AprilTagFields;
+import edu.wpi.first.apriltag.AprilTagFieldLayout.OriginPosition;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
-
-//import org.photonvision.PhotonCamera;
+import edu.wpi.first.wpilibj.DriverStation;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -49,6 +52,8 @@ public class RobotContainer {
     private final PoseEstimatorSubsystem m_poseEstimator = new PoseEstimatorSubsystem(photonCamera, m_drivetrain);
     //private final Limelight m_limelight = new Limelight();
 
+    AprilTagFieldLayout layout;
+
     /* Commands */
     //private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
 
@@ -66,6 +71,15 @@ public class RobotContainer {
             )
         );
 
+        try {
+        layout = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2023ChargedUp.m_resourceFile);
+        layout.setOrigin(
+          OriginPosition.kBlueAllianceWallRightSide);
+        } catch (IOException e) {
+            DriverStation.reportError("Failed to load AprilTagFieldLayout", e.getStackTrace());
+            layout = null;
+        }
+
         // Configure the button bindings
         configureButtonBindings();
         
@@ -82,21 +96,16 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
+
+        Pose2d tagPose = layout.getTagPose(2).get().toPose2d();
     
-        if(m_poseEstimator.hasTarget()) {
-            m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, 
+           m_trackAprilTag.toggleOnTrue(new OdometryAlign(m_drivetrain, 
                                                         new PathConstraints(1, 1), 
                                                         new PathPoint(
-                                                            new Translation2d(m_poseEstimator.getIDPose().getX(), 
-                                                                              m_poseEstimator.getIDPose().getY()), 
-                                                            new Rotation2d(m_poseEstimator.getIDPose().getRotation().toRotation2d().getRadians())), 
+                                                            new Translation2d(tagPose.getX(), 
+                                                                              tagPose.getY()), 
+                                                            tagPose.getRotation()), 
                                                         m_poseEstimator));
-        } else {
-            driver.setRumble(RumbleType.kLeftRumble, 1);
-            driver.setRumble(RumbleType.kRightRumble, 1);
-        }
-
-       
 
     }
 

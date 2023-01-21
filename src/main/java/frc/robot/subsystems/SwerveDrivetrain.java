@@ -40,6 +40,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
         setOdometryForOdometryAlign();
 
+
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
@@ -85,12 +86,13 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_swerveOdometry.resetPosition(getYaw(), getModulePositions(), pose);
     }
 
-    public void setOdometryToOffset() {
-        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(6.55, -1.21, Rotation2d.fromDegrees(0.0)));
+    public void setOdometryToZero() {
+        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(0.00, 0.00, Rotation2d.fromDegrees(0.0)));
     }
 
     public void setOdometryForOdometryAlign() {
-        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(2.081, 5.30, Rotation2d.fromDegrees(180.0)));
+       // m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(2.081, 5.30, Rotation2d.fromDegrees(180.0)));
+       m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(15.15, 2.7, Rotation2d.fromDegrees(180.0)));
     }
 
     public SwerveModuleState[] getModuleStates(){
@@ -124,10 +126,10 @@ public class SwerveDrivetrain extends SubsystemBase {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) : Rotation2d.fromDegrees(m_gyro.getYaw());
     }
 
-    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath) {
+    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath, PoseEstimatorSubsystem poseEstimator) {
             return new PPSwerveControllerCommand(
                  traj, 
-                 this::getPose, // Pose supplier
+                 poseEstimator::getCurrentPose, // Pose supplier
                  Constants.swerveKinematics, // SwerveDriveKinematics
                  new PIDController(0.01, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
                  new PIDController(0.01, 0, 0), // Y controller (usually the same values as X controller)
