@@ -38,7 +38,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw(), getModulePositions());
 
-        setOdometryForOdometryAlign();
+        setOdometryToOffset();
 
     }
 
@@ -86,7 +86,7 @@ public class SwerveDrivetrain extends SubsystemBase {
     }
 
     public void setOdometryToOffset() {
-        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(-6.14, 1.21, Rotation2d.fromDegrees(0.0)));
+        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(6.55, -1.21, Rotation2d.fromDegrees(0.0)));
     }
 
     public void setOdometryForOdometryAlign() {

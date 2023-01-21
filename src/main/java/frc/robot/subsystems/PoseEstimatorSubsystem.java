@@ -15,6 +15,7 @@ import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
@@ -23,13 +24,14 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class PoseEstimatorSubsystem extends SubsystemBase {
 
   private final PhotonCamera photonCamera;
-  private final SwerveDrivetrain m_drivetrain;
+  private final SwerveDrivetrain drivetrainSubsystem;
   private final AprilTagFieldLayout aprilTagFieldLayout;
   
   // Kalman Filter Configuration. These can be "tuned-to-taste" based on how much
@@ -56,9 +58,9 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
   private double previousPipelineTimestamp = 0;
 
-  public PoseEstimatorSubsystem(PhotonCamera photonCamera, SwerveDrivetrain drivetrain) {
+  public PoseEstimatorSubsystem(PhotonCamera photonCamera, SwerveDrivetrain drivetrainSubsystem) {
     this.photonCamera = photonCamera;
-    m_drivetrain = drivetrain;
+    this.drivetrainSubsystem = drivetrainSubsystem;
     AprilTagFieldLayout layout;
     try {
       layout = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2023ChargedUp.m_resourceFile);
@@ -75,8 +77,8 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
     poseEstimator =  new SwerveDrivePoseEstimator(
         Constants.swerveKinematics,
-        m_drivetrain.getYaw(),
-        m_drivetrain.getModulePositions(),
+        drivetrainSubsystem.getYaw(),
+        drivetrainSubsystem.getModulePositions(),
         new Pose2d(),
         stateStdDevs,
         visionMeasurementStdDevs);
@@ -104,13 +106,22 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
         var visionMeasurement = camPose.transformBy(CAMERA_TO_ROBOT);
         poseEstimator.addVisionMeasurement(visionMeasurement.toPose2d(), resultTimestamp);
       }
+
+      SmartDashboard.putNumber("target x", tagPose.get().getX());
+      SmartDashboard.putNumber("target y", tagPose.get().getY());
+      
     }
     // Update pose estimator with drivetrain sensors
     poseEstimator.update(
-      m_drivetrain.getYaw(),
-      m_drivetrain.getModulePositions());
+      drivetrainSubsystem.getYaw(),
+      drivetrainSubsystem.getModulePositions());
 
     field2d.setRobotPose(getCurrentPose());
+
+    SmartDashboard.putNumber("pose estimator x", getCurrentPose().getX());
+    SmartDashboard.putNumber("pose estimator y", getCurrentPose().getY());
+    SmartDashboard.putNumber("pose estimator rot", getCurrentPose().getRotation().getDegrees());
+
   }
 
   private String getFomattedPose() {
@@ -122,6 +133,11 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
   }
 
   public Pose2d getCurrentPose() {
+    //Pose2d poseEstimatorPose2d = poseEstimator.getEstimatedPosition();
+    //var ppX = (Units.feetToMeters(54) - poseEstimatorPose2d.getX());
+    //var ppY = (Units.feetToMeters(27) - poseEstimatorPose2d.getY());
+    //var pprot = poseEstimatorPose2d.getRotation().getDegrees() - 180;
+    //return new Pose2d(ppX, ppY, new Rotation2d(pprot));
     return poseEstimator.getEstimatedPosition();
   }
 
@@ -133,8 +149,8 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
    */
   public void setCurrentPose(Pose2d newPose) {
     poseEstimator.resetPosition(
-      m_drivetrain.getYaw(),
-      m_drivetrain.getModulePositions(),
+      drivetrainSubsystem.getYaw(),
+      drivetrainSubsystem.getModulePositions(),
       newPose);
   }
 

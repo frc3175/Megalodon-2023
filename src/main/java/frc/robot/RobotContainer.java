@@ -1,5 +1,7 @@
 package frc.robot;
 
+import org.photonvision.PhotonCamera;
+
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPoint;
 
@@ -28,7 +30,7 @@ public class RobotContainer {
     private final XboxController driver = new XboxController(0);
 
     /* Camera */   
-    //private final PhotonCamera photonCamera = new PhotonCamera("OV5647");
+    private final PhotonCamera photonCamera = new PhotonCamera("OV5647");
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -43,10 +45,11 @@ public class RobotContainer {
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
-    private final Limelight m_limelight = new Limelight();
+    private final PoseEstimatorSubsystem m_poseEstimator = new PoseEstimatorSubsystem(photonCamera, m_drivetrain);
+    //private final Limelight m_limelight = new Limelight();
 
     /* Commands */
-    private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
+    //private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -78,7 +81,7 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
-        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(1.524, -1.334), new Rotation2d(0.0))));
+        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(1.524, -1.334), new Rotation2d(0.0)), m_poseEstimator));
 
     }
 
