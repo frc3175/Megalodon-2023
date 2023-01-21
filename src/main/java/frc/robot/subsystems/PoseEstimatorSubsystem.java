@@ -71,7 +71,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
       layout = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2023ChargedUp.m_resourceFile);
       var alliance = DriverStation.getAlliance();
       layout.setOrigin(alliance == Alliance.Blue ?
-          OriginPosition.kRedAllianceWallRightSide : OriginPosition.kRedAllianceWallRightSide);
+          OriginPosition.kBlueAllianceWallRightSide : OriginPosition.kBlueAllianceWallRightSide);
     } catch(IOException e) {
       DriverStation.reportError("Failed to load AprilTagFieldLayout", e.getStackTrace());
       layout = null;
@@ -93,6 +93,8 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
     SmartDashboard.putNumber("id 2 x", layout.getTagPose(2).get().getX());
     SmartDashboard.putNumber("id 2 y", layout.getTagPose(2).get().getY());
+
+    setCurrentPose(new Pose2d(15.15, 2.7, new Rotation2d(180.00)));
 
   }
 
@@ -148,8 +150,6 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     //return poseEstimator.getEstimatedPosition();
 
     return new Pose2d(poseEstimator.getEstimatedPosition().getX(), poseEstimator.getEstimatedPosition().getY(), Rotation2d.fromDegrees(poseEstimator.getEstimatedPosition().getRotation().getDegrees()+180));
-
-
 
   }
 

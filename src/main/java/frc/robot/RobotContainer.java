@@ -12,7 +12,6 @@ import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.apriltag.AprilTagFieldLayout.OriginPosition;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -75,7 +74,7 @@ public class RobotContainer {
         try {
         layout = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2023ChargedUp.m_resourceFile);
         layout.setOrigin(
-          OriginPosition.kRedAllianceWallRightSide);
+          OriginPosition.kBlueAllianceWallRightSide);
         } catch (IOException e) {
             DriverStation.reportError("Failed to load AprilTagFieldLayout", e.getStackTrace());
             layout = null;
@@ -100,16 +99,13 @@ public class RobotContainer {
 
         Pose2d tagPose = layout.getTagPose(2).get().toPose2d();
     
-            m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, 
+           m_trackAprilTag.toggleOnTrue(new OdometryAlign(m_drivetrain, 
                                                         new PathConstraints(1, 1), 
                                                         new PathPoint(
                                                             new Translation2d(tagPose.getX(), 
                                                                               tagPose.getY()), 
                                                             tagPose.getRotation()), 
                                                         m_poseEstimator));
-
-
-       
 
     }
 

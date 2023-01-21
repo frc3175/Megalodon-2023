@@ -40,6 +40,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
         setOdometryForOdometryAlign();
 
+
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
@@ -85,12 +86,13 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_swerveOdometry.resetPosition(getYaw(), getModulePositions(), pose);
     }
 
-    public void setOdometryToOffset() {
-        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(6.55, -1.21, Rotation2d.fromDegrees(0.0)));
+    public void setOdometryToZero() {
+        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(0.00, 0.00, Rotation2d.fromDegrees(0.0)));
     }
 
     public void setOdometryForOdometryAlign() {
-        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(2.081, 5.30, Rotation2d.fromDegrees(180.0)));
+       // m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(2.081, 5.30, Rotation2d.fromDegrees(180.0)));
+       m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(15.15, 2.7, Rotation2d.fromDegrees(180.0)));
     }
 
     public SwerveModuleState[] getModuleStates(){
@@ -129,8 +131,8 @@ public class SwerveDrivetrain extends SubsystemBase {
                  traj, 
                  poseEstimator::getCurrentPose, // Pose supplier
                  Constants.swerveKinematics, // SwerveDriveKinematics
-                 new PIDController(1, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-                 new PIDController(1, 0, 0), // Y controller (usually the same values as X controller)
+                 new PIDController(0.01, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+                 new PIDController(0.01, 0, 0), // Y controller (usually the same values as X controller)
                  new PIDController(2.8, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
                  this::setModuleStates, // Module states consumer
                  false, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
