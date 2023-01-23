@@ -14,6 +14,8 @@ public final class CTREConfigs {
     public static CANCoderConfiguration swerveCanCoderConfig;
     public static TalonFXConfiguration intakeFXConfig;
     public static TalonFXConfiguration clawFXConfig;
+    public static TalonFXConfiguration elevatorFXConfig;
+    public static TalonFXConfiguration slideFXConfig;
 
 
     public CTREConfigs(){
@@ -23,6 +25,8 @@ public final class CTREConfigs {
         swerveCanCoderConfig = new CANCoderConfiguration();
         intakeFXConfig = new TalonFXConfiguration();
         clawFXConfig = new TalonFXConfiguration();
+        elevatorFXConfig = new TalonFXConfiguration();
+        slideFXConfig = new TalonFXConfiguration();
 
         /* Swerve Angle Motor Configurations */
         SupplyCurrentLimitConfiguration angleSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -75,6 +79,34 @@ public final class CTREConfigs {
             Constants.HOOD_PEAK_CURRENT_DURATION);
 
         clawFXConfig.supplyCurrLimit = clawSupplyLimit;
+
+        /* Elevator Motor Configuration */
+        SupplyCurrentLimitConfiguration elevatorSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.ELEVATOR_ENABLE_CURRENT_LIMIT,
+            Constants.ELEVATOR_CONTINUOUS_CURRENT_LIMIT,
+            Constants.ELEVATOR_PEAK_CURRENT_LIMIT,
+            Constants.ELEVATOR_PEAK_CURRENT_DURATION
+        );
+
+        elevatorFXConfig.supplyCurrLimit = elevatorSupplyLimit;
+        elevatorFXConfig.slot0.kP = Constants.ELEVATOR_P;
+        elevatorFXConfig.slot0.kI = Constants.ELEVATOR_I;
+        elevatorFXConfig.slot0.kD = Constants.ELEVATOR_D;
+        elevatorFXConfig.slot0.kF = Constants.ELEVATOR_F;
+
+        /* Slide Motor Configuration */
+        SupplyCurrentLimitConfiguration slideSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.SLIDE_ENABLE_CURRENT_LIMIT,
+            Constants.SLIDE_CONTINUOUS_CURRENT_LIMIT,
+            Constants.SLIDE_PEAK_CURRENT_LIMIT,
+            Constants.SLIDE_PEAK_CURRENT_DURATION
+        );
+
+       slideFXConfig.supplyCurrLimit = slideSupplyLimit;
+       slideFXConfig.slot0.kP = Constants.SLIDE_P;
+       slideFXConfig.slot0.kI = Constants.SLIDE_I;
+       slideFXConfig.slot0.kD = Constants.SLIDE_D;
+       slideFXConfig.slot0.kF = Constants.SLIDE_F;
 
 
     }

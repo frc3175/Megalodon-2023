@@ -163,6 +163,64 @@ public final class Constants {
     public static final double INTAKE_HOOD_STOP_CURRENT = 30;
 
     /*============================
+                Elevator 
+    ==============================*/
+
+    public static final int ELEVATOR_MOTOR = 7;
+
+    public static final boolean ELEVATOR_ENABLE_CURRENT_LIMIT = true;
+    public static final int ELEVATOR_CONTINUOUS_CURRENT_LIMIT = 10;
+    public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 30;
+    public static final double ELEVATOR_PEAK_CURRENT_DURATION = 0.1;
+
+    public static final boolean ELEVATOR_INVERTED = false;
+    public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
+
+    /* Setpoints */
+    public static final int ELEVATOR_DOWN = 0;
+    public static final int CUBE_HIGH = 1000;
+    public static final int CUBE_MID = 500;
+    public static final int CONE_HIGH = 1500;
+    public static final int CONE_MID = 1000;
+    public static final int SUBSTATION = 1250;
+    public static final int CLEAR_BUMPER = 100;
+
+    /* Elevator PID */
+    public static final double ELEVATOR_P = 0;
+    public static final double ELEVATOR_I = 0;
+    public static final double ELEVATOR_D = 0;
+    public static final double ELEVATOR_F = 0;
+
+    /*============================
+                Slide
+    ==============================*/
+
+    public static final int SLIDE_MOTOR = 7;
+
+    public static final boolean SLIDE_ENABLE_CURRENT_LIMIT = true;
+    public static final int SLIDE_CONTINUOUS_CURRENT_LIMIT = 10;
+    public static final int SLIDE_PEAK_CURRENT_LIMIT = 30;
+    public static final double SLIDE_PEAK_CURRENT_DURATION = 0.1;
+
+    public static final boolean SLIDE_INVERTED = false;
+    public static final NeutralMode SLIDE_NEUTRAL_MODE = NeutralMode.Coast;
+
+    /* Setpoints */
+    public static final int SLIDE_INTAKE = 1000;
+    public static final int SLIDE_IN = 0;
+    public static final int SLIDE_CONE_MID = 500;
+    public static final int SLIDE_CONE_HIGH = 1500;
+    public static final int SLIDE_CUBE_MID = 1000;
+    public static final int SLIDE_CUBE_HIGH = 1000;
+    public static final int SLIDE_SUBSTATION = 1250;
+
+    /* Elevator PID */
+    public static final double SLIDE_P = 0;
+    public static final double SLIDE_I = 0;
+    public static final double SLIDE_D = 0;
+    public static final double SLIDE_F = 0;
+
+    /*============================
                Kinematics
     ==============================*/
 
