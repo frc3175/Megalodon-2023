@@ -13,6 +13,8 @@ public class Intake extends SubsystemBase {
 
     private IntakeState intakeState;
 
+    private boolean intakeRunning = false;
+
     public Intake() {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR);
@@ -51,6 +53,10 @@ public class Intake extends SubsystemBase {
             intakeHoodUp();
         }
 
+        while(!intakeRunning) {
+            //do nothing
+        }
+
         intakeMotor.setInverted(state.intakeInverted);
 
         setIntake(state.intakeSpeed);
@@ -61,6 +67,14 @@ public class Intake extends SubsystemBase {
 
     public IntakeState getIntakeState() {
         return intakeState;
+    }
+
+    public void setIntakeRunning() {
+        intakeRunning = true;
+    }
+
+    public void stopIntake() {
+        intakeRunning = false;
     }
 
 

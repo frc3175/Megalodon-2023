@@ -153,7 +153,7 @@ public final class Constants {
 
     public static final boolean HOOD_INVERTED = false;
 
-    public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Coast;
+    public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Brake;
     public static final NeutralMode HOOD_NEUTRAL_MODE = NeutralMode.Brake;
 
     public static final int HOOD_DOWN = 1000;
