@@ -4,9 +4,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Slide {
+public class Slide extends SubsystemBase {
 
     private TalonFX slideMotor;
 
@@ -44,7 +45,7 @@ public class Slide {
 
         timer.reset();
         timer.start();
-        
+
         while(timer.get() < state.slideDelay) {
             //do nothing
         }

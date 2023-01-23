@@ -73,7 +73,8 @@ public class Intake extends SubsystemBase {
         CUBE_HIGH(true, true, Constants.OUTTAKE_HIGH_CUBE),
         CUBE_MID(false, false, Constants.OUTTAKE_MID_CUBE),
         CONE_LOW(false, false, Constants.OUTTAKE_LOW_CONE),
-        CUBE_LOW(false, false, Constants.OUTTAKE_LOW_CUBE);
+        CUBE_LOW(false, false, Constants.OUTTAKE_LOW_CUBE),
+        STOP(false, false, 0.0);
 
         public boolean intakeInverted;
         public boolean hoodDown;
