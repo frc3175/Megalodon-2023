@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+/*package frc.robot.subsystems;
 
 import static frc.robot.Constants.CAMERA_TO_ROBOT;
 
@@ -46,13 +46,13 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
    * Standard deviations of model states. Increase these numbers to trust your model's state estimates less. This
    * matrix is in the form [x, y, theta]ᵀ, with units in meters and radians, then meters.
    */  
-  private static final Vector<N3> stateStdDevs = VecBuilder.fill(0.05, 0.05, Units.degreesToRadians(5));
-  
+  //private static final Vector<N3> stateStdDevs = VecBuilder.fill(0.05, 0.05, Units.degreesToRadians(5));
+
   /**
    * Standard deviations of the vision measurements. Increase these numbers to trust global measurements from vision
    * less. This matrix is in the form [x, y, theta]ᵀ, with units in meters and radians.
    */  
-  private static final Vector<N3> visionMeasurementStdDevs = VecBuilder.fill(0.5, 0.5, Units.degreesToRadians(10));
+  /* private static final Vector<N3> visionMeasurementStdDevs = VecBuilder.fill(0.5, 0.5, Units.degreesToRadians(10));
 
   private final SwerveDrivePoseEstimator poseEstimator;
 
@@ -111,7 +111,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
       // Get the tag pose from field layout - consider that the layout will be null if it failed to load
       //tagPose = aprilTagFieldLayout == null ? Optional.empty() : aprilTagFieldLayout.getTagPose(fiducialId);
       tagPose = new Pose3d(2.286, -1.0922, 0.3556, new Rotation3d(0, 0, 180));
-      if (target.getPoseAmbiguity() <= .2 && fiducialId >= 0 /* && tagPose.isPresent() */) {
+      if (target.getPoseAmbiguity() <= .2 && fiducialId >= 0 /* && tagPose.isPresent() *//* ) { 
         var targetPose = tagPose;
         Transform3d camToTarget = target.getBestCameraToTarget();
         Pose3d camPose = targetPose.transformBy(camToTarget.inverse());
@@ -160,7 +160,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
    * when the robot's position on the field is known, like at the beginning of
    * a match.
    * @param newPose new pose
-   */  
+   */  /* 
   public void setCurrentPose(Pose2d newPose) {
     poseEstimator.resetPosition(
       drivetrainSubsystem.getYaw(),
@@ -171,7 +171,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
   /**
    * Resets the position on the field to 0,0 0-degrees, with forward being downfield. This resets
    * what "forward" is for field oriented driving.
-   */ 
+   */ /* 
   public void resetFieldPosition() {
     setCurrentPose(new Pose2d());
   }
@@ -200,4 +200,4 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
   } 
 
-}
+} */

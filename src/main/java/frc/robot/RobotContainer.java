@@ -46,7 +46,7 @@ public class RobotContainer {
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
     private final Limelight m_limelight = new Limelight();
-    private final PoseEstimatorSubsystem m_PoseEstimatorSubsystem = new PoseEstimatorSubsystem(photonCamera, m_drivetrain);
+    //private final PoseEstimatorSubsystem m_PoseEstimatorSubsystem = new PoseEstimatorSubsystem(photonCamera, m_drivetrain);
 
     /* Commands */
     //private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
@@ -81,7 +81,7 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
-        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(2, -1.0922), new Rotation2d(0.0)), m_PoseEstimatorSubsystem)); //x = 2.286
+        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(2, -1.0922), new Rotation2d(0.0))/* , m_PoseEstimatorSubsystem*/)); //x = 2.286
 
     }
 
