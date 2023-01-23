@@ -9,6 +9,8 @@ public class Elevator {
 
     private TalonFX elevMotor;
 
+    private ElevatorState elevState;
+
     public Elevator() {
 
         elevMotor = new TalonFX(Constants.ELEVATOR_MOTOR);
@@ -37,43 +39,31 @@ public class Elevator {
 
     public void setElevatorState(ElevatorState state) {
 
-        switch(state){
+        setElevatorSetpoint(state.elevSetpoint);
+        elevState = state;
 
-            case FLOOR:
-                setElevatorSetpoint(Constants.ELEVATOR_DOWN);
-                break;
-            case CLEAR_BUMPER:
-                setElevatorSetpoint(Constants.CLEAR_BUMPER);
-                break;
-            case SUBSTATION:
-                setElevatorSetpoint(Constants.SUBSTATION);
-                break;
-            case MID_CUBE:
-                setElevatorSetpoint(Constants.CUBE_MID);
-                break;
-            case MID_CONE:
-                setElevatorSetpoint(Constants.CONE_MID);
-                break;
-            case HIGH_CUBE:
-                setElevatorSetpoint(Constants.CUBE_HIGH);
-                break;
-            case HIGH_CONE:
-                setElevatorSetpoint(Constants.CONE_HIGH);
-                break;
+    }
 
-        }
+    public ElevatorState getElevatorState() {
+
+        return elevState;
 
     }
 
     public enum ElevatorState {
 
-        FLOOR,
-        CLEAR_BUMPER,
-        SUBSTATION,
-        MID_CUBE,
-        MID_CONE,
-        HIGH_CUBE,
-        HIGH_CONE
+        FLOOR(Constants.ELEVATOR_DOWN),
+        CLEAR_BUMPER(Constants.CLEAR_BUMPER),
+        SUBSTATION(Constants.SUBSTATION),
+        MID_CUBE(Constants.CUBE_MID),
+        MID_CONE(Constants.CONE_MID),
+        HIGH_CUBE(Constants.CUBE_HIGH),
+        HIGH_CONE(Constants.CONE_HIGH);
+
+        public final int elevSetpoint;
+        private ElevatorState(int setpoint) {
+            this.elevSetpoint = setpoint;
+        }
 
     }
     

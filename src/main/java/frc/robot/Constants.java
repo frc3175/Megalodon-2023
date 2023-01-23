@@ -151,16 +151,31 @@ public final class Constants {
     public static final int HOOD_PEAK_CURRENT_LIMIT = 30;
     public static final double HOOD_PEAK_CURRENT_DURATION = 0.1;
 
-    public static final boolean INTAKE_INVERTED = false;
     public static final boolean HOOD_INVERTED = false;
 
     public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Coast;
     public static final NeutralMode HOOD_NEUTRAL_MODE = NeutralMode.Brake;
 
-    public static final double INTAKE_SPEED = 0.5;
-    public static final double INTAKE_HOOD_SPEED = 0.3;
+    public static final int HOOD_DOWN = 1000;
+    public static final int HOOD_UP = 0;
 
     public static final double INTAKE_HOOD_STOP_CURRENT = 30;
+
+    /* Hood PID */
+    public static final double HOOD_P = 0;
+    public static final double HOOD_I = 0;
+    public static final double HOOD_D = 0;
+    public static final double HOOD_F = 0;
+
+    /* Speeds */
+    public static final double OUTTAKE_HIGH_CONE = 0;
+    public static final double OUTTAKE_MID_CONE = 0;
+    public static final double OUTTAKE_LOW_CONE = 0;
+    public static final double OUTTAKE_HIGH_CUBE = 0;
+    public static final double OUTTAKE_MID_CUBE = 0;
+    public static final double OUTTAKE_LOW_CUBE = 0;
+    public static final double INTAKE_CONE = 0;
+    public static final double INTAKE_CUBE = 0;
 
     /*============================
                 Elevator 

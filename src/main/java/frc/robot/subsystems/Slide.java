@@ -9,6 +9,8 @@ public class Slide {
 
     private TalonFX slideMotor;
 
+    private SlideState slideState;
+
     public Slide() {
 
         slideMotor = new TalonFX(Constants.SLIDE_MOTOR);
@@ -37,43 +39,29 @@ public class Slide {
 
     public void setSlideState(SlideState state) {
 
-        switch(state) {
+        setSlide(state.slideSetpoint);
+        this.slideState = state;
 
-            case INTAKE:
-                setSlide(Constants.SLIDE_INTAKE);
-                break;
-            case RETRACTED:
-                setSlide(Constants.SLIDE_IN);
-                break;
-            case CUBE_HIGH:
-                setSlide(Constants.CUBE_HIGH);
-                break;
-            case CUBE_MID:
-                setSlide(Constants.CUBE_MID);
-                break;
-            case CONE_HIGH:
-                setSlide(Constants.CONE_HIGH);
-                break;
-            case CONE_MID:
-                setSlide(Constants.CONE_MID);
-                break;
-            case SUBSTATION:
-                setSlide(Constants.SUBSTATION);
-                break;
+    }
 
-        }
-
+    public SlideState getSlideState() {
+        return slideState;
     }
 
     public enum SlideState {
 
-        INTAKE,
-        RETRACTED,
-        CUBE_HIGH,
-        CUBE_MID,
-        CONE_HIGH,
-        CONE_MID,
-        SUBSTATION
+        INTAKE(Constants.SLIDE_INTAKE),
+        RETRACTED(Constants.SLIDE_IN),
+        CUBE_HIGH(Constants.SLIDE_CUBE_HIGH),
+        CUBE_MID(Constants.SLIDE_CUBE_MID),
+        CONE_HIGH(Constants.SLIDE_CONE_HIGH),
+        CONE_MID(Constants.SLIDE_CONE_MID),
+        SUBSTATION(Constants.SLIDE_SUBSTATION);
+
+        public int slideSetpoint;
+        private SlideState(int setpoint) {
+            this.slideSetpoint = setpoint;
+        }
 
     }
     

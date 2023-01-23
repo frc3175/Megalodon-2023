@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -11,20 +10,18 @@ public class Intake extends SubsystemBase {
 
     private TalonFX intakeMotor;
     private TalonFX clawMotor;
-    private Timer timer;
+
+    private IntakeState intakeState;
 
     public Intake() {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR);
         clawMotor = new TalonFX(Constants.INTAKE_HOOD);
 
-        intakeMotor.setInverted(Constants.INTAKE_INVERTED);
         intakeMotor.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
 
         clawMotor.setInverted(Constants.HOOD_INVERTED);
         clawMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
-
-        timer = new Timer();
 
     } 
 
@@ -34,19 +31,59 @@ public class Intake extends SubsystemBase {
 
     }
 
-    public void moveIntakeHood(double speed, int currentLimit) {
+    public void intakeHoodDown() {
 
-        if(intakeMotor.getStatorCurrent() < currentLimit) {
-            intakeMotor.set(ControlMode.PercentOutput, speed);
+        intakeMotor.set(ControlMode.Position, Constants.HOOD_DOWN);
+
+    }
+
+    public void intakeHoodUp() {
+
+        intakeMotor.set(ControlMode.Position, Constants.HOOD_UP);
+
+    }
+
+    public void setIntakeState(IntakeState state) {
+
+        if(state.hoodDown) {
+            intakeHoodDown();
         } else {
-            timer.reset();
-            while(timer.get() < 0.2) {
-                intakeMotor.set(ControlMode.PercentOutput, speed);
-            }
-            intakeMotor.set(ControlMode.PercentOutput, 0);
+            intakeHoodUp();
         }
-        
 
+        intakeMotor.setInverted(state.intakeInverted);
+
+        setIntake(state.intakeSpeed);
+
+        intakeState = state;
+
+    }
+
+    public IntakeState getIntakeState() {
+        return intakeState;
+    }
+
+
+    public enum IntakeState {
+
+        INTAKE_CONE(false, false, Constants.INTAKE_CONE),
+        INTAKE_CUBE(true, false, Constants.INTAKE_CUBE),
+        CONE_HIGH(true, false, Constants.OUTTAKE_HIGH_CONE),
+        CONE_MID(true, true, Constants.OUTTAKE_MID_CONE),
+        CUBE_HIGH(true, true, Constants.OUTTAKE_HIGH_CUBE),
+        CUBE_MID(false, false, Constants.OUTTAKE_MID_CUBE),
+        CONE_LOW(false, false, Constants.OUTTAKE_LOW_CONE),
+        CUBE_LOW(false, false, Constants.OUTTAKE_LOW_CUBE);
+
+        public boolean intakeInverted;
+        public boolean hoodDown;
+        public double intakeSpeed;
+        private IntakeState(boolean intakeInverted, boolean hoodDown, double intakeSpeed){
+            this.intakeInverted = intakeInverted;
+            this.hoodDown = hoodDown;
+            this.intakeSpeed = intakeSpeed;
+        }
+ 
     }
 
 

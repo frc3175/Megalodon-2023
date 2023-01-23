@@ -79,6 +79,10 @@ public final class CTREConfigs {
             Constants.HOOD_PEAK_CURRENT_DURATION);
 
         clawFXConfig.supplyCurrLimit = clawSupplyLimit;
+        clawFXConfig.slot0.kP = Constants.HOOD_P;
+        clawFXConfig.slot0.kI = Constants.HOOD_I;
+        clawFXConfig.slot0.kD = Constants.HOOD_D;
+        clawFXConfig.slot0.kF = Constants.HOOD_F;
 
         /* Elevator Motor Configuration */
         SupplyCurrentLimitConfiguration elevatorSupplyLimit = new SupplyCurrentLimitConfiguration(
