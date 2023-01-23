@@ -79,8 +79,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     public Pose2d getPose() {
         return m_swerveOdometry.getPoseMeters();
-    } 
-    
+    }
 
     public void resetOdometry(Pose2d pose) {
         m_swerveOdometry.resetPosition(getYaw(), getModulePositions(), pose);
@@ -125,7 +124,7 @@ public class SwerveDrivetrain extends SubsystemBase {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) : Rotation2d.fromDegrees(m_gyro.getYaw());
     }
 
-    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath /*PoseEstimatorSubsystem poseEstimator */) {
+    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath) {
             return new PPSwerveControllerCommand(
                  traj, 
                  this::getPose, // Pose supplier
@@ -149,9 +148,9 @@ public class SwerveDrivetrain extends SubsystemBase {
             SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
         }
 
-       SmartDashboard.putNumber("real robot pose x", getPose().getX());
-       SmartDashboard.putNumber("real robot pose y", getPose().getY());
-       SmartDashboard.putNumber("real robot pose rot", getPose().getRotation().getDegrees());
+        SmartDashboard.putNumber("real robot pose x", getPose().getX() * -1);
+        SmartDashboard.putNumber("real robot pose y", getPose().getY() * -1);
+        SmartDashboard.putNumber("real robot pose rot", getPose().getRotation().getDegrees());
 
     }
 }

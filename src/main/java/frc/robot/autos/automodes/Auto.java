@@ -1,4 +1,4 @@
-/* package frc.robot.autos.automodes;
+package frc.robot.autos.automodes;
 
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
@@ -41,4 +41,4 @@ public final class Auto {
     throw new UnsupportedOperationException("This is a utility class!");
   }
 
-} */
+}

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import frc.robot.autos.automodes.Auto;
+import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -46,7 +46,6 @@ public class RobotContainer {
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
     private final Limelight m_limelight = new Limelight();
-    //private final PoseEstimatorSubsystem m_PoseEstimatorSubsystem = new PoseEstimatorSubsystem(photonCamera, m_drivetrain);
 
     /* Commands */
     //private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
@@ -81,14 +80,13 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
-        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(2, -1.0922), new Rotation2d(0.0))/* , m_PoseEstimatorSubsystem*/)); //x = 2.286
+        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(1.524, -1.334), new Rotation2d(0.0)), photonCamera));
 
     }
 
     public Command getAutonomousCommand() {
 
-        //return Auto.exampleAuto();
-        return null;
+        return Auto.exampleAuto();
 
     }
 
