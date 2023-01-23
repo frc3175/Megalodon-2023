@@ -220,6 +220,8 @@ public final class Constants {
     public static final boolean SLIDE_INVERTED = false;
     public static final NeutralMode SLIDE_NEUTRAL_MODE = NeutralMode.Coast;
 
+    public static final double SLIDE_DELAY_UP = 0;
+
     /* Setpoints */
     public static final int SLIDE_INTAKE = 1000;
     public static final int SLIDE_IN = 0;
