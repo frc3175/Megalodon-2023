@@ -1,7 +1,13 @@
 package frc.robot.subsystems;
 
+import java.util.Optional;
+
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -82,6 +88,36 @@ public class Limelight extends SubsystemBase{
 
     }
 
+    public Pose2d getConvertedPose() {
+
+        botpose = tbotpose.getDoubleArray(botpose);
+
+        double x;
+        double y;
+        double z;
+        double yaw;
+        double pitch;
+        double roll;
+
+        if(botpose.length > 2) {
+            x = botpose[0];
+            y = botpose[1];
+            z = botpose[2];
+            roll = botpose[3];
+            pitch = botpose[4];
+            yaw = botpose[5];
+        
+
+            var convertedY = Units.feetToMeters(13.5) - y;
+            var convertedX = (-Units.feetToMeters(27) - x) * -1;
+
+            return new Pose2d(new Translation2d(convertedX, convertedY), new Rotation2d(yaw));
+
+        }
+
+        return null;
+    }
+
     @Override
     public void periodic() {
 
@@ -92,14 +128,14 @@ public class Limelight extends SubsystemBase{
         double[] emptyArray = new double[0];
         botpose = tbotpose.getDoubleArray(emptyArray);
 
-        SmartDashboard.putNumber("LimelightX", x);
-        SmartDashboard.putNumber("LimelightY", y);
-        SmartDashboard.putNumber("has target", v);
-        SmartDashboard.putNumber("tag id", id);
 
-        SmartDashboard.putNumber("LL x-dist", getXDistance(x, y));
-        SmartDashboard.putNumber("LL y-dist", getYDistance(y));
-        SmartDashboard.putNumber("LL theta", getTheta());
+        if(botpose.length > 0) {
+
+        SmartDashboard.putNumber("converted pose x", getConvertedPose().getX());
+        SmartDashboard.putNumber("converted pose y", getConvertedPose().getY());
+        SmartDashboard.putNumber("converted pose theta", getConvertedPose().getRotation().getDegrees());
+
+        }
 
     }
     

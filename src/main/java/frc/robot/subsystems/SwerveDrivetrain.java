@@ -90,7 +90,7 @@ public class SwerveDrivetrain extends SubsystemBase {
     }
 
     public void setOdometryForOdometryAlign() {
-        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(0, 0, Rotation2d.fromDegrees(0.0)));
+        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(13.56, 5.2, Rotation2d.fromDegrees(0.0)));
     }
 
     public SwerveModuleState[] getModuleStates(){
@@ -148,8 +148,8 @@ public class SwerveDrivetrain extends SubsystemBase {
             SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
         }
 
-        SmartDashboard.putNumber("real robot pose x", getPose().getX() * -1);
-        SmartDashboard.putNumber("real robot pose y", getPose().getY() * -1);
+        SmartDashboard.putNumber("real robot pose x", getPose().getX());
+        SmartDashboard.putNumber("real robot pose y", getPose().getY());
         SmartDashboard.putNumber("real robot pose rot", getPose().getRotation().getDegrees());
 
     }

@@ -80,7 +80,7 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
-        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(1.524, -1.334), new Rotation2d(0.0)), photonCamera));
+        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(14.94, 5.36), new Rotation2d(0.0)), m_limelight));
 
     }
 
