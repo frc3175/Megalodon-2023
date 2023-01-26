@@ -67,7 +67,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
 
     Pose3d robotPose = m_limelight.getConvertedPose().transformBy(Constants.CAMERA_TO_ROBOT);
 
-    poseEstimator.addVisionMeasurement(robotPose.toPose2d(), (m_timer.getFPGATimestamp() - 0.011));
+    poseEstimator.addVisionMeasurement(robotPose.toPose2d(), (m_timer.getFPGATimestamp() - 0.011)); //TODO: fix static error
 
     // Update pose estimator with drivetrain sensors
     poseEstimator.update(
