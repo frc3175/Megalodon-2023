@@ -124,10 +124,10 @@ public class SwerveDrivetrain extends SubsystemBase {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) : Rotation2d.fromDegrees(m_gyro.getYaw());
     }
 
-    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath) {
+    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath, PoseEstimatorSubsystem poseEstimator) {
             return new PPSwerveControllerCommand(
                  traj, 
-                 this::getPose, // Pose supplier
+                 poseEstimator::getCurrentPose, // Pose supplier
                  Constants.swerveKinematics, // SwerveDriveKinematics
                  new PIDController(0.01, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
                  new PIDController(0.01, 0, 0), // Y controller (usually the same values as X controller)

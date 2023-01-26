@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import java.util.Optional;
+
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
@@ -56,9 +58,7 @@ public class Limelight extends SubsystemBase{
 
     public boolean hasTarget() {
 
-        if(v == 0) {
-            return false;
-        } else if(v == 1.0) {
+        if(botpose.length > 2) {
             return true;
         } else {
             return false;
@@ -96,6 +96,7 @@ public class Limelight extends SubsystemBase{
         double roll;
 
         if(botpose.length > 2) {
+
             x = botpose[0];
             y = botpose[1];
             z = botpose[2];
@@ -109,9 +110,12 @@ public class Limelight extends SubsystemBase{
 
             return new Pose3d(new Translation3d(convertedX, convertedY, z), new Rotation3d(roll, pitch, yaw));
 
+        } else {
+            
+            return new Pose3d(new Translation3d(0, 0, 0), new Rotation3d(0, 0, 0));
+
         }
 
-        return null;
     }
 
     @Override
@@ -125,10 +129,10 @@ public class Limelight extends SubsystemBase{
         botpose = tbotpose.getDoubleArray(emptyArray);
 
 
-        if(botpose.length > 0) {
+        if(botpose.length > 2) {
 
-        SmartDashboard.putNumber("converted pose x", getConvertedPose().getX());
-        SmartDashboard.putNumber("converted pose y", getConvertedPose().getY());
+        //SmartDashboard.putNumber("converted pose x", getConvertedPose().getX());
+        //SmartDashboard.putNumber("converted pose y", getConvertedPose().getY());
 
         }
 

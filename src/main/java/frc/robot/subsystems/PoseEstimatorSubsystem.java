@@ -1,16 +1,20 @@
 package frc.robot.subsystems;
 
+import java.util.Optional;
+
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -60,14 +64,25 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
     
     tab.addString("Pose", this::getFomattedPose).withPosition(0, 0).withSize(2, 0);
     tab.add("Field", field2d).withPosition(2, 0).withSize(6, 4);
+
+    poseEstimator.resetPosition(drivetrainSubsystem.getYaw(), drivetrainSubsystem.getModulePositions(), new Pose2d(13.56, (Units.feetToMeters(27) - 5.2), Rotation2d.fromDegrees(0.0)));
+
   }
 
   @Override
   public void periodic() {
 
-    Pose3d robotPose = m_limelight.getConvertedPose().transformBy(Constants.CAMERA_TO_ROBOT);
+    if(m_limelight.getConvertedPose().getX() != 0.0) {
 
-    poseEstimator.addVisionMeasurement(robotPose.toPose2d(), (m_timer.getFPGATimestamp() - 0.011)); //TODO: fix static error
+      Pose3d robotPose = m_limelight.getConvertedPose().transformBy(Constants.CAMERA_TO_ROBOT);
+
+      var pos2 = robotPose.toPose2d();
+      var pos2X = pos2.getX();
+      var pos2Y = (Units.feetToMeters(27) - pos2.getY());
+
+      poseEstimator.addVisionMeasurement(new Pose2d(pos2X, pos2Y, pos2.getRotation()), (Timer.getFPGATimestamp() - 0.011));
+
+    }
 
     // Update pose estimator with drivetrain sensors
     poseEstimator.update(
@@ -75,6 +90,10 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
       drivetrainSubsystem.getModulePositions());
 
     field2d.setRobotPose(getCurrentPose());
+
+    SmartDashboard.putNumber("pose estimator x", getCurrentPose().getX());
+    SmartDashboard.putNumber("pose estimator y", getCurrentPose().getY());
+    SmartDashboard.putNumber("pose estimator rot", getCurrentPose().getRotation().getDegrees());
 
 
   }
@@ -88,7 +107,11 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
   }
 
   public Pose2d getCurrentPose() {
-    return poseEstimator.getEstimatedPosition();
+    var estpos = poseEstimator.getEstimatedPosition();
+    var estposX = estpos.getX();
+    var estposY = Units.feetToMeters(27) - estpos.getY();
+
+    return new Pose2d(estposX, estposY, estpos.getRotation());
   }
 
   /**
