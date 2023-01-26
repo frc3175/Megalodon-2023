@@ -1,12 +1,8 @@
 package frc.robot.subsystems;
 
-import java.util.Optional;
-
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -88,7 +84,7 @@ public class Limelight extends SubsystemBase{
 
     }
 
-    public Pose2d getConvertedPose() {
+    public Pose3d getConvertedPose() {
 
         botpose = tbotpose.getDoubleArray(botpose);
 
@@ -111,7 +107,7 @@ public class Limelight extends SubsystemBase{
             var convertedY = Units.feetToMeters(13.5) - y;
             var convertedX = (-Units.feetToMeters(27) - x) * -1;
 
-            return new Pose2d(new Translation2d(convertedX, convertedY), new Rotation2d(yaw));
+            return new Pose3d(new Translation3d(convertedX, convertedY, z), new Rotation3d(roll, pitch, yaw));
 
         }
 
@@ -133,7 +129,6 @@ public class Limelight extends SubsystemBase{
 
         SmartDashboard.putNumber("converted pose x", getConvertedPose().getX());
         SmartDashboard.putNumber("converted pose y", getConvertedPose().getY());
-        SmartDashboard.putNumber("converted pose theta", getConvertedPose().getRotation().getDegrees());
 
         }
 
