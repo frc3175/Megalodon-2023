@@ -60,10 +60,11 @@ public class OdometryAlign extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted)
-  {
+  public void end(boolean interrupted) {
+
     pathDrivingCommand.cancel();
     m_drivetrain.stopSwerve();
+    
   }
   
 }
