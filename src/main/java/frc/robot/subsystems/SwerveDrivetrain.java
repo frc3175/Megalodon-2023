@@ -124,10 +124,12 @@ public class SwerveDrivetrain extends SubsystemBase {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) : Rotation2d.fromDegrees(m_gyro.getYaw());
     }
 
-    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath, PoseEstimatorSubsystem poseEstimator) {
+    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath, Limelight limelight) {
+            
+        if(limelight.hasTarget()) {
             return new PPSwerveControllerCommand(
                  traj, 
-                 poseEstimator::getCurrentPose, // Pose supplier
+                 limelight::getConvertedPose2dPose, // Pose supplier
                  Constants.swerveKinematics, // SwerveDriveKinematics
                  new PIDController(0.01, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
                  new PIDController(0.01, 0, 0), // Y controller (usually the same values as X controller)
@@ -136,6 +138,19 @@ public class SwerveDrivetrain extends SubsystemBase {
                  false, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
                  this // Requires this drive subsystem
              );
+        } else { //TODO: fix this error
+            return new PPSwerveControllerCommand(
+                 traj, 
+                 this::getPose, // Pose supplier
+                 Constants.swerveKinematics, // SwerveDriveKinematics
+                 new PIDController(0.01, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+                 new PIDController(0.01, 0, 0), // Y controller (usually the same values as X controller)
+                 new PIDController(2.8, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+                 this::setModuleStates, // Module states consumer
+                 false, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
+                 this // Requires this drive subsystem
+             );
+        }
      }
 
     @Override
