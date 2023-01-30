@@ -5,6 +5,7 @@ import org.photonvision.PhotonCamera;
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPoint;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 
@@ -41,11 +42,13 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
     private final JoystickButton m_trackAprilTag = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton m_setOdometry = new JoystickButton(driver, XboxController.Button.kB.value);
     //private final JoystickButton m_odometryAlign = new JoystickButton(driver, XboxController.Button.kRightBumper);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
     private final Limelight m_limelight = new Limelight();
+    private final PoseEstimator m_poseEstimator = new PoseEstimator(m_drivetrain.m_swerveOdometry, m_drivetrain, m_limelight);
 
     /* Commands */
     //private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
@@ -80,7 +83,8 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
-        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(14.94, 5.36), new Rotation2d(0.0)), m_limelight));
+        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(14.94, 5.36), new Rotation2d(0.0)), m_limelight, m_poseEstimator));
+        m_setOdometry.onTrue(new InstantCommand(() -> m_drivetrain.setOdometry(new Pose2d(new Translation2d(14.94, 5.36), new Rotation2d(0.0)))));
 
     }
 

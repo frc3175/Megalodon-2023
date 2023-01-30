@@ -106,7 +106,7 @@ public class Limelight extends SubsystemBase{
             yaw = botpose[5];
         
 
-            var convertedY = Units.feetToMeters(13.5) - y;
+            var convertedY = ((Units.feetToMeters(13.5) + y) + 2.6);
             var convertedX = (-Units.feetToMeters(27) - x) * -1;
 
             return new Pose3d(new Translation3d(convertedX, convertedY, z), new Rotation3d(roll, pitch, yaw));
@@ -138,8 +138,8 @@ public class Limelight extends SubsystemBase{
 
         if(botpose.length > 2) {
 
-        //SmartDashboard.putNumber("converted pose x", getConvertedPose().getX());
-        //SmartDashboard.putNumber("converted pose y", getConvertedPose().getY());
+        SmartDashboard.putNumber("converted pose x", getConvertedPose().getX());
+        SmartDashboard.putNumber("converted pose y", getConvertedPose().getY());
 
         }
 

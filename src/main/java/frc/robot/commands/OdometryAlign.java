@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.PoseEstimator;
 import frc.robot.subsystems.SwerveDrivetrain;
 
 public class OdometryAlign extends CommandBase {
@@ -21,16 +22,18 @@ public class OdometryAlign extends CommandBase {
   private final PathConstraints m_constraints;
   private final PathPoint m_finalPoint;
   private final Limelight m_limelight;
+  private final PoseEstimator m_poseEstimator;
 
 
-  public OdometryAlign(SwerveDrivetrain drivetrain, PathConstraints constraints, PathPoint finalPoint, Limelight limelight) {
+  public OdometryAlign(SwerveDrivetrain drivetrain, PathConstraints constraints, PathPoint finalPoint, Limelight limelight, PoseEstimator poseEstimator) {
    
     m_drivetrain = drivetrain;
     m_constraints = constraints;
     m_finalPoint = finalPoint;
     m_limelight = limelight;
+    m_poseEstimator = poseEstimator;
 
-    addRequirements(m_drivetrain);
+    addRequirements(m_drivetrain, m_poseEstimator);
 
   }
 
