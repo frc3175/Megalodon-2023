@@ -40,7 +40,6 @@ public class SwerveDrivetrain extends SubsystemBase {
 
         setOdometryForOdometryAlign();
 
-
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
@@ -86,13 +85,12 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_swerveOdometry.resetPosition(getYaw(), getModulePositions(), pose);
     }
 
-    public void setOdometryToZero() {
-        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(0.00, 0.00, Rotation2d.fromDegrees(0.0)));
+    public void setOdometryToOffset() {
+        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(-6.14, 1.21, Rotation2d.fromDegrees(0.0)));
     }
 
     public void setOdometryForOdometryAlign() {
-       // m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(2.081, 5.30, Rotation2d.fromDegrees(180.0)));
-       m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(180.0), getModulePositions(), new Pose2d(15.15, 2.7, Rotation2d.fromDegrees(180.0)));
+        m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(13.56, 5.2, Rotation2d.fromDegrees(0.0)));
     }
 
     public SwerveModuleState[] getModuleStates(){
