@@ -138,7 +138,7 @@ public final class Constants {
                 Intake 
     ==============================*/
 
-    public static final int INTAKE_MOTOR = 1;
+    public static final int INTAKE_MOTOR = 14;
     public static final int INTAKE_HOOD = 2;
 
     public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
@@ -184,7 +184,7 @@ public final class Constants {
                 Elevator 
     ==============================*/
 
-    public static final int ELEVATOR_MOTOR = 7;
+    public static final int ELEVATOR_MOTOR = 19;
 
     public static final boolean ELEVATOR_ENABLE_CURRENT_LIMIT = true;
     public static final int ELEVATOR_CONTINUOUS_CURRENT_LIMIT = 10;
@@ -215,7 +215,7 @@ public final class Constants {
                 Slide
     ==============================*/
 
-    public static final int SLIDE_MOTOR = 7;
+    public static final int SLIDE_MOTOR = 20;
 
     public static final boolean SLIDE_ENABLE_CURRENT_LIMIT = true;
     public static final int SLIDE_CONTINUOUS_CURRENT_LIMIT = 10;

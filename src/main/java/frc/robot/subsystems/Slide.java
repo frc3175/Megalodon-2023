@@ -17,7 +17,7 @@ public class Slide extends SubsystemBase {
 
     public Slide() {
 
-        slideMotor = new TalonFX(Constants.SLIDE_MOTOR);
+        slideMotor = new TalonFX(Constants.SLIDE_MOTOR, "elevatoryiboi");
         slideMotor.setNeutralMode(Constants.SLIDE_NEUTRAL_MODE);
         slideMotor.setInverted(Constants.SLIDE_INVERTED);
 

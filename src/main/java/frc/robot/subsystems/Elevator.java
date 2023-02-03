@@ -14,7 +14,7 @@ public class Elevator extends SubsystemBase {
 
     public Elevator() {
 
-        elevMotor = new TalonFX(Constants.ELEVATOR_MOTOR);
+        elevMotor = new TalonFX(Constants.ELEVATOR_MOTOR, "elevatoryiboi");
         elevMotor.setNeutralMode(Constants.ELEVATOR_NEUTRAL_MODE);
         elevMotor.setInverted(Constants.ELEVATOR_INVERTED);
 

@@ -17,8 +17,8 @@ public class Intake extends SubsystemBase {
 
     public Intake() {
 
-        intakeMotor = new TalonFX(Constants.INTAKE_MOTOR);
-        clawMotor = new TalonFX(Constants.INTAKE_HOOD);
+        intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
+        clawMotor = new TalonFX(Constants.INTAKE_HOOD, "elevatoryiboi");
 
         intakeMotor.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
 
