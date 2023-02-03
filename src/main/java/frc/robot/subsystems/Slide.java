@@ -41,6 +41,12 @@ public class Slide extends SubsystemBase {
 
     }
 
+    public void setSlideSpeed(double speed) {
+
+        slideMotor.set(ControlMode.PercentOutput, speed);
+
+    }
+
     public void setSlideState(SlideState state) {
 
         timer.reset();

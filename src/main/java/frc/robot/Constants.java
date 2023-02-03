@@ -177,6 +177,9 @@ public final class Constants {
     public static final double INTAKE_CONE = 0;
     public static final double INTAKE_CUBE = 0;
 
+    public static final double INTAKE_TEST_SPEED = 0.5;
+    public static final double HOOD_TEST_SPEED = 0.5;
+
     /*============================
                 Elevator 
     ==============================*/
@@ -205,6 +208,8 @@ public final class Constants {
     public static final double ELEVATOR_I = 0;
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0;
+
+    public static final double ELEVATOR_TEST_SPEED = 0.5;
 
     /*============================
                 Slide
@@ -236,6 +241,8 @@ public final class Constants {
     public static final double SLIDE_I = 0;
     public static final double SLIDE_D = 0;
     public static final double SLIDE_F = 0;
+
+    public static final double SLIDE_TEST_SPEED = 0.5;
 
     /*============================
                Kinematics

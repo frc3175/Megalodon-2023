@@ -45,6 +45,13 @@ public class Elevator extends SubsystemBase {
 
     }
 
+    public void setElevatorSpeeed(double speed) {
+
+
+        elevMotor.set(ControlMode.PercentOutput, speed);
+
+    }
+
     public ElevatorState getElevatorState() {
 
         return elevState;

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -16,8 +17,10 @@ import frc.robot.subsystems.*;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
     /* Controllers */
     private final XboxController driver = new XboxController(0);
+    private final XboxController operator = new XboxController(1);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -26,10 +29,23 @@ public class RobotContainer {
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
-    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+    //private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+
+    /* Operator Buttons */
+    private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
+    private final JoystickButton outtake = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton elevatorUp = new JoystickButton(operator, XboxController.Button.kY.value);
+    private final JoystickButton elevatorDown = new JoystickButton(operator, XboxController.Button.kA.value);
+    private final JoystickButton slideOut = new JoystickButton(operator, XboxController.Button.kX.value);
+    private final JoystickButton slideIn = new JoystickButton(operator, XboxController.Button.kB.value);
+    private final POVButton hoodDown = new POVButton(operator, 0);
+    private final POVButton hoodUp = new POVButton(operator, 180);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
+    public static final Elevator m_elevator = new Elevator();
+    public static final Intake m_intake = new Intake();
+    public static final Slide m_slide = new Slide();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -40,7 +56,7 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(translationAxis), 
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
-                () -> robotCentric.getAsBoolean()
+                () -> false
             )
         );
 
@@ -59,8 +75,28 @@ public class RobotContainer {
 
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
-        //m_trackAprilTag.whileTrue(m_followAprilTag);
-       // m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(14.94, 5.36), new Rotation2d(0.0)), m_limelight, m_poseEstimator));
+
+        /* Operator Buttons */
+
+        intake.whileTrue(new InstantCommand(() -> m_intake.setIntake(Constants.INTAKE_TEST_SPEED)));
+        intake.onFalse(new InstantCommand(() -> m_intake.stopIntake()));
+        outtake.whileTrue(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)));
+        outtake.onFalse(new InstantCommand(() -> m_intake.stopIntake()));
+
+        elevatorUp.whileTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(Constants.ELEVATOR_TEST_SPEED)));
+        elevatorUp.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
+        elevatorDown.whileTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(-Constants.ELEVATOR_TEST_SPEED)));
+        elevatorDown.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
+
+        slideOut.whileTrue(new InstantCommand(() -> m_slide.setSlideSpeed(Constants.SLIDE_TEST_SPEED)));
+        slideOut.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
+        slideIn.whileTrue(new InstantCommand(() -> m_slide.setSlideSpeed(-Constants.SLIDE_TEST_SPEED)));
+        slideIn.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
+
+        hoodUp.whileTrue(new InstantCommand(() -> m_intake.setHoodSpeed(Constants.HOOD_TEST_SPEED)));
+        hoodUp.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0)));
+        hoodDown.whileTrue(new InstantCommand(() -> m_intake.setHoodSpeed(-Constants.HOOD_TEST_SPEED)));
+        hoodDown.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0)));
 
     }
 

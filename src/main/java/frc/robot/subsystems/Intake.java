@@ -35,13 +35,19 @@ public class Intake extends SubsystemBase {
 
     public void intakeHoodDown() {
 
-        intakeMotor.set(ControlMode.Position, Constants.HOOD_DOWN);
+        clawMotor.set(ControlMode.Position, Constants.HOOD_DOWN);
 
     }
 
     public void intakeHoodUp() {
 
-        intakeMotor.set(ControlMode.Position, Constants.HOOD_UP);
+        clawMotor.set(ControlMode.Position, Constants.HOOD_UP);
+
+    }
+
+    public void setHoodSpeed(double speed) {
+
+        clawMotor.set(ControlMode.PercentOutput, speed);
 
     }
 
