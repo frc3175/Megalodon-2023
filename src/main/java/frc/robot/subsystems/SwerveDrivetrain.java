@@ -8,10 +8,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
 import com.ctre.phoenix.sensors.Pigeon2;
-import com.pathplanner.lib.PathPlannerTrajectory;
-import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -123,20 +120,6 @@ public class SwerveDrivetrain extends SubsystemBase {
     public Rotation2d getYaw() {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) : Rotation2d.fromDegrees(m_gyro.getYaw());
     }
-
-    public PPSwerveControllerCommand followTrajectoryCommand(PathPlannerTrajectory traj, boolean isFirstPath, PoseEstimatorSubsystem poseEstimator) {
-            return new PPSwerveControllerCommand(
-                 traj, 
-                 poseEstimator::getCurrentPose, // Pose supplier
-                 Constants.swerveKinematics, // SwerveDriveKinematics
-                 new PIDController(0.01, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-                 new PIDController(0.01, 0, 0), // Y controller (usually the same values as X controller)
-                 new PIDController(2.8, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-                 this::setModuleStates, // Module states consumer
-                 false, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
-                 this // Requires this drive subsystem
-             );
-     }
 
     @Override
     public void periodic(){

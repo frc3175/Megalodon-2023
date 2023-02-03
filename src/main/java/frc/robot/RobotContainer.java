@@ -1,15 +1,5 @@
 package frc.robot;
 
-import org.photonvision.PhotonCamera;
-
-import com.pathplanner.lib.PathConstraints;
-import com.pathplanner.lib.PathPoint;
-
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-
-//import org.photonvision.PhotonCamera;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,9 +19,6 @@ public class RobotContainer {
     /* Controllers */
     private final XboxController driver = new XboxController(0);
 
-    /* Camera */   
-    private final PhotonCamera photonCamera = new PhotonCamera("OV5647");
-
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -40,17 +27,9 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-    private final JoystickButton m_trackAprilTag = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-    //private final JoystickButton m_odometryAlign = new JoystickButton(driver, XboxController.Button.kRightBumper);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
-    private final Limelight m_limelight = new Limelight();
-    private final PoseEstimatorSubsystem m_poseEstimator = new PoseEstimatorSubsystem(m_limelight, m_drivetrain);
-
-    /* Commands */
-    //private final LimelightAprilTag m_followAprilTag = new LimelightAprilTag(m_limelight, m_drivetrain);
-
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -81,7 +60,7 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         //m_trackAprilTag.whileTrue(m_followAprilTag);
-        m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(14.94, 5.36), new Rotation2d(0.0)), m_limelight, m_poseEstimator));
+       // m_trackAprilTag.whileTrue(new OdometryAlign(m_drivetrain, new PathConstraints(1, 1), new PathPoint(new Translation2d(14.94, 5.36), new Rotation2d(0.0)), m_limelight, m_poseEstimator));
 
     }
 
