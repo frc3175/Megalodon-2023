@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autos.automodes.Auto;
@@ -47,6 +49,7 @@ public class RobotContainer {
     public static final Elevator m_elevator = new Elevator();
     public static final Intake m_intake = new Intake();
     public static final Slide m_slide = new Slide();
+    public static final GamepieceState m_pieceState = new GamepieceState();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -79,27 +82,47 @@ public class RobotContainer {
 
         /* Operator Buttons */
 
-        intake.whileTrue(new InstantCommand(() -> m_intake.setIntake(Constants.INTAKE_TEST_SPEED)));
+        /*intake.whileTrue(new InstantCommand(() -> m_intake.setIntake(Constants.INTAKE_TEST_SPEED)));
         intake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
         outtake.whileTrue(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)));
-        outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+        outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0))); */
 
+        /*slideIn.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(50000)));
         elevatorUp.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(100000)));
-        elevatorUp.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
-        elevatorDown.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)));
-        elevatorDown.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
+        slideOut.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(200000)));
+        elevatorDown.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0))); */
 
-        slideOut.onTrue(new InstantCommand(() -> m_slide.setSlide(20000)));
-        slideOut.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
-        slideIn.onTrue(new InstantCommand(() -> m_slide.setSlide(10000)));
-        slideIn.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
+        /*outtake.onTrue(new InstantCommand(() -> m_slide.setSlide(30000)));
+        intake.onTrue(new InstantCommand(() -> m_slide.setSlide(0))); */
 
-        override.onTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(-0.5)));
-
-        hoodUp.onTrue(new InstantCommand(() -> m_intake.intakeHoodUp()));
+        /* hoodUp.onTrue(new InstantCommand(() -> m_intake.intakeHoodUp()));
         hoodUp.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0)));
         hoodDown.onTrue(new InstantCommand(() -> m_intake.intakeHoodDown()));
-        hoodDown.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0)));
+        hoodDown.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0))); */
+
+        outtake.onTrue(new InstantCommand(() -> m_pieceState.setRobotState(false)));
+        intake.onTrue(new InstantCommand(() -> m_pieceState.setRobotState(true)));
+
+            /* slideOut.onTrue(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(Constants.INTAKE_TEST_SPEED)),
+                                                new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(200000)),
+                                                                           new InstantCommand(() -> m_slide.setSlide(30000)))));
+
+            slideIn.onTrue(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(0)),
+             new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)),
+                                   new InstantCommand(() -> m_slide.setSlide(0))))); */
+
+            slideOut.onTrue(new SequentialCommandGroup(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)),
+                                                new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(100000)),
+                                                                           new InstantCommand(() -> m_slide.setSlide(15000)))), 
+                                                                           new InstantCommand(() -> m_intake.intakeHoodDown())));
+
+            slideIn.onTrue(new SequentialCommandGroup(new InstantCommand(() -> m_intake.intakeHoodUp()),
+             new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(0)),
+             new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)),
+                                   new InstantCommand(() -> m_slide.setSlide(0))))));
+
+
+
 
     }
 

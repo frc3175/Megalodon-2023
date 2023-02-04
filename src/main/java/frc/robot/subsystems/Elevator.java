@@ -2,9 +2,11 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.math.Conversions;
 import frc.robot.CTREConfigs;
 import frc.robot.Constants;
 
@@ -16,7 +18,7 @@ public class Elevator extends SubsystemBase {
 
     public Elevator() {
 
-        elevMotor = new TalonFX(Constants.ELEVATOR_MOTOR, "elevatoryiboi");
+        elevMotor = new WPI_TalonFX(Constants.ELEVATOR_MOTOR, "elevatoryiboi");
         
         configElevMotor();
 
@@ -26,9 +28,9 @@ public class Elevator extends SubsystemBase {
 
     public void setElevatorSetpoint(double setpoint) {
 
-        //elevMotor.set(ControlMode.Position, setpoint);
+        elevMotor.set(ControlMode.Position, setpoint);
 
-        if(elevMotor.getSelectedSensorPosition() < setpoint) {
+        /*if(elevMotor.getSelectedSensorPosition() < setpoint) {
 
             while(elevMotor.getSelectedSensorPosition() < setpoint) {
 
@@ -48,7 +50,7 @@ public class Elevator extends SubsystemBase {
 
             elevMotor.set(ControlMode.PercentOutput, 0);
 
-        }
+        } */
 
     }
 
@@ -88,7 +90,8 @@ public class Elevator extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("elevator encoder", getElevatorEncoder());
-        SmartDashboard.putNumber("elevator speed", elevMotor.getSelectedSensorVelocity());
+        SmartDashboard.putNumber("elevator speed", (Conversions.falconToRPM(elevMotor.getSelectedSensorVelocity(), 15) / 6380));
+        SmartDashboard.putNumber("elevator current draw", elevMotor.getSupplyCurrent());
 
     }
 

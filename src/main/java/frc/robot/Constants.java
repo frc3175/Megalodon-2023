@@ -197,17 +197,17 @@ public final class Constants {
     /* Setpoints */
     public static final int ELEVATOR_DOWN = 0;
     public static final int CUBE_HIGH = 214380;
-    public static final int CUBE_MID = 167377;
+    public static final int CUBE_MID = 150000;
     public static final int CONE_HIGH = 214380;
     public static final int CONE_MID = 150000;
     public static final int SUBSTATION = 200000;
     public static final int CLEAR_BUMPER = 5000;
 
     /* Elevator PID */
-    public static final double ELEVATOR_P = 0.0001;
+    public static final double ELEVATOR_P = 0.2;
     public static final double ELEVATOR_I = 0;
     public static final double ELEVATOR_D = 0;
-    public static final double ELEVATOR_F = 0.1;
+    public static final double ELEVATOR_F = 0.0;
 
     public static final double ELEVATOR_TEST_SPEED = 0.5;
 
@@ -236,11 +236,11 @@ public final class Constants {
     public static final int SLIDE_CUBE_HIGH = 214380;
     public static final int SLIDE_SUBSTATION = 1250;
 
-    /* Elevator PID */
-    public static final double SLIDE_P = 0;
+    /* Slide PID */
+    public static final double SLIDE_P = 0.1;
     public static final double SLIDE_I = 0;
     public static final double SLIDE_D = 0;
-    public static final double SLIDE_F = 0.1;
+    public static final double SLIDE_F = 0;
 
     public static final double SLIDE_TEST_SPEED = 0.5;
 

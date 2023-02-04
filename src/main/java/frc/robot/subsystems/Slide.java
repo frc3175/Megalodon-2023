@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.math.Conversions;
 import frc.robot.CTREConfigs;
 import frc.robot.Constants;
 
@@ -30,6 +31,28 @@ public class Slide extends SubsystemBase {
     public void setSlide(double setpoint) {
 
         slideMotor.set(ControlMode.Position, setpoint);
+
+       /* if(slideMotor.getSelectedSensorPosition() < setpoint) {
+
+            while(slideMotor.getSelectedSensorPosition() < setpoint) {
+
+                slideMotor.set(ControlMode.PercentOutput, Constants.ELEVATOR_TEST_SPEED);
+
+            }
+
+            slideMotor.set(ControlMode.PercentOutput, 0);
+
+        } else {
+
+            while(slideMotor.getSelectedSensorPosition() > setpoint) {
+
+                slideMotor.set(ControlMode.PercentOutput, -Constants.ELEVATOR_TEST_SPEED);
+
+            }
+
+            slideMotor.set(ControlMode.PercentOutput, 0);
+
+        } */
 
     }
 
@@ -68,9 +91,7 @@ public class Slide extends SubsystemBase {
     @Override
     public void periodic() {
 
-        SmartDashboard.putNumber("slide pos", getSlideEncoder());
-
-    }
+        SmartDashboard.putNumber("slide pos", getSlideEncoder()); }
 
     public SlideState getSlideState() {
         return slideState;
