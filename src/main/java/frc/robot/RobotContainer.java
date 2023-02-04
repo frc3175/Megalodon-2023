@@ -79,18 +79,18 @@ public class RobotContainer {
         /* Operator Buttons */
 
         intake.whileTrue(new InstantCommand(() -> m_intake.setIntake(Constants.INTAKE_TEST_SPEED)));
-        intake.onFalse(new InstantCommand(() -> m_intake.stopIntake()));
+        intake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
         outtake.whileTrue(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)));
-        outtake.onFalse(new InstantCommand(() -> m_intake.stopIntake()));
+        outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
 
-        elevatorUp.whileTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(Constants.ELEVATOR_TEST_SPEED)));
+        elevatorUp.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(214380/5)));
         elevatorUp.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
-        elevatorDown.whileTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(-Constants.ELEVATOR_TEST_SPEED)));
+        elevatorDown.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)));
         elevatorDown.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
 
-        slideOut.whileTrue(new InstantCommand(() -> m_slide.setSlideSpeed(Constants.SLIDE_TEST_SPEED)));
+        slideOut.onTrue(new InstantCommand(() -> m_slide.setSlide(20000)));
         slideOut.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
-        slideIn.whileTrue(new InstantCommand(() -> m_slide.setSlideSpeed(-Constants.SLIDE_TEST_SPEED)));
+        slideIn.onTrue(new InstantCommand(() -> m_slide.setSlide(10000)));
         slideIn.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
 
         hoodUp.whileTrue(new InstantCommand(() -> m_intake.setHoodSpeed(Constants.HOOD_TEST_SPEED)));

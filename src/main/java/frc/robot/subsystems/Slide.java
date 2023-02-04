@@ -4,7 +4,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.CTREConfigs;
 import frc.robot.Constants;
 
 public class Slide extends SubsystemBase {
@@ -18,8 +20,10 @@ public class Slide extends SubsystemBase {
     public Slide() {
 
         slideMotor = new TalonFX(Constants.SLIDE_MOTOR, "elevatoryiboi");
-        slideMotor.setNeutralMode(Constants.SLIDE_NEUTRAL_MODE);
-        slideMotor.setInverted(Constants.SLIDE_INVERTED);
+        
+        configSlideMotor();
+
+        resetSlideEncoder();
 
     }
 
@@ -61,6 +65,13 @@ public class Slide extends SubsystemBase {
 
     }
 
+    @Override
+    public void periodic() {
+
+        SmartDashboard.putNumber("slide pos", getSlideEncoder());
+
+    }
+
     public SlideState getSlideState() {
         return slideState;
     }
@@ -82,6 +93,13 @@ public class Slide extends SubsystemBase {
             this.slideDelay = slideDelay;
         }
 
+    }
+
+    public void configSlideMotor() {
+        slideMotor.configFactoryDefault();
+        slideMotor.configAllSettings(CTREConfigs.clawFXConfig);
+        slideMotor.setInverted(false);
+        slideMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
     }
     
 }

@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.CTREConfigs;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
@@ -20,10 +21,8 @@ public class Intake extends SubsystemBase {
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
         clawMotor = new TalonFX(Constants.INTAKE_HOOD, "elevatoryiboi");
 
-        intakeMotor.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
-
-        clawMotor.setInverted(Constants.HOOD_INVERTED);
-        clawMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
+        configHoodMotor();
+        configIntakeMotor();
 
     } 
 
@@ -105,6 +104,20 @@ public class Intake extends SubsystemBase {
             this.intakeSpeed = intakeSpeed;
         }
  
+    }
+
+    public void configIntakeMotor() {
+        intakeMotor.configFactoryDefault();
+        intakeMotor.configAllSettings(CTREConfigs.intakeFXConfig);
+        intakeMotor.setInverted(false);
+        intakeMotor.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
+    }
+
+    public void configHoodMotor() {
+        clawMotor.configFactoryDefault();
+        clawMotor.configAllSettings(CTREConfigs.clawFXConfig);
+        clawMotor.setInverted(false);
+        clawMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
     }
 
 
