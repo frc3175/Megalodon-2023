@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.CTREConfigs;
 import frc.robot.Constants;
@@ -24,6 +25,8 @@ public class Intake extends SubsystemBase {
         configHoodMotor();
         configIntakeMotor();
 
+        clawMotor.setSelectedSensorPosition(0);
+
     } 
 
     public void setIntake(double speed) {
@@ -34,13 +37,21 @@ public class Intake extends SubsystemBase {
 
     public void intakeHoodDown() {
 
-        clawMotor.set(ControlMode.Position, Constants.HOOD_DOWN);
+        if(clawMotor.getSelectedSensorPosition() < Constants.HOOD_DOWN) {
+            clawMotor.set(ControlMode.PercentOutput, Constants.HOOD_TEST_SPEED);
+        } else {
+            clawMotor.set(ControlMode.PercentOutput, 0);
+        }
 
     }
 
     public void intakeHoodUp() {
 
-        clawMotor.set(ControlMode.Position, Constants.HOOD_UP);
+        if(clawMotor.getSelectedSensorPosition() > Constants.HOOD_UP) {
+            clawMotor.set(ControlMode.PercentOutput, -Constants.HOOD_TEST_SPEED);
+        } else {
+            clawMotor.set(ControlMode.PercentOutput, 0);
+        }
 
     }
 
@@ -106,6 +117,13 @@ public class Intake extends SubsystemBase {
  
     }
 
+    @Override
+    public void periodic() {
+
+        SmartDashboard.putNumber("hood encoder", clawMotor.getSelectedSensorPosition());
+
+    }
+
     public void configIntakeMotor() {
         intakeMotor.configFactoryDefault();
         intakeMotor.configAllSettings(CTREConfigs.intakeFXConfig);
@@ -116,7 +134,7 @@ public class Intake extends SubsystemBase {
     public void configHoodMotor() {
         clawMotor.configFactoryDefault();
         clawMotor.configAllSettings(CTREConfigs.clawFXConfig);
-        clawMotor.setInverted(false);
+        clawMotor.setInverted(Constants.HOOD_INVERTED);
         clawMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
     }
 

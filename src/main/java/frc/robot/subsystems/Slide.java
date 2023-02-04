@@ -97,8 +97,8 @@ public class Slide extends SubsystemBase {
 
     public void configSlideMotor() {
         slideMotor.configFactoryDefault();
-        slideMotor.configAllSettings(CTREConfigs.clawFXConfig);
-        slideMotor.setInverted(false);
+        slideMotor.configAllSettings(CTREConfigs.slideFXConfig);
+        slideMotor.setInverted(Constants.SLIDE_INVERTED);
         slideMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
     }
     

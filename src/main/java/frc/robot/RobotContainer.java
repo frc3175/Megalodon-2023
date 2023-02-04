@@ -40,6 +40,7 @@ public class RobotContainer {
     private final JoystickButton slideIn = new JoystickButton(operator, XboxController.Button.kB.value);
     private final POVButton hoodDown = new POVButton(operator, 0);
     private final POVButton hoodUp = new POVButton(operator, 180);
+    private final POVButton override = new POVButton(operator, 90);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
@@ -83,7 +84,7 @@ public class RobotContainer {
         outtake.whileTrue(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)));
         outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
 
-        elevatorUp.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(214380/5)));
+        elevatorUp.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(100000)));
         elevatorUp.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
         elevatorDown.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)));
         elevatorDown.onFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
@@ -93,9 +94,11 @@ public class RobotContainer {
         slideIn.onTrue(new InstantCommand(() -> m_slide.setSlide(10000)));
         slideIn.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
 
-        hoodUp.whileTrue(new InstantCommand(() -> m_intake.setHoodSpeed(Constants.HOOD_TEST_SPEED)));
+        override.onTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(-0.5)));
+
+        hoodUp.onTrue(new InstantCommand(() -> m_intake.intakeHoodUp()));
         hoodUp.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0)));
-        hoodDown.whileTrue(new InstantCommand(() -> m_intake.setHoodSpeed(-Constants.HOOD_TEST_SPEED)));
+        hoodDown.onTrue(new InstantCommand(() -> m_intake.intakeHoodDown()));
         hoodDown.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0)));
 
     }

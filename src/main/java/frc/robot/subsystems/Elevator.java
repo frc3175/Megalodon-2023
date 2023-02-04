@@ -26,7 +26,29 @@ public class Elevator extends SubsystemBase {
 
     public void setElevatorSetpoint(double setpoint) {
 
-        elevMotor.set(ControlMode.Position, setpoint);
+        //elevMotor.set(ControlMode.Position, setpoint);
+
+        if(elevMotor.getSelectedSensorPosition() < setpoint) {
+
+            while(elevMotor.getSelectedSensorPosition() < setpoint) {
+
+                elevMotor.set(ControlMode.PercentOutput, Constants.ELEVATOR_TEST_SPEED);
+
+            }
+
+            elevMotor.set(ControlMode.PercentOutput, 0);
+
+        } else {
+
+            while(elevMotor.getSelectedSensorPosition() > setpoint) {
+
+                elevMotor.set(ControlMode.PercentOutput, -Constants.ELEVATOR_TEST_SPEED);
+
+            }
+
+            elevMotor.set(ControlMode.PercentOutput, 0);
+
+        }
 
     }
 
@@ -89,8 +111,8 @@ public class Elevator extends SubsystemBase {
 
     public void configElevMotor() {
         elevMotor.configFactoryDefault();
-        elevMotor.configAllSettings(CTREConfigs.clawFXConfig);
-        elevMotor.setInverted(false);
+        elevMotor.configAllSettings(CTREConfigs.elevatorFXConfig);
+        elevMotor.setInverted(Constants.ELEVATOR_INVERTED);
         elevMotor.setNeutralMode(Constants.ELEVATOR_NEUTRAL_MODE);
     }
     
