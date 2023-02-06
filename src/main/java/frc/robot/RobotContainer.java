@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import frc.robot.RobotState.BotState;
 import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -34,12 +35,12 @@ public class RobotContainer {
     //private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
 
     /* Operator Buttons */
-    private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
-    private final JoystickButton outtake = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
-    private final JoystickButton elevatorUp = new JoystickButton(operator, XboxController.Button.kY.value);
-    private final JoystickButton elevatorDown = new JoystickButton(operator, XboxController.Button.kA.value);
-    private final JoystickButton slideOut = new JoystickButton(operator, XboxController.Button.kX.value);
-    private final JoystickButton slideIn = new JoystickButton(operator, XboxController.Button.kB.value);
+    private final JoystickButton cubeMode = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
+    private final JoystickButton coneMode = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton robotHigh = new JoystickButton(operator, XboxController.Button.kY.value);
+    private final JoystickButton reset = new JoystickButton(operator, XboxController.Button.kA.value);
+    private final JoystickButton substation = new JoystickButton(operator, XboxController.Button.kX.value);
+    private final JoystickButton robotMid = new JoystickButton(operator, XboxController.Button.kB.value);
     private final POVButton hoodDown = new POVButton(operator, 0);
     private final POVButton hoodUp = new POVButton(operator, 180);
     private final POVButton override = new POVButton(operator, 90);
@@ -49,7 +50,7 @@ public class RobotContainer {
     public static final Elevator m_elevator = new Elevator();
     public static final Intake m_intake = new Intake();
     public static final Slide m_slide = new Slide();
-    public static final GamepieceState m_pieceState = new GamepieceState();
+    public static final RobotState m_robotState = new RobotState(m_intake, m_elevator, m_slide);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -100,18 +101,7 @@ public class RobotContainer {
         hoodDown.onTrue(new InstantCommand(() -> m_intake.intakeHoodDown()));
         hoodDown.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0))); */
 
-        outtake.onTrue(new InstantCommand(() -> m_pieceState.setRobotState(false)));
-        intake.onTrue(new InstantCommand(() -> m_pieceState.setRobotState(true)));
-
-            /* slideOut.onTrue(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(Constants.INTAKE_TEST_SPEED)),
-                                                new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(200000)),
-                                                                           new InstantCommand(() -> m_slide.setSlide(30000)))));
-
-            slideIn.onTrue(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(0)),
-             new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)),
-                                   new InstantCommand(() -> m_slide.setSlide(0))))); */
-
-            slideOut.onTrue(new SequentialCommandGroup(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)),
+           /*  slideOut.onTrue(new SequentialCommandGroup(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)),
                                                 new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(100000)),
                                                                            new InstantCommand(() -> m_slide.setSlide(15000)))), 
                                                                            new InstantCommand(() -> m_intake.intakeHoodDown())));
@@ -119,10 +109,17 @@ public class RobotContainer {
             slideIn.onTrue(new SequentialCommandGroup(new InstantCommand(() -> m_intake.intakeHoodUp()),
              new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(0)),
              new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)),
-                                   new InstantCommand(() -> m_slide.setSlide(0))))));
+                                   new InstantCommand(() -> m_slide.setSlide(0)))))); */
 
+        coneMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(true)));
+        cubeMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(false)));
 
+        robotHigh.onTrue(new SetRobotStateHigh(m_robotState));
+        reset.onTrue(new ResetRobot(m_robotState));
+        robotMid.onTrue(new SetRobotStateMid(m_robotState));
 
+        hoodDown.whileTrue(new SetIntake(m_intake, m_robotState));
+        hoodDown.whileFalse(new InstantCommand(() -> m_intake.setIntake(0)));
 
     }
 
