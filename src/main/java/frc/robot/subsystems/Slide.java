@@ -32,28 +32,6 @@ public class Slide extends SubsystemBase {
 
         slideMotor.set(ControlMode.Position, setpoint);
 
-       /* if(slideMotor.getSelectedSensorPosition() < setpoint) {
-
-            while(slideMotor.getSelectedSensorPosition() < setpoint) {
-
-                slideMotor.set(ControlMode.PercentOutput, Constants.ELEVATOR_TEST_SPEED);
-
-            }
-
-            slideMotor.set(ControlMode.PercentOutput, 0);
-
-        } else {
-
-            while(slideMotor.getSelectedSensorPosition() > setpoint) {
-
-                slideMotor.set(ControlMode.PercentOutput, -Constants.ELEVATOR_TEST_SPEED);
-
-            }
-
-            slideMotor.set(ControlMode.PercentOutput, 0);
-
-        } */
-
     }
 
     public void resetSlideEncoder() {
