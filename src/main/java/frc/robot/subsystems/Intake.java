@@ -18,7 +18,7 @@ public class Intake extends SubsystemBase {
     public Intake() {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
-        wristMotor = new TalonFX(Constants.INTAKE_HOOD, "elevatoryiboi");
+        wristMotor = new TalonFX(Constants.INTAKE_WRIST, "elevatoryiboi");
 
         configWristMotor();
         configIntakeMotor();
@@ -35,37 +35,47 @@ public class Intake extends SubsystemBase {
 
     public void setIntakeState(IntakeState state) {
 
-        intakeMotor.setInverted(state.intakeInverted);
-
         setIntake(state.intakeSpeed);
 
         intakeState = state;
 
     }
 
-    public IntakeState getIntakeState() {
-        return intakeState;
+    public void setWristPosition(double position) {
+
+        wristMotor.set(ControlMode.Position, position);
+
     }
 
+    public double getWristPosition() {
+
+        return wristMotor.getSelectedSensorPosition();
+
+    }
+
+    public IntakeState getIntakeState() {
+
+        return intakeState;
+
+    }
 
     public enum IntakeState {
 
-        INTAKE_CONE(false, false, Constants.INTAKE_CONE),
-        INTAKE_CUBE(true, false, Constants.INTAKE_CUBE),
-        CONE_HIGH(true, false, Constants.OUTTAKE_HIGH_CONE),
-        CONE_MID(true, true, Constants.OUTTAKE_MID_CONE),
-        CUBE_HIGH(true, true, Constants.OUTTAKE_HIGH_CUBE),
-        CUBE_MID(false, false, Constants.OUTTAKE_MID_CUBE),
-        CONE_LOW(false, false, Constants.OUTTAKE_LOW_CONE),
-        CUBE_LOW(false, false, Constants.OUTTAKE_LOW_CUBE),
-        STOP(false, false, 0.0);
+        INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE, Constants.INTAKE_CUBE),
+        INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR, Constants.INTAKE_CONE),
+        INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION, Constants.INTAKE_CONE),
+        CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE, Constants.OUTTAKE_HIGH_CONE),
+        CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE, Constants.OUTTAKE_MID_CONE),
+        CUBE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CUBE, Constants.OUTTAKE_HIGH_CUBE),
+        CUBE_MID(Constants.WRIST_OUTTAKE_MID_CUBE, Constants.OUTTAKE_MID_CUBE),
+        CONE_LOW(Constants.WRIST_OUTTAKE_LOW_CONE, Constants.OUTTAKE_LOW_CONE),
+        CUBE_LOW(Constants.WRIST_OUTTAKE_LOW_CUBE, Constants.OUTTAKE_LOW_CUBE),
+        STOP(Constants.RESET_WRIST, 0.0);
 
-        public boolean intakeInverted;
-        public boolean hoodDown;
+        public double wristPosition;
         public double intakeSpeed;
-        private IntakeState(boolean intakeInverted, boolean hoodDown, double intakeSpeed){
-            this.intakeInverted = intakeInverted;
-            this.hoodDown = hoodDown;
+        private IntakeState(double wristPosition, double intakeSpeed){
+            this.wristPosition = wristPosition;
             this.intakeSpeed = intakeSpeed;
         }
  
@@ -88,8 +98,8 @@ public class Intake extends SubsystemBase {
     public void configWristMotor() {
         wristMotor.configFactoryDefault();
         wristMotor.configAllSettings(CTREConfigs.wristFXConfig);
-        wristMotor.setInverted(Constants.HOOD_INVERTED);
-        wristMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
+        wristMotor.setInverted(Constants.WRIST_INVERTED);
+        wristMotor.setNeutralMode(Constants.WRIST_NEUTRAL_MODE);
     }
 
 

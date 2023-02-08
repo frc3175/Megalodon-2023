@@ -73,10 +73,10 @@ public final class CTREConfigs {
 
         /* Claw Motor Configuration */
         SupplyCurrentLimitConfiguration wristSupplyLimit = new SupplyCurrentLimitConfiguration(
-            Constants.HOOD_ENABLE_CURRENT_LIMIT, 
-            Constants.HOOD_CONTINUOUS_CURRENT_LIMIT, 
-            Constants.HOOD_PEAK_CURRENT_LIMIT, 
-            Constants.HOOD_PEAK_CURRENT_DURATION);
+            Constants.WRIST_ENABLE_CURRENT_LIMIT, 
+            Constants.WRIST_CONTINUOUS_CURRENT_LIMIT, 
+            Constants.WRIST_PEAK_CURRENT_LIMIT, 
+            Constants.WRIST_PEAK_CURRENT_DURATION);
 
         wristFXConfig.supplyCurrLimit = wristSupplyLimit;
         wristFXConfig.slot0.kP = Constants.HOOD_P;

@@ -24,9 +24,8 @@ public class SetIntake extends CommandBase {
     public void execute() {
 
         BotState state = m_robotState.getRobotState();
-        IntakeState intakeState = state.intakeState;
+        
 
-        m_intake.setIntakeState(intakeState);
 
     }
 
