@@ -13,7 +13,7 @@ public final class CTREConfigs {
     public static TalonFXConfiguration swerveDriveFXConfig;
     public static CANCoderConfiguration swerveCanCoderConfig;
     public static TalonFXConfiguration intakeFXConfig;
-    public static TalonFXConfiguration clawFXConfig;
+    public static TalonFXConfiguration wristFXConfig;
     public static TalonFXConfiguration elevatorFXConfig;
     public static TalonFXConfiguration slideFXConfig;
 
@@ -24,7 +24,7 @@ public final class CTREConfigs {
         swerveDriveFXConfig = new TalonFXConfiguration();
         swerveCanCoderConfig = new CANCoderConfiguration();
         intakeFXConfig = new TalonFXConfiguration();
-        clawFXConfig = new TalonFXConfiguration();
+        wristFXConfig = new TalonFXConfiguration();
         elevatorFXConfig = new TalonFXConfiguration();
         slideFXConfig = new TalonFXConfiguration();
 
@@ -72,17 +72,17 @@ public final class CTREConfigs {
         intakeFXConfig.supplyCurrLimit = intakeSupplyLimit;
 
         /* Claw Motor Configuration */
-        SupplyCurrentLimitConfiguration clawSupplyLimit = new SupplyCurrentLimitConfiguration(
+        SupplyCurrentLimitConfiguration wristSupplyLimit = new SupplyCurrentLimitConfiguration(
             Constants.HOOD_ENABLE_CURRENT_LIMIT, 
             Constants.HOOD_CONTINUOUS_CURRENT_LIMIT, 
             Constants.HOOD_PEAK_CURRENT_LIMIT, 
             Constants.HOOD_PEAK_CURRENT_DURATION);
 
-        clawFXConfig.supplyCurrLimit = clawSupplyLimit;
-        clawFXConfig.slot0.kP = Constants.HOOD_P;
-        clawFXConfig.slot0.kI = Constants.HOOD_I;
-        clawFXConfig.slot0.kD = Constants.HOOD_D;
-        clawFXConfig.slot0.kF = Constants.HOOD_F;
+        wristFXConfig.supplyCurrLimit = wristSupplyLimit;
+        wristFXConfig.slot0.kP = Constants.HOOD_P;
+        wristFXConfig.slot0.kI = Constants.HOOD_I;
+        wristFXConfig.slot0.kD = Constants.HOOD_D;
+        wristFXConfig.slot0.kF = Constants.HOOD_F;
 
         /* Elevator Motor Configuration */
         SupplyCurrentLimitConfiguration elevatorSupplyLimit = new SupplyCurrentLimitConfiguration(

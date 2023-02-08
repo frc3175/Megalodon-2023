@@ -11,21 +11,19 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
 
     private TalonFX intakeMotor;
-    private TalonFX clawMotor;
+    private TalonFX wristMotor;
 
     private IntakeState intakeState;
-
-    private boolean intakeRunning = false;
 
     public Intake() {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
-        clawMotor = new TalonFX(Constants.INTAKE_HOOD, "elevatoryiboi");
+        wristMotor = new TalonFX(Constants.INTAKE_HOOD, "elevatoryiboi");
 
-        configHoodMotor();
+        configWristMotor();
         configIntakeMotor();
 
-        clawMotor.setSelectedSensorPosition(0);
+        wristMotor.setSelectedSensorPosition(0);
 
     } 
 
@@ -35,43 +33,7 @@ public class Intake extends SubsystemBase {
 
     }
 
-    public void intakeHoodDown() {
-
-        if(clawMotor.getSelectedSensorPosition() < Constants.HOOD_DOWN) {
-            clawMotor.set(ControlMode.PercentOutput, Constants.HOOD_TEST_SPEED);
-        } else {
-            clawMotor.set(ControlMode.PercentOutput, 0);
-        }
-
-    }
-
-    public void intakeHoodUp() {
-
-        if(clawMotor.getSelectedSensorPosition() > Constants.HOOD_UP) {
-            clawMotor.set(ControlMode.PercentOutput, -Constants.HOOD_TEST_SPEED);
-        } else {
-            clawMotor.set(ControlMode.PercentOutput, 0);
-        }
-
-    }
-
-    public void setHoodSpeed(double speed) {
-
-        clawMotor.set(ControlMode.PercentOutput, speed);
-
-    }
-
     public void setIntakeState(IntakeState state) {
-
-        if(state.hoodDown) {
-            intakeHoodDown();
-        } else {
-            intakeHoodUp();
-        }
-
-        while(!intakeRunning) {
-            //do nothing
-        }
 
         intakeMotor.setInverted(state.intakeInverted);
 
@@ -83,14 +45,6 @@ public class Intake extends SubsystemBase {
 
     public IntakeState getIntakeState() {
         return intakeState;
-    }
-
-    public void setIntakeRunning() {
-        intakeRunning = true;
-    }
-
-    public void stopIntake() {
-        intakeRunning = false;
     }
 
 
@@ -120,7 +74,7 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
 
-        SmartDashboard.putNumber("hood encoder", clawMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
 
     }
 
@@ -131,11 +85,11 @@ public class Intake extends SubsystemBase {
         intakeMotor.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
     }
 
-    public void configHoodMotor() {
-        clawMotor.configFactoryDefault();
-        clawMotor.configAllSettings(CTREConfigs.clawFXConfig);
-        clawMotor.setInverted(Constants.HOOD_INVERTED);
-        clawMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
+    public void configWristMotor() {
+        wristMotor.configFactoryDefault();
+        wristMotor.configAllSettings(CTREConfigs.wristFXConfig);
+        wristMotor.setInverted(Constants.HOOD_INVERTED);
+        wristMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
     }
 
 
