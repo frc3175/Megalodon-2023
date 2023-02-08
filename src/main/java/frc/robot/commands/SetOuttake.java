@@ -6,12 +6,12 @@ import frc.robot.RobotState;
 import frc.robot.RobotState.BotState;
 import frc.robot.subsystems.Intake;
 
-public class SetIntake extends CommandBase {
+public class SetOuttake extends CommandBase {
 
     private RobotState m_robotState;
     private Intake m_intake;
 
-    public SetIntake(Intake intake, RobotState robotState) {
+    public SetOuttake(Intake intake, RobotState robotState) {
 
         m_robotState = robotState;
         m_intake = intake;
@@ -29,13 +29,13 @@ public class SetIntake extends CommandBase {
 
             if(m_robotState.getGamepieceState()) {
 
-                m_intake.setWristPosition(Constants.WRIST_INTAKE_CONE_FLOOR);
-                m_intake.setIntake(Constants.INTAKE_CONE);
+                m_intake.setWristPosition(Constants.WRIST_OUTTAKE_LOW_CONE);
+                m_intake.setIntake(Constants.OUTTAKE_LOW_CONE);
 
             } else {
 
-                m_intake.setWristPosition(Constants.WRIST_INTAKE_CUBE_FLOOR);
-                m_intake.setIntake(Constants.INTAKE_CUBE);
+                m_intake.setWristPosition(Constants.WRIST_OUTTAKE_LOW_CUBE);
+                m_intake.setIntake(Constants.OUTTAKE_LOW_CUBE);
 
             }
 

@@ -61,16 +61,13 @@ public class RobotState extends SubsystemBase {
     public enum BotState {
 
         INTAKE_CONE_SUBSTATION(SlideState.SUBSTATION, ElevatorState.SUBSTATION, true, IntakeState.INTAKE_CONE_SUBSTATION),
-        INTAKE_CUBE_FLOOR(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.INTAKE_CUBE),
-        INTAKE_CONE_FLOOR(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.INTAKE_CONE_GROUND),
         HIGH_CONE(SlideState.CONE_HIGH, ElevatorState.HIGH_CONE, true, IntakeState.CONE_HIGH),
         HIGH_CUBE(SlideState.CUBE_HIGH, ElevatorState.HIGH_CUBE, false, IntakeState.CUBE_HIGH),
         MID_CONE(SlideState.CONE_MID, ElevatorState.MID_CONE, true, IntakeState.CONE_MID),
         MID_CUBE(SlideState.CUBE_MID, ElevatorState.MID_CUBE, false, IntakeState.CUBE_MID),
         LOW_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.CONE_LOW),
         LOW_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.CUBE_LOW),
-        RESET_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.INTAKE_CUBE_GROUND),
-        RESET_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.INTAKE_CONE_GROUND);
+        RESET(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.STOP);
     
         public SlideState slideState;
         public ElevatorState elevatorState;

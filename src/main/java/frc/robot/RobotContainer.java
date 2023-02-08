@@ -117,6 +117,7 @@ public class RobotContainer {
 
         hoodDown.whileTrue(new SetIntake(m_intake, m_robotState));
         hoodDown.whileFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+        hoodDown.whileFalse(new InstantCommand(() -> m_intake.setWristPosition(0)));
 
     }
 

@@ -19,17 +19,8 @@ public class ResetRobot extends CommandBase {
     @Override
     public void execute() {
 
-        if(m_robotState.getGamepieceState()) {
-
-            m_robotState.setRobotState(BotState.RESET_CONE);
-
-        } else {
-
-            m_robotState.setRobotState(BotState.RESET_CUBE);
-
-        }
+        m_robotState.setRobotState(BotState.RESET);
         
-
     }
 
 }
