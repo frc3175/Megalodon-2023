@@ -23,8 +23,13 @@ public class SetIntake extends CommandBase {
     @Override
     public void execute() {
 
-        BotState state = m_robotState.getRobotState();
-        
+       /*  if(m_robotState.getGamepieceState()) {
+            m_robotState.setRobotState(BotState.);
+        } else {
+
+        } */
+        //TODO: this
+
 
 
     }

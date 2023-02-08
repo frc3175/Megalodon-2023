@@ -182,6 +182,7 @@ public final class Constants {
     public static final double WRIST_INTAKE_CONE_FLOOR = 0.5;
     public static final double WRIST_INTAKE_CONE_SUBSTATION = 0.5;
     public static final double WRIST_INTAKE_CUBE = -0.5;
+    public static final double WRIST_INTAKE_CUBE_FLOOR = 0;
     public static final double RESET_WRIST = 0;
 
     public static final double INTAKE_TEST_SPEED = 0.5;

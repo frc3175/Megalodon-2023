@@ -62,6 +62,7 @@ public class Intake extends SubsystemBase {
     public enum IntakeState {
 
         INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE, Constants.INTAKE_CUBE),
+        INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR, Constants.INTAKE_CUBE),
         INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR, Constants.INTAKE_CONE),
         INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION, Constants.INTAKE_CONE),
         CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE, Constants.OUTTAKE_HIGH_CONE),
