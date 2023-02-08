@@ -35,6 +35,16 @@ public class Intake extends SubsystemBase {
 
     public void setIntakeState(IntakeState state) {
 
+        /*if(state.hoodDown) {
+            intakeHoodDown();
+        } else {
+            intakeHoodUp();
+        } */
+
+        /*while(!intakeRunning) {
+            //do nothing
+        } */
+
         intakeMotor.setInverted(state.intakeInverted);
 
         setIntake(state.intakeSpeed);

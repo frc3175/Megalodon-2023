@@ -168,14 +168,14 @@ public final class Constants {
     public static final double HOOD_F = 0;
 
     /* Speeds */
-    public static final double OUTTAKE_HIGH_CONE = 0;
-    public static final double OUTTAKE_MID_CONE = 0;
-    public static final double OUTTAKE_LOW_CONE = 0;
-    public static final double OUTTAKE_HIGH_CUBE = 0;
-    public static final double OUTTAKE_MID_CUBE = 0;
-    public static final double OUTTAKE_LOW_CUBE = 0;
-    public static final double INTAKE_CONE = 0;
-    public static final double INTAKE_CUBE = 0;
+    public static final double OUTTAKE_HIGH_CONE = -0.5;
+    public static final double OUTTAKE_MID_CONE = -0.5;
+    public static final double OUTTAKE_LOW_CONE = -0.5;
+    public static final double OUTTAKE_HIGH_CUBE = 0.5;
+    public static final double OUTTAKE_MID_CUBE = 0.5;
+    public static final double OUTTAKE_LOW_CUBE = 0.5;
+    public static final double INTAKE_CONE = 0.5;
+    public static final double INTAKE_CUBE = -0.5;
 
     public static final double INTAKE_TEST_SPEED = 0.5;
     public static final double HOOD_TEST_SPEED = 0.5;
@@ -197,9 +197,9 @@ public final class Constants {
     /* Setpoints */
     public static final int ELEVATOR_DOWN = 0;
     public static final int CUBE_HIGH = 214380;
-    public static final int CUBE_MID = 150000;
+    public static final int CUBE_MID = 100000; //TODO: 150000
     public static final int CONE_HIGH = 214380;
-    public static final int CONE_MID = 150000;
+    public static final int CONE_MID = 100000; //TODO: 150000
     public static final int SUBSTATION = 200000;
     public static final int CLEAR_BUMPER = 5000;
 
@@ -230,10 +230,10 @@ public final class Constants {
     /* Setpoints */
     public static final int SLIDE_INTAKE = 1000;
     public static final int SLIDE_IN = 0;
-    public static final int SLIDE_CONE_MID = 500;
-    public static final int SLIDE_CONE_HIGH = 1500;
-    public static final int SLIDE_CUBE_MID = 1000;
-    public static final int SLIDE_CUBE_HIGH = 214380;
+    public static final int SLIDE_CONE_MID = 20000;
+    public static final int SLIDE_CONE_HIGH = 20000;
+    public static final int SLIDE_CUBE_MID = 5000;
+    public static final int SLIDE_CUBE_HIGH = 5000;
     public static final int SLIDE_SUBSTATION = 1250;
 
     /* Slide PID */
