@@ -59,6 +59,12 @@ public class Intake extends SubsystemBase {
 
     }
 
+    public void continuousWristMotion(double speed) {
+
+        wristMotor.set(ControlMode.PercentOutput, speed);
+
+    }
+
     public enum IntakeState {
 
         INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE, Constants.INTAKE_CUBE),
@@ -92,7 +98,7 @@ public class Intake extends SubsystemBase {
     public void configIntakeMotor() {
         intakeMotor.configFactoryDefault();
         intakeMotor.configAllSettings(CTREConfigs.intakeFXConfig);
-        intakeMotor.setInverted(false);
+        intakeMotor.setInverted(Constants.INTAKE_INVERTED);
         intakeMotor.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
     }
 

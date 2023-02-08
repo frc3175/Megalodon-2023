@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.Intake.IntakeState;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -41,6 +42,8 @@ public class RobotContainer {
     private final POVButton hoodDown = new POVButton(operator, 0);
     private final POVButton hoodUp = new POVButton(operator, 180);
     private final POVButton override = new POVButton(operator, 90);
+    private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
+    private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
@@ -115,9 +118,16 @@ public class RobotContainer {
         reset.onTrue(new ResetRobot(m_robotState));
         robotMid.onTrue(new SetRobotStateMid(m_robotState));
 
-        hoodDown.whileTrue(new SetIntake(m_intake, m_robotState));
+        /* hoodDown.whileTrue(new SetIntake(m_intake, m_robotState));
         hoodDown.whileFalse(new InstantCommand(() -> m_intake.setIntake(0)));
-        hoodDown.whileFalse(new InstantCommand(() -> m_intake.setWristPosition(0)));
+        hoodDown.whileFalse(new InstantCommand(() -> m_intake.setWristPosition(0))); */
+
+        start.onTrue(new SetIntake(m_intake, m_robotState));
+        start.whileFalse(new InstantCommand(() -> m_intake.setIntakeState(IntakeState.STOP)));
+
+        hoodDown.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
+        hoodDown.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
+
 
     }
 

@@ -79,10 +79,10 @@ public final class CTREConfigs {
             Constants.WRIST_PEAK_CURRENT_DURATION);
 
         wristFXConfig.supplyCurrLimit = wristSupplyLimit;
-        wristFXConfig.slot0.kP = Constants.HOOD_P;
-        wristFXConfig.slot0.kI = Constants.HOOD_I;
-        wristFXConfig.slot0.kD = Constants.HOOD_D;
-        wristFXConfig.slot0.kF = Constants.HOOD_F;
+        wristFXConfig.slot0.kP = Constants.WRIST_P;
+        wristFXConfig.slot0.kI = Constants.WRIST_I;
+        wristFXConfig.slot0.kD = Constants.WRIST_D;
+        wristFXConfig.slot0.kF = Constants.WRIST_F;
 
         /* Elevator Motor Configuration */
         SupplyCurrentLimitConfiguration elevatorSupplyLimit = new SupplyCurrentLimitConfiguration(

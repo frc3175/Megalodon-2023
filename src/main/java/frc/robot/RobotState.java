@@ -21,6 +21,8 @@ public class RobotState extends SubsystemBase {
         m_slide = slide;
         m_elevator = elevator;
 
+        setRobotState(BotState.RESET);
+
     }
 
     public void setRobotState(BotState state) {
@@ -47,14 +49,6 @@ public class RobotState extends SubsystemBase {
     public boolean getGamepieceState() {
 
         return m_isConeState;
-
-    }
-
-    @Override
-    public void periodic() {
-
-        BotState state = getRobotState();
-        boolean coneMode = state.coneMode;
 
     }
 
