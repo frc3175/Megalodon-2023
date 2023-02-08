@@ -2,9 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotState;
-import frc.robot.RobotState.BotState;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Intake.IntakeState;
 
 public class SetIntake extends CommandBase {
 
@@ -23,13 +21,7 @@ public class SetIntake extends CommandBase {
     @Override
     public void execute() {
 
-       /*  if(m_robotState.getGamepieceState()) {
-            m_robotState.setRobotState(BotState.);
-        } else {
-
-        } */
-        //TODO: this
-
+        
 
 
     }

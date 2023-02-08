@@ -50,6 +50,14 @@ public class RobotState extends SubsystemBase {
 
     }
 
+    @Override
+    public void periodic() {
+
+        BotState state = getRobotState();
+        boolean coneMode = state.coneMode;
+
+    }
+
     public enum BotState {
 
         INTAKE_CONE_SUBSTATION(SlideState.SUBSTATION, ElevatorState.SUBSTATION, true, IntakeState.INTAKE_CONE_SUBSTATION),
