@@ -19,7 +19,7 @@ public class ResetRobot extends CommandBase {
     @Override
     public void execute() {
 
-        m_robotState.setRobotState(BotState.RESET);
+        //m_robotState.setRobotState(BotState.RESET);
 
     }
 
