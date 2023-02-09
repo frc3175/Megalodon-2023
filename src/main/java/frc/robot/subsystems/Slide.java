@@ -32,28 +32,6 @@ public class Slide extends SubsystemBase {
 
         slideMotor.set(ControlMode.Position, setpoint);
 
-       /* if(slideMotor.getSelectedSensorPosition() < setpoint) {
-
-            while(slideMotor.getSelectedSensorPosition() < setpoint) {
-
-                slideMotor.set(ControlMode.PercentOutput, Constants.ELEVATOR_TEST_SPEED);
-
-            }
-
-            slideMotor.set(ControlMode.PercentOutput, 0);
-
-        } else {
-
-            while(slideMotor.getSelectedSensorPosition() > setpoint) {
-
-                slideMotor.set(ControlMode.PercentOutput, -Constants.ELEVATOR_TEST_SPEED);
-
-            }
-
-            slideMotor.set(ControlMode.PercentOutput, 0);
-
-        } */
-
     }
 
     public void resetSlideEncoder() {
@@ -120,7 +98,7 @@ public class Slide extends SubsystemBase {
         slideMotor.configFactoryDefault();
         slideMotor.configAllSettings(CTREConfigs.slideFXConfig);
         slideMotor.setInverted(Constants.SLIDE_INVERTED);
-        slideMotor.setNeutralMode(Constants.HOOD_NEUTRAL_MODE);
+        slideMotor.setNeutralMode(Constants.SLIDE_NEUTRAL_MODE);
     }
     
 }

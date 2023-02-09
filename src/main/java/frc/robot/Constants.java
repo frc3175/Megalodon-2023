@@ -139,33 +139,29 @@ public final class Constants {
     ==============================*/
 
     public static final int INTAKE_MOTOR = 14;
-    public static final int INTAKE_HOOD = 2;
+    public static final int INTAKE_WRIST = 2;
 
     public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
     public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 10;
     public static final int INTAKE_PEAK_CURRENT_LIMIT = 30;
     public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
 
-    public static final boolean HOOD_ENABLE_CURRENT_LIMIT = true;
-    public static final int HOOD_CONTINUOUS_CURRENT_LIMIT = 10;
-    public static final int HOOD_PEAK_CURRENT_LIMIT = 30;
-    public static final double HOOD_PEAK_CURRENT_DURATION = 0.1;
+    public static final boolean WRIST_ENABLE_CURRENT_LIMIT = true;
+    public static final int WRIST_CONTINUOUS_CURRENT_LIMIT = 5;
+    public static final int WRIST_PEAK_CURRENT_LIMIT = 30;
+    public static final double WRIST_PEAK_CURRENT_DURATION = 0.1;
 
-    public static final boolean HOOD_INVERTED = true;
+    public static final boolean WRIST_INVERTED = false;
+    public static final boolean INTAKE_INVERTED = true;
 
     public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Brake;
-    public static final NeutralMode HOOD_NEUTRAL_MODE = NeutralMode.Brake;
-
-    public static final int HOOD_DOWN = 5000;
-    public static final int HOOD_UP = 0;
-
-    public static final double INTAKE_HOOD_STOP_CURRENT = 30;
+    public static final NeutralMode WRIST_NEUTRAL_MODE = NeutralMode.Brake;
 
     /* Hood PID */
-    public static final double HOOD_P = 0;
-    public static final double HOOD_I = 0;
-    public static final double HOOD_D = 0;
-    public static final double HOOD_F = 0;
+    public static final double WRIST_P = 0.05;
+    public static final double WRIST_I = 0;
+    public static final double WRIST_D = 0;
+    public static final double WRIST_F = 0.001;
 
     /* Speeds */
     public static final double OUTTAKE_HIGH_CONE = -0.5;
@@ -176,6 +172,19 @@ public final class Constants {
     public static final double OUTTAKE_LOW_CUBE = 0.5;
     public static final double INTAKE_CONE = 0.5;
     public static final double INTAKE_CUBE = -0.5;
+
+    /* Positions */
+    public static final double WRIST_OUTTAKE_HIGH_CONE = -0.5;
+    public static final double WRIST_OUTTAKE_MID_CONE = -0.5;
+    public static final double WRIST_OUTTAKE_LOW_CONE = -0.5;
+    public static final double WRIST_OUTTAKE_HIGH_CUBE = 0.5;
+    public static final double WRIST_OUTTAKE_MID_CUBE = 0.5;
+    public static final double WRIST_OUTTAKE_LOW_CUBE = 0.5;
+    public static final double WRIST_INTAKE_CONE_FLOOR = 60000;
+    public static final double WRIST_INTAKE_CONE_SUBSTATION = 0.5;
+    public static final double WRIST_INTAKE_CUBE = -0.5;
+    public static final double WRIST_INTAKE_CUBE_FLOOR = 60000;
+    public static final double RESET_WRIST = 0;
 
     public static final double INTAKE_TEST_SPEED = 0.5;
     public static final double HOOD_TEST_SPEED = 0.5;
@@ -204,7 +213,7 @@ public final class Constants {
     public static final int CLEAR_BUMPER = 5000;
 
     /* Elevator PID */
-    public static final double ELEVATOR_P = 0.2;
+    public static final double ELEVATOR_P = 1;
     public static final double ELEVATOR_I = 0;
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0.0;

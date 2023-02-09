@@ -13,15 +13,15 @@ public class RobotState extends SubsystemBase {
 
     private Slide m_slide;
     private Elevator m_elevator;
-    private Intake m_intake;
     private BotState robotState;
     private boolean m_isConeState;
 
     public RobotState(Intake intake, Elevator elevator, Slide slide) {
 
-        m_intake = intake;
         m_slide = slide;
         m_elevator = elevator;
+
+        setRobotState(BotState.RESET);
 
     }
 
@@ -54,23 +54,20 @@ public class RobotState extends SubsystemBase {
 
     public enum BotState {
 
-        INTAKE_CONE_SUBSTATION(IntakeState.INTAKE_CONE, SlideState.SUBSTATION, ElevatorState.SUBSTATION, true),
-        INTAKE_CUBE_FLOOR(IntakeState.INTAKE_CUBE, SlideState.INTAKE, ElevatorState.FLOOR, false),
-        INTAKE_CONE_FLOOR(IntakeState.INTAKE_CONE, SlideState.INTAKE, ElevatorState.FLOOR, true),
-        INTAKE_CUBE_SUBSTATION(IntakeState.INTAKE_CUBE, SlideState.SUBSTATION, ElevatorState.SUBSTATION, false),
-        HIGH_CONE(IntakeState.CONE_HIGH, SlideState.CONE_HIGH, ElevatorState.HIGH_CONE, true),
-        HIGH_CUBE(IntakeState.CUBE_HIGH, SlideState.CUBE_HIGH, ElevatorState.HIGH_CUBE, false),
-        MID_CONE(IntakeState.CONE_MID, SlideState.CONE_MID, ElevatorState.MID_CONE, true),
-        MID_CUBE(IntakeState.CUBE_MID, SlideState.CUBE_MID, ElevatorState.MID_CUBE, false),
-        LOW_CONE(IntakeState.CONE_LOW, SlideState.INTAKE, ElevatorState.FLOOR, true),
-        LOW_CUBE(IntakeState.CUBE_LOW, SlideState.INTAKE, ElevatorState.FLOOR, false),
-        RESET(IntakeState.STOP, SlideState.INTAKE, ElevatorState.FLOOR, false);
+        INTAKE_CONE_SUBSTATION(SlideState.SUBSTATION, ElevatorState.SUBSTATION, true, IntakeState.INTAKE_CONE_SUBSTATION),
+        HIGH_CONE(SlideState.CONE_HIGH, ElevatorState.HIGH_CONE, true, IntakeState.CONE_HIGH),
+        HIGH_CUBE(SlideState.CUBE_HIGH, ElevatorState.HIGH_CUBE, false, IntakeState.CUBE_HIGH),
+        MID_CONE(SlideState.CONE_MID, ElevatorState.MID_CONE, true, IntakeState.CONE_MID),
+        MID_CUBE(SlideState.CUBE_MID, ElevatorState.MID_CUBE, false, IntakeState.CUBE_MID),
+        LOW_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.CONE_LOW),
+        LOW_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.CUBE_LOW),
+        RESET(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.STOP);
     
-        public IntakeState intakeState;
         public SlideState slideState;
         public ElevatorState elevatorState;
+        public IntakeState intakeState;
         public boolean coneMode;
-        private BotState(IntakeState intakeState, SlideState slideState, ElevatorState elevatorState, boolean coneMode) {
+        private BotState(SlideState slideState, ElevatorState elevatorState, boolean coneMode, IntakeState intakeState) {
             this.intakeState = intakeState;
             this.slideState = slideState;
             this.elevatorState = elevatorState;
