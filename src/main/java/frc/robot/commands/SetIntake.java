@@ -23,29 +23,24 @@ public class SetIntake extends CommandBase {
     @Override
     public void execute() {
 
-        BotState state = m_robotState.getRobotState();
+        if(m_robotState.getGamepieceState()) {
 
-        if(state == BotState.RESET) {
-
-            if(m_robotState.getGamepieceState()) {
-
-                m_intake.setWristPosition(Constants.WRIST_INTAKE_CONE_FLOOR);
-                m_intake.setIntake(Constants.INTAKE_CONE);
-
-            } else {
-
-                m_intake.setWristPosition(Constants.WRIST_INTAKE_CUBE_FLOOR);
-                m_intake.setIntake(Constants.INTAKE_CUBE);
-
-            }
+            m_robotState.setRobotState(BotState.INTAKE_CONE);
+            m_intake.setIntake(Constants.INTAKE_CONE);
 
         } else {
 
-            m_intake.setWristPosition(state.intakeState.wristPosition);
-            m_intake.setIntake(state.intakeState.intakeSpeed);
+            m_robotState.setRobotState(BotState.INTAKE_CUBE);
+            m_intake.setIntake(Constants.INTAKE_CUBE);
 
         }
 
+    }
+
+    @Override
+    public void end(boolean isFinished) {
+
+        m_intake.setIntake(0);
 
     }
 

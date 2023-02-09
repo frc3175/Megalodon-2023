@@ -13,6 +13,7 @@ public class RobotState extends SubsystemBase {
 
     private Slide m_slide;
     private Elevator m_elevator;
+    private Intake m_intake;
     private BotState robotState;
     private boolean m_isConeState;
 
@@ -20,6 +21,7 @@ public class RobotState extends SubsystemBase {
 
         m_slide = slide;
         m_elevator = elevator;
+        m_intake = intake;
 
         setRobotState(BotState.RESET);
 
@@ -31,6 +33,7 @@ public class RobotState extends SubsystemBase {
 
         m_slide.setSlideState(state.slideState);
         m_elevator.setElevatorState(state.elevatorState);
+        m_intake.setIntakeState(state.intakeState);
 
     }
 
@@ -61,7 +64,9 @@ public class RobotState extends SubsystemBase {
         MID_CUBE(SlideState.CUBE_MID, ElevatorState.MID_CUBE, false, IntakeState.CUBE_MID),
         LOW_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.CONE_LOW),
         LOW_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.CUBE_LOW),
-        RESET(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.STOP);
+        RESET(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.STOP),
+        INTAKE_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.INTAKE_CONE_GROUND),
+        INTAKE_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.INTAKE_CUBE_GROUND);
     
         public SlideState slideState;
         public ElevatorState elevatorState;

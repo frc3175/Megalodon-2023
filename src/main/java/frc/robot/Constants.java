@@ -164,12 +164,8 @@ public final class Constants {
     public static final double WRIST_F = 0.001;
 
     /* Speeds */
-    public static final double OUTTAKE_HIGH_CONE = -0.5;
-    public static final double OUTTAKE_MID_CONE = -0.5;
-    public static final double OUTTAKE_LOW_CONE = -0.5;
-    public static final double OUTTAKE_HIGH_CUBE = 0.5;
-    public static final double OUTTAKE_MID_CUBE = 0.5;
-    public static final double OUTTAKE_LOW_CUBE = 0.5;
+    public static final double OUTTAKE_CONE = -0.5;
+    public static final double OUTTAKE_CUBE = 0.5;
     public static final double INTAKE_CONE = 0.5;
     public static final double INTAKE_CUBE = -0.5;
 

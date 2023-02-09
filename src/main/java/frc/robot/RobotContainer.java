@@ -114,9 +114,9 @@ public class RobotContainer {
         coneMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(true)));
         cubeMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(false)));
 
-        robotHigh.onTrue(new SetRobotStateHigh(m_robotState));
-        reset.onTrue(new ResetRobot(m_robotState));
-        robotMid.onTrue(new SetRobotStateMid(m_robotState));
+        robotHigh.onTrue(new SetRobotStateHigh(m_robotState, m_intake));
+        reset.onTrue(new ResetRobot(m_robotState, m_intake));
+        robotMid.onTrue(new SetRobotStateMid(m_robotState, m_intake));
 
         /* hoodDown.whileTrue(new SetIntake(m_intake, m_robotState));
         hoodDown.whileFalse(new InstantCommand(() -> m_intake.setIntake(0)));

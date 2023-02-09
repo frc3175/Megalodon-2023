@@ -35,7 +35,7 @@ public class Intake extends SubsystemBase {
 
     public void setIntakeState(IntakeState state) {
 
-        setIntake(state.intakeSpeed);
+        setWristPosition(state.wristPosition);
 
         intakeState = state;
 
@@ -67,23 +67,21 @@ public class Intake extends SubsystemBase {
 
     public enum IntakeState {
 
-        INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE, Constants.INTAKE_CUBE),
-        INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR, Constants.INTAKE_CUBE),
-        INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR, Constants.INTAKE_CONE),
-        INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION, Constants.INTAKE_CONE),
-        CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE, Constants.OUTTAKE_HIGH_CONE),
-        CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE, Constants.OUTTAKE_MID_CONE),
-        CUBE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CUBE, Constants.OUTTAKE_HIGH_CUBE),
-        CUBE_MID(Constants.WRIST_OUTTAKE_MID_CUBE, Constants.OUTTAKE_MID_CUBE),
-        CONE_LOW(Constants.WRIST_OUTTAKE_LOW_CONE, Constants.OUTTAKE_LOW_CONE),
-        CUBE_LOW(Constants.WRIST_OUTTAKE_LOW_CUBE, Constants.OUTTAKE_LOW_CUBE),
-        STOP(Constants.RESET_WRIST, 0.0);
+        INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE),
+        INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR),
+        INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR),
+        INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION),
+        CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE),
+        CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE),
+        CUBE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CUBE),
+        CUBE_MID(Constants.WRIST_OUTTAKE_MID_CUBE),
+        CONE_LOW(Constants.WRIST_OUTTAKE_LOW_CONE),
+        CUBE_LOW(Constants.WRIST_OUTTAKE_LOW_CUBE),
+        STOP(Constants.RESET_WRIST);
 
         public double wristPosition;
-        public double intakeSpeed;
-        private IntakeState(double wristPosition, double intakeSpeed){
+        private IntakeState(double wristPosition){
             this.wristPosition = wristPosition;
-            this.intakeSpeed = intakeSpeed;
         }
  
     }
