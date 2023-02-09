@@ -30,18 +30,19 @@ public class RobotContainer {
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
-    //private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+    private final JoystickButton intake = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+    private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
     /* Operator Buttons */
     private final JoystickButton cubeMode = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     private final JoystickButton coneMode = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     private final JoystickButton robotHigh = new JoystickButton(operator, XboxController.Button.kY.value);
     private final JoystickButton reset = new JoystickButton(operator, XboxController.Button.kA.value);
-    private final JoystickButton substation = new JoystickButton(operator, XboxController.Button.kX.value);
+    private final JoystickButton substation = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
     private final JoystickButton robotMid = new JoystickButton(operator, XboxController.Button.kB.value);
-    private final POVButton hoodDown = new POVButton(operator, 0);
-    private final POVButton hoodUp = new POVButton(operator, 180);
-    private final POVButton override = new POVButton(operator, 90);
+    private final POVButton robotLow = new POVButton(operator, 180);
+
+    //TODO: test buttona
     private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
     private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
 
@@ -79,37 +80,16 @@ public class RobotContainer {
     private void configureButtonBindings() {
 
         /* Driver Buttons */
+
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
+        
+        intake.whileTrue(new SetIntake(m_intake, m_robotState));
+        intake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+
+        outtake.whileTrue(new SetOuttake(m_intake, m_robotState));
+        outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
 
         /* Operator Buttons */
-
-        /*intake.whileTrue(new InstantCommand(() -> m_intake.setIntake(Constants.INTAKE_TEST_SPEED)));
-        intake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
-        outtake.whileTrue(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)));
-        outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0))); */
-
-        /*slideIn.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(50000)));
-        elevatorUp.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(100000)));
-        slideOut.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(200000)));
-        elevatorDown.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0))); */
-
-        /*outtake.onTrue(new InstantCommand(() -> m_slide.setSlide(30000)));
-        intake.onTrue(new InstantCommand(() -> m_slide.setSlide(0))); */
-
-        /* hoodUp.onTrue(new InstantCommand(() -> m_intake.intakeHoodUp()));
-        hoodUp.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0)));
-        hoodDown.onTrue(new InstantCommand(() -> m_intake.intakeHoodDown()));
-        hoodDown.onFalse(new InstantCommand(() -> m_intake.setHoodSpeed(0))); */
-
-           /*  slideOut.onTrue(new SequentialCommandGroup(new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(-Constants.INTAKE_TEST_SPEED)),
-                                                new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(100000)),
-                                                                           new InstantCommand(() -> m_slide.setSlide(15000)))), 
-                                                                           new InstantCommand(() -> m_intake.intakeHoodDown())));
-
-            slideIn.onTrue(new SequentialCommandGroup(new InstantCommand(() -> m_intake.intakeHoodUp()),
-             new ParallelCommandGroup(new InstantCommand(() -> m_intake.setIntake(0)),
-             new SequentialCommandGroup(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)),
-                                   new InstantCommand(() -> m_slide.setSlide(0)))))); */
 
         coneMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(true)));
         cubeMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(false)));
@@ -117,16 +97,17 @@ public class RobotContainer {
         robotHigh.onTrue(new SetRobotStateHigh(m_robotState, m_intake));
         reset.onTrue(new ResetRobot(m_robotState, m_intake));
         robotMid.onTrue(new SetRobotStateMid(m_robotState, m_intake));
+        robotLow.onTrue(new SetRobotStateLow(m_robotState, m_intake));
 
-        /* hoodDown.whileTrue(new SetIntake(m_intake, m_robotState));
-        hoodDown.whileFalse(new InstantCommand(() -> m_intake.setIntake(0)));
-        hoodDown.whileFalse(new InstantCommand(() -> m_intake.setWristPosition(0))); */
+        substation.onTrue(new SubstationIntake(m_intake, m_robotState));
+
+        //TODO: Intake testing code
 
         start.onTrue(new SetIntake(m_intake, m_robotState));
         start.whileFalse(new InstantCommand(() -> m_intake.setIntakeState(IntakeState.STOP)));
 
-        hoodDown.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
-        hoodDown.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
+        back.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
+        back.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
 
 
     }
