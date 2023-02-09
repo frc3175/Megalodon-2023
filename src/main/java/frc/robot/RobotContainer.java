@@ -2,7 +2,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -42,7 +44,7 @@ public class RobotContainer {
     private final JoystickButton robotMid = new JoystickButton(operator, XboxController.Button.kB.value);
     private final POVButton robotLow = new POVButton(operator, 180);
 
-    //TODO: test buttona
+    //TODO: test buttons
     private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
     private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
 
@@ -52,6 +54,9 @@ public class RobotContainer {
     public static final Intake m_intake = new Intake();
     public static final Slide m_slide = new Slide();
     public static final RobotState m_robotState = new RobotState(m_intake, m_elevator, m_slide);
+
+    /* Autos */
+    private static final SendableChooser<CommandBase> autoChooser = new SendableChooser<>();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -65,6 +70,10 @@ public class RobotContainer {
                 () -> false
             )
         );
+
+        /* Auto Chooser */
+        autoChooser.setDefaultOption("Example Auto", Auto.exampleAuto());
+        autoChooser.addOption("None", Auto.none());
 
         // Configure the button bindings
         configureButtonBindings();
@@ -114,7 +123,7 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
 
-        return Auto.exampleAuto();
+        return autoChooser.getSelected();
 
     }
 
