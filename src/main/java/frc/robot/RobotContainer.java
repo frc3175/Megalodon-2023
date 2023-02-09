@@ -47,6 +47,9 @@ public class RobotContainer {
     //TODO: test buttons
     private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
     private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
+    private final POVButton dpadUp = new POVButton(operator, 0);
+    private final JoystickButton rightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
+    private final JoystickButton leftSTick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
@@ -93,7 +96,7 @@ public class RobotContainer {
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         
         intake.whileTrue(new SetIntake(m_intake, m_robotState));
-        intake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+        intake.onFalse(new ResetRobot(m_robotState, m_intake));
 
         outtake.whileTrue(new SetOuttake(m_intake, m_robotState));
         outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
@@ -112,11 +115,25 @@ public class RobotContainer {
 
         //TODO: Intake testing code
 
-        start.onTrue(new SetIntake(m_intake, m_robotState));
-        start.whileFalse(new InstantCommand(() -> m_intake.setIntakeState(IntakeState.STOP)));
+        /*start.whileTrue(new InstantCommand(() -> m_intake.setWristPosition(50000)));
+
+        dpadUp.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(0.2)));
+        dpadUp.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
 
         back.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
         back.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
+
+        rightStick.whileTrue(new InstantCommand(() -> m_intake.setIntake(-0.5)));
+        rightStick.whileFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+
+        leftSTick.whileTrue(new InstantCommand(() -> m_intake.setIntake(0.5)));
+        leftSTick.whileFalse(new InstantCommand(() -> m_intake.setIntake(0))); */
+
+        back.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
+        back.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
+
+        dpadUp.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(0.2)));
+        dpadUp.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
 
 
     }
