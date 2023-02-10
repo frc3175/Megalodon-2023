@@ -168,6 +168,8 @@ public final class Constants {
     public static final double OUTTAKE_CUBE = 0.5;
     public static final double INTAKE_CONE = 0.5;
     public static final double INTAKE_CUBE = -0.5;
+    public static final double INTAKE_STOP = 0;
+    public static final double HOLD_VOLTAGE = 0.2;
 
     /* Positions */
     public static final double WRIST_OUTTAKE_HIGH_CONE = 50000;

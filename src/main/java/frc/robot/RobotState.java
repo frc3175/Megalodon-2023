@@ -23,7 +23,7 @@ public class RobotState extends SubsystemBase {
         m_elevator = elevator;
         m_intake = intake;
 
-        setRobotState(BotState.RESET);
+        setRobotState(BotState.RESET_CUBE);
 
     }
 
@@ -64,7 +64,8 @@ public class RobotState extends SubsystemBase {
         MID_CUBE(SlideState.CUBE_MID, ElevatorState.MID_CUBE, false, IntakeState.CUBE_MID),
         LOW_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.CONE_LOW),
         LOW_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.CUBE_LOW),
-        RESET(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.STOP),
+        RESET_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.STOP_CONE),
+        RESET_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.STOP_CUBE),
         INTAKE_CONE(SlideState.INTAKE, ElevatorState.FLOOR, true, IntakeState.INTAKE_CONE_GROUND),
         INTAKE_CUBE(SlideState.INTAKE, ElevatorState.FLOOR, false, IntakeState.INTAKE_CUBE_GROUND);
     

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.Constants;
 import frc.robot.RobotState;
 import frc.robot.RobotState.BotState;
 import frc.robot.subsystems.Intake;
@@ -22,8 +23,18 @@ public class ResetRobot extends CommandBase {
     @Override
     public void execute() {
 
-        m_robotState.setRobotState(BotState.RESET);
-        m_intake.setIntake(0);
+        if(m_robotState.getGamepieceState()) {
+
+            m_robotState.setRobotState(BotState.RESET_CONE);
+            m_intake.setIntake(Constants.HOLD_VOLTAGE);
+
+        } else {
+
+            m_robotState.setRobotState(BotState.RESET_CUBE);
+            m_intake.setIntake(Constants.INTAKE_STOP);
+
+        }
+        
         
     }
 

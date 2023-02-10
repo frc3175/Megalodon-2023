@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.subsystems.Intake.IntakeState;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -45,11 +44,11 @@ public class RobotContainer {
     private final POVButton robotLow = new POVButton(operator, 180);
 
     //TODO: test buttons
-    private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
+    //private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
     private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
     private final POVButton dpadUp = new POVButton(operator, 0);
-    private final JoystickButton rightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
-    private final JoystickButton leftSTick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
+    //private final JoystickButton rightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
+    //private final JoystickButton leftStick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
