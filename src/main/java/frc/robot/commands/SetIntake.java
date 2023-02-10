@@ -25,12 +25,12 @@ public class SetIntake extends CommandBase {
 
         if(m_robotState.getGamepieceState()) {
 
-            m_robotState.setRobotState(BotState.INTAKE_CONE);
+            m_robotState.setBotState(BotState.INTAKE_CONE);
             m_intake.setIntake(Constants.INTAKE_CONE);
 
         } else {
 
-            m_robotState.setRobotState(BotState.INTAKE_CUBE);
+            m_robotState.setBotState(BotState.INTAKE_CUBE);
             m_intake.setIntake(Constants.INTAKE_CUBE);
 
         }

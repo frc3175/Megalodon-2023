@@ -22,15 +22,13 @@ public class SetRobotStateLow extends CommandBase {
     @Override
     public void execute() {
 
-        m_intake.setIntake(0);
-
         if(m_robotState.getGamepieceState()) {
 
-            m_robotState.setRobotState(BotState.LOW_CONE);
+            m_robotState.setBotState(BotState.LOW_CONE);
 
         } else {
 
-            m_robotState.setRobotState(BotState.LOW_CUBE);
+            m_robotState.setBotState(BotState.LOW_CUBE);
 
         }
 

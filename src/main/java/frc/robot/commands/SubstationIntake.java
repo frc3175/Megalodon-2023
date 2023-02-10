@@ -23,7 +23,7 @@ public class SubstationIntake extends CommandBase {
     @Override
     public void execute() {
 
-        m_robotState.setRobotState(BotState.INTAKE_CONE_SUBSTATION);
+        m_robotState.setBotState(BotState.INTAKE_CONE_SUBSTATION);
         m_intake.setIntake(Constants.INTAKE_CONE);
 
     }

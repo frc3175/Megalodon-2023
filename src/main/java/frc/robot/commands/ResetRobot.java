@@ -25,12 +25,12 @@ public class ResetRobot extends CommandBase {
 
         if(m_robotState.getGamepieceState()) {
 
-            m_robotState.setRobotState(BotState.RESET_CONE);
+            m_robotState.setBotState(BotState.RESET_CONE);
             m_intake.setIntake(Constants.HOLD_VOLTAGE);
 
         } else {
 
-            m_robotState.setRobotState(BotState.RESET_CUBE);
+            m_robotState.setBotState(BotState.RESET_CUBE);
             m_intake.setIntake(Constants.INTAKE_STOP);
 
         }

@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autos.automodes.Auto;
@@ -94,8 +96,15 @@ public class RobotContainer {
 
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
         
-        intake.whileTrue(new SetIntake(m_intake, m_robotState));
-        intake.onFalse(new ResetRobot(m_robotState, m_intake));
+        intake.whileTrue(new SequentialCommandGroup(new SetIntake(m_intake, m_robotState),
+        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
+        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
+
+        intake.onFalse(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
+        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
+        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         outtake.whileTrue(new SetOuttake(m_intake, m_robotState));
         outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
@@ -105,12 +114,30 @@ public class RobotContainer {
         coneMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(true)));
         cubeMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(false)));
 
-        robotHigh.onTrue(new SetRobotStateHigh(m_robotState, m_intake));
-        reset.onTrue(new ResetRobot(m_robotState, m_intake));
-        robotMid.onTrue(new SetRobotStateMid(m_robotState, m_intake));
-        robotLow.onTrue(new SetRobotStateLow(m_robotState, m_intake));
+        robotHigh.onTrue(new SequentialCommandGroup(new SetRobotStateHigh(m_robotState, m_intake),
+        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
+        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
-        substation.onTrue(new SubstationIntake(m_intake, m_robotState));
+        reset.onTrue(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
+                                                new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
+                                                new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+                                                new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
+
+        robotMid.onTrue(new SequentialCommandGroup(new SetRobotStateMid(m_robotState, m_intake),
+        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
+        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
+
+        robotLow.onTrue(new SequentialCommandGroup(new SetRobotStateLow(m_robotState, m_intake),
+        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
+        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
+
+        substation.onTrue(new SequentialCommandGroup(new SubstationIntake(m_intake, m_robotState),
+        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
+        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         //TODO: Intake testing code
 

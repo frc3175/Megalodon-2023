@@ -23,17 +23,17 @@ public class RobotState extends SubsystemBase {
         m_elevator = elevator;
         m_intake = intake;
 
-        setRobotState(BotState.RESET_CUBE);
+        setBotState(BotState.RESET_CUBE);
 
     }
 
-    public void setRobotState(BotState state) {
+    public void setBotState(BotState state) {
 
         robotState = state;
 
-        m_slide.setSlideState(state.slideState);
+        /*m_slide.setSlideState(state.slideState);
         m_elevator.setElevatorState(state.elevatorState);
-        m_intake.setIntakeState(state.intakeState);
+        m_intake.setIntakeState(state.intakeState); */
 
     }
 

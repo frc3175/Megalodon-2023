@@ -22,15 +22,13 @@ public class SetRobotStateMid extends CommandBase {
     @Override
     public void execute() {
 
-        m_intake.setIntake(0);
-
         if(m_robotState.getGamepieceState()) {
 
-            m_robotState.setRobotState(BotState.MID_CONE);
+            m_robotState.setBotState(BotState.MID_CONE);
 
         } else {
 
-            m_robotState.setRobotState(BotState.MID_CUBE);
+            m_robotState.setBotState(BotState.MID_CUBE);
 
         }
 
