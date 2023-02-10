@@ -14,6 +14,8 @@ public class Intake extends SubsystemBase {
     private TalonFX wristMotor;
 
     private IntakeState intakeState;
+    private IntakeState lastIntakeState;
+    private IntakeState lastLastIntakeState;
 
     public Intake() {
 
@@ -24,6 +26,9 @@ public class Intake extends SubsystemBase {
         configIntakeMotor();
 
         wristMotor.setSelectedSensorPosition(0);
+
+        lastIntakeState = IntakeState.STOP;
+        lastLastIntakeState = IntakeState.STOP;
 
     } 
 
@@ -37,6 +42,8 @@ public class Intake extends SubsystemBase {
 
         setWristPosition(state.wristPosition);
 
+        lastLastIntakeState = lastIntakeState;
+        lastIntakeState = intakeState;
         intakeState = state;
 
     }
@@ -90,6 +97,12 @@ public class Intake extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
+
+        if(lastIntakeState == IntakeState.INTAKE_CONE_SUBSTATION || lastIntakeState == IntakeState.INTAKE_CONE_GROUND || lastLastIntakeState == IntakeState.INTAKE_CONE_SUBSTATION || lastLastIntakeState == IntakeState.INTAKE_CONE_GROUND) {
+            setIntake(0.2);
+        } else if(intakeState == IntakeState.STOP) {
+            setIntake(0);
+        }
 
     }
 
