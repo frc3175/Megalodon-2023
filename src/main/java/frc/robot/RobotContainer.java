@@ -102,9 +102,9 @@ public class RobotContainer {
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         intake.onFalse(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
-        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
         new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
-        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState))),
+        new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))));
 
         outtake.whileTrue(new SetOuttake(m_intake, m_robotState));
         outtake.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
@@ -120,9 +120,9 @@ public class RobotContainer {
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         reset.onTrue(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
-                                                new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
                                                 new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
-                                                new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
+                                                new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState))),
+                                                new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))));
 
         robotMid.onTrue(new SequentialCommandGroup(new SetRobotStateMid(m_robotState, m_intake),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
