@@ -21,10 +21,17 @@ public class SubstationIntake extends CommandBase {
     }
 
     @Override
-    public void execute() {
+    public void initialize() {
 
         m_robotState.setBotState(BotState.INTAKE_CONE_SUBSTATION);
         m_intake.setIntake(Constants.INTAKE_CONE);
+
+    }
+
+    @Override
+    public boolean isFinished() {
+
+        return true;
 
     }
     

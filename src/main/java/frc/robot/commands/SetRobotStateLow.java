@@ -20,7 +20,7 @@ public class SetRobotStateLow extends CommandBase {
     }
 
     @Override
-    public void execute() {
+    public void initialize() {
 
         if(m_robotState.getGamepieceState()) {
 
@@ -31,6 +31,13 @@ public class SetRobotStateLow extends CommandBase {
             m_robotState.setBotState(BotState.LOW_CUBE);
 
         }
+
+    }
+
+    @Override
+    public boolean isFinished() {
+
+        return true;
 
     }
     

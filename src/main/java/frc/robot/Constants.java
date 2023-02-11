@@ -172,16 +172,20 @@ public final class Constants {
     public static final double HOLD_VOLTAGE = 0.2;
 
     /* Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CONE = 50000;
-    public static final double WRIST_OUTTAKE_MID_CONE = 50000;
-    public static final double WRIST_OUTTAKE_LOW_CONE = 50000;
-    public static final double WRIST_OUTTAKE_HIGH_CUBE = 50000;
-    public static final double WRIST_OUTTAKE_MID_CUBE = 50000;
-    public static final double WRIST_OUTTAKE_LOW_CUBE = 50000;
-    public static final double WRIST_INTAKE_CONE_FLOOR = 64938;
-    public static final double WRIST_INTAKE_CONE_SUBSTATION = 64938;
-    public static final double WRIST_INTAKE_CUBE = 62741;
-    public static final double WRIST_INTAKE_CUBE_FLOOR = 62741;
+    public static final double WRIST_OUTTAKE_HIGH_CONE = 55422;
+    public static final double WRIST_OUTTAKE_MID_CONE = 45423;
+    public static final double WRIST_OUTTAKE_LOW_CONE = 57435;
+
+    public static final double WRIST_OUTTAKE_HIGH_CUBE = 53965;
+    public static final double WRIST_OUTTAKE_MID_CUBE = 53965;
+    public static final double WRIST_OUTTAKE_LOW_CUBE = 53965;
+
+    public static final double WRIST_INTAKE_CONE_FLOOR = 67383;
+    public static final double WRIST_INTAKE_CONE_SUBSTATION = 59987;
+
+    public static final double WRIST_INTAKE_CUBE = 68807;
+    public static final double WRIST_INTAKE_CUBE_FLOOR = 68807;
+
     public static final double RESET_WRIST = 0;
 
     public static final double INTAKE_TEST_SPEED = 0.5;
@@ -203,11 +207,14 @@ public final class Constants {
 
     /* Setpoints */
     public static final int ELEVATOR_DOWN = 0;
-    public static final int CUBE_HIGH = 214380;
-    public static final int CUBE_MID = 100000; //TODO: 150000
-    public static final int CONE_HIGH = 214380;
-    public static final int CONE_MID = 100000; //TODO: 150000
-    public static final int SUBSTATION = 200000;
+
+    public static final int CUBE_HIGH = 203688;
+    public static final int CUBE_MID = 118524;
+
+    public static final int CONE_HIGH = 206301;
+    public static final int CONE_MID = 101656;
+
+    public static final int SUBSTATION = 214939;
     public static final int CLEAR_BUMPER = 5000;
 
     /* Elevator PID */
@@ -235,13 +242,16 @@ public final class Constants {
     public static final double SLIDE_DELAY_UP = 0;
 
     /* Setpoints */
-    public static final int SLIDE_INTAKE = 1000;
+    public static final int SLIDE_INTAKE = 0;
     public static final int SLIDE_IN = 0;
-    public static final int SLIDE_CONE_MID = 20000;
-    public static final int SLIDE_CONE_HIGH = 20000;
-    public static final int SLIDE_CUBE_MID = 5000;
-    public static final int SLIDE_CUBE_HIGH = 5000;
-    public static final int SLIDE_SUBSTATION = 1250;
+
+    public static final int SLIDE_CONE_MID = 0;
+    public static final int SLIDE_CONE_HIGH = 10949;
+
+    public static final int SLIDE_CUBE_MID = 8020;
+    public static final int SLIDE_CUBE_HIGH = 25729;
+
+    public static final int SLIDE_SUBSTATION = 0;
 
     /* Slide PID */
     public static final double SLIDE_P = 0.1;

@@ -21,7 +21,7 @@ public class ResetRobot extends CommandBase {
     }
 
     @Override
-    public void execute() {
+    public void initialize() {
 
         if(m_robotState.getGamepieceState()) {
 
@@ -36,6 +36,13 @@ public class ResetRobot extends CommandBase {
         }
         
         
+    }
+
+    @Override
+    public boolean isFinished() {
+
+        return true;
+
     }
 
 }

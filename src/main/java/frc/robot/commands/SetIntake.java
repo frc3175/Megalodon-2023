@@ -21,7 +21,7 @@ public class SetIntake extends CommandBase {
     }
 
     @Override
-    public void execute() {
+    public void initialize() {
 
         if(m_robotState.getGamepieceState()) {
 
@@ -37,11 +37,8 @@ public class SetIntake extends CommandBase {
 
     }
 
-    @Override
-    public void end(boolean isFinished) {
-
-        m_intake.setIntake(0);
-
+    public boolean isFinished() {
+        return true;
     }
 
     
