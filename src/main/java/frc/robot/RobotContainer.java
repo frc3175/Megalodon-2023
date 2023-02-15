@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.CANdleSystem.LEDState;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -34,22 +36,24 @@ public class RobotContainer {
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
-    private final JoystickButton intake = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
     private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
     /* Operator Buttons */
-    private final JoystickButton cubeMode = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
-    private final JoystickButton coneMode = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
-    private final JoystickButton robotHigh = new JoystickButton(operator, XboxController.Button.kY.value);
+    private final JoystickButton cubeMode = new JoystickButton(operator, XboxController.Button.kStart.value);
+    private final JoystickButton coneMode = new JoystickButton(operator, XboxController.Button.kBack.value);
+    private final JoystickButton robotHigh = new JoystickButton(operator, XboxController.Button.kX.value);
     private final JoystickButton reset = new JoystickButton(operator, XboxController.Button.kA.value);
     private final JoystickButton substation = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
-    private final JoystickButton robotMid = new JoystickButton(operator, XboxController.Button.kB.value);
-    private final POVButton robotLow = new POVButton(operator, 180);
+    private final JoystickButton robotMid = new JoystickButton(operator, XboxController.Button.kY.value);
+    private final JoystickButton robotLow = new JoystickButton(operator, XboxController.Button.kB.value);
+    private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
 
     //TODO: test buttons
     //private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
-    private final JoystickButton back = new JoystickButton(operator, XboxController.Button.kBack.value);
     private final POVButton dpadUp = new POVButton(operator, 0);
+    private final POVButton dpadDown = new POVButton(operator, 180);
+    private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
+    private final JoystickButton leftBumper = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     //private final JoystickButton rightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
     //private final JoystickButton leftStick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
 
@@ -59,6 +63,7 @@ public class RobotContainer {
     public static final Intake m_intake = new Intake();
     public static final Slide m_slide = new Slide();
     public static final RobotState m_robotState = new RobotState(m_intake, m_elevator, m_slide);
+    public static final CANdleSystem m_candleSubsystem = new CANdleSystem();
 
     /* Autos */
     private static final SendableChooser<CommandBase> autoChooser = new SendableChooser<>();
@@ -130,7 +135,7 @@ public class RobotContainer {
 
         robotMid.onTrue(new SequentialCommandGroup(new SetRobotStateMid(m_robotState, m_intake),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
-        new WaitCommand(0.5),
+        new WaitCommand(0.6),
         new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
@@ -144,6 +149,9 @@ public class RobotContainer {
         new WaitCommand(0.8),
         new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
+
+        coneMode.onTrue(new InstantCommand(() ->m_candleSubsystem.setLEDSTate(LEDState.CONE)));
+        cubeMode.onTrue(new InstantCommand(() -> m_candleSubsystem.setLEDSTate(LEDState.CUBE)));
 
         //TODO: Intake testing code
 
@@ -161,18 +169,24 @@ public class RobotContainer {
         leftSTick.whileTrue(new InstantCommand(() -> m_intake.setIntake(0.5)));
         leftSTick.whileFalse(new InstantCommand(() -> m_intake.setIntake(0))); */
 
-        back.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
-        back.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
+        dpadDown.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
+        dpadDown.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
 
         dpadUp.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(0.2)));
         dpadUp.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
+
+        rightJoy.onTrue(new InstantCommand(() -> m_intake.setIntake(0.5)));
+        rightJoy.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+
+        leftBumper.onTrue(new InstantCommand(() -> m_slide.setSlideSpeed(0.2)));
+        leftBumper.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
 
 
     }
 
     public Command getAutonomousCommand() {
 
-        return autoChooser.getSelected();
+        return Auto.PreloadParkCube();
 
     }
 

@@ -47,6 +47,24 @@ public class Intake extends SubsystemBase {
 
     }
 
+    public void resetIntakeEncoder() {
+
+        intakeMotor.setSelectedSensorPosition(0);
+
+    }
+
+    public double getIntakeEncoder() {
+
+        return intakeMotor.getSelectedSensorPosition();
+
+    }
+
+    public void zeroWrist() {
+
+        wristMotor.setSelectedSensorPosition(0);
+
+    }
+
     public double getWristPosition() {
 
         return wristMotor.getSelectedSensorPosition();

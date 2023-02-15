@@ -134,6 +134,8 @@ public final class Constants {
         new TrapezoidProfile.Constraints(
             Math.PI, (Math.PI * Math.PI));
 
+    public static final int CANdleID = 6;
+
     /*============================
                 Intake 
     ==============================*/
@@ -169,7 +171,7 @@ public final class Constants {
     public static final double INTAKE_CONE = 0.5;
     public static final double INTAKE_CUBE = -0.5;
     public static final double INTAKE_STOP = 0;
-    public static final double HOLD_VOLTAGE = 0.2;
+    public static final double HOLD_VOLTAGE = 0.1;
 
     /* Positions */
     public static final double WRIST_OUTTAKE_HIGH_CONE = 55422;
@@ -180,8 +182,8 @@ public final class Constants {
     public static final double WRIST_OUTTAKE_MID_CUBE = 53965;
     public static final double WRIST_OUTTAKE_LOW_CUBE = 53965;
 
-    public static final double WRIST_INTAKE_CONE_FLOOR = 67383;
-    public static final double WRIST_INTAKE_CONE_SUBSTATION = 59987;
+    public static final double WRIST_INTAKE_CONE_FLOOR = 60816;
+    public static final double WRIST_INTAKE_CONE_SUBSTATION = 54226;
 
     public static final double WRIST_INTAKE_CUBE = 68807;
     public static final double WRIST_INTAKE_CUBE_FLOOR = 68807;
@@ -206,7 +208,7 @@ public final class Constants {
     public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
 
     /* Setpoints */
-    public static final int ELEVATOR_DOWN = 0;
+    public static final int ELEVATOR_DOWN = 1000;
 
     public static final int CUBE_HIGH = 203688;
     public static final int CUBE_MID = 118524;
@@ -214,7 +216,7 @@ public final class Constants {
     public static final int CONE_HIGH = 206301;
     public static final int CONE_MID = 101656;
 
-    public static final int SUBSTATION = 214939;
+    public static final int SUBSTATION = 212939;
     public static final int CLEAR_BUMPER = 5000;
 
     /* Elevator PID */
