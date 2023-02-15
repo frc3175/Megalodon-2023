@@ -151,7 +151,7 @@ public class RobotContainer {
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         coneMode.onTrue(new InstantCommand(() ->m_candleSubsystem.setLEDSTate(LEDState.CONE)));
-        cubeMode.onTrue(new InstantCommand(() -> m_candleSubsystem.setLEDSTate(LEDState.CUBE)));
+        cubeMode.onTrue(new InstantCommand(() -> m_candleSubsystem.setLEDSTate(LEDState.CUBE))); 
 
         //TODO: Intake testing code
 
