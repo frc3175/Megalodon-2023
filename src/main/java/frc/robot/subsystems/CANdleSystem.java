@@ -25,16 +25,6 @@ public class CANdleSystem extends SubsystemBase {
         ledstate = LEDState.CUBE;
     }
 
-    @Override
-    public void periodic() {
-
-    }
-
-    @Override
-    public void simulationPeriodic() {
-        // This method will be called once per scheduler run during simulation
-    }
-
     public void setLEDSTate(LEDState state) {
 
         ledstate = state;
@@ -50,8 +40,8 @@ public class CANdleSystem extends SubsystemBase {
 
     public enum LEDState {
 
-        CUBE(191, 64, 191),
-        CONE(255, 255, 0);
+        CUBE(Constants.PURPLE_R, Constants.PURPLE_G, Constants.PURPLE_B),
+        CONE(Constants.YELLOW_R, Constants.YELLOW_G, Constants.YELLOW_B);
 
         public final int r;
         public final int g;
