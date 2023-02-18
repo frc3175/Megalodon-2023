@@ -134,7 +134,19 @@ public final class Constants {
         new TrapezoidProfile.Constraints(
             Math.PI, (Math.PI * Math.PI));
 
+    /*============================
+                 LEDs 
+    ==============================*/
+
     public static final int CANdleID = 6;
+
+    public static final int PURPLE_R = 191;
+    public static final int PURPLE_G = 64;
+    public static final int PURPLE_B = 191;
+
+    public static final int YELLOW_R = 255;
+    public static final int YELLOW_G = 255;
+    public static final int YELLOW_B = 0;
 
     /*============================
                 Intake 
