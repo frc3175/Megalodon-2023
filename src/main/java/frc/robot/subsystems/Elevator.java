@@ -30,27 +30,6 @@ public class Elevator extends SubsystemBase {
 
         elevMotor.set(ControlMode.Position, setpoint);
 
-        /*if(elevMotor.getSelectedSensorPosition() < setpoint) {
-
-            while(elevMotor.getSelectedSensorPosition() < setpoint) {
-
-                elevMotor.set(ControlMode.PercentOutput, Constants.ELEVATOR_TEST_SPEED);
-
-            }
-
-            elevMotor.set(ControlMode.PercentOutput, 0);
-
-        } else {
-
-            while(elevMotor.getSelectedSensorPosition() > setpoint) {
-
-                elevMotor.set(ControlMode.PercentOutput, -Constants.ELEVATOR_TEST_SPEED);
-
-            }
-
-            elevMotor.set(ControlMode.PercentOutput, 0);
-
-        } */
 
     }
 

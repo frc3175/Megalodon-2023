@@ -25,8 +25,18 @@ public class SetIntake extends CommandBase {
 
         if(m_robotState.getGamepieceState()) {
 
-            m_robotState.setBotState(BotState.INTAKE_CONE);
-            m_intake.setIntake(Constants.INTAKE_CONE);
+            if(m_intake.isSingleConeState()) {
+
+                m_robotState.setBotState(BotState.INTAKE_CONE_SINGLE);
+                m_intake.setIntake(Constants.INTAKE_CONE);
+
+            } else {
+
+                m_robotState.setBotState(BotState.INTAKE_CONE_FLOOR);
+                m_intake.setIntake(Constants.INTAKE_CONE);
+
+            }
+            
 
         } else {
 

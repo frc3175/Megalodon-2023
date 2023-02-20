@@ -47,6 +47,8 @@ public class RobotContainer {
     private final JoystickButton robotMid = new JoystickButton(operator, XboxController.Button.kY.value);
     private final JoystickButton robotLow = new JoystickButton(operator, XboxController.Button.kB.value);
     private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
+    private final POVButton singleSubstation = new POVButton(operator, 270);
+    private final POVButton floor = new POVButton(operator, 90);
 
     //TODO: test buttons
     //private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
@@ -109,7 +111,7 @@ public class RobotContainer {
 
         intake.onFalse(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
         new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
-        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState))),
+        new InstantCommand(() -> m_intake.setWristPosition(Constants.RESET_WRIST))),
         new WaitCommand(0.3),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))));
 
@@ -122,9 +124,10 @@ public class RobotContainer {
         cubeMode.onTrue(new InstantCommand(() -> m_robotState.setGamepieceState(false)));
 
         robotHigh.onTrue(new SequentialCommandGroup(new SetRobotStateHigh(m_robotState, m_intake),
+        new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
         new WaitCommand(0.8),
-        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new ParallelCommandGroup(
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         reset.onTrue(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
@@ -134,9 +137,10 @@ public class RobotContainer {
                                                 new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))));
 
         robotMid.onTrue(new SequentialCommandGroup(new SetRobotStateMid(m_robotState, m_intake),
+        new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
         new WaitCommand(0.6),
-        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new ParallelCommandGroup(
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         robotLow.onTrue(new SequentialCommandGroup(new SetRobotStateLow(m_robotState, m_intake),
@@ -145,13 +149,18 @@ public class RobotContainer {
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         substation.onTrue(new SequentialCommandGroup(new SubstationIntake(m_intake, m_robotState),
+        new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
         new WaitCommand(0.8),
-        new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
+        new ParallelCommandGroup(
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         coneMode.onTrue(new InstantCommand(() ->m_candleSubsystem.setLEDSTate(LEDState.CONE)));
         cubeMode.onTrue(new InstantCommand(() -> m_candleSubsystem.setLEDSTate(LEDState.CUBE))); 
+
+        singleSubstation.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(false)));
+        floor.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(true)));
+
 
         //TODO: Intake testing code
 
@@ -178,15 +187,15 @@ public class RobotContainer {
         rightJoy.onTrue(new InstantCommand(() -> m_intake.setIntake(0.5)));
         rightJoy.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
 
-        leftBumper.onTrue(new InstantCommand(() -> m_slide.setSlideSpeed(0.2)));
-        leftBumper.onFalse(new InstantCommand(() -> m_slide.setSlideSpeed(0)));
+        leftBumper.onTrue(new InstantCommand(() -> m_intake.holdIntakePosition(50000)));
+        //leftBumper.onFalse(new InstantCommand(() -> m_intake.holdIntakePosition(m_intake.getIntakeEncoder())));
 
 
     }
 
     public Command getAutonomousCommand() {
 
-        return Auto.PreloadParkCube();
+        return Auto.TWoGamepieceCable();
 
     }
 

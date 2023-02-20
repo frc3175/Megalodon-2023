@@ -12,6 +12,7 @@ public class Intake extends SubsystemBase {
 
     private TalonFX intakeMotor;
     private TalonFX wristMotor;
+    private boolean isSingleConeState = false;
 
     private IntakeState intakeState;
 
@@ -26,6 +27,18 @@ public class Intake extends SubsystemBase {
         wristMotor.setSelectedSensorPosition(0);
 
     } 
+
+    public void setSingleConeState(boolean m_isSingleConeState) {
+
+        isSingleConeState = m_isSingleConeState;
+
+    }
+
+    public boolean isSingleConeState() {
+
+        return isSingleConeState;
+
+    }
 
     public void setIntake(double speed) {
 
@@ -77,6 +90,10 @@ public class Intake extends SubsystemBase {
 
     }
 
+    public void holdIntakePosition(double position) {
+        intakeMotor.set(ControlMode.Position, position);
+    }
+
     public void continuousWristMotion(double speed) {
 
         wristMotor.set(ControlMode.PercentOutput, speed);
@@ -88,6 +105,7 @@ public class Intake extends SubsystemBase {
         INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE),
         INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR),
         INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR),
+        INTAKE_CONE_SINGLE(Constants.WRIST_SINGLE_INTAKE),
         INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION),
         CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE),
         CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE),
@@ -109,6 +127,7 @@ public class Intake extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("intake encoder", getIntakeEncoder());
 
     }
 
