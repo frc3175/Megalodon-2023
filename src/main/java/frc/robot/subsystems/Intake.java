@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.CTREConfigs;
@@ -12,7 +13,7 @@ public class Intake extends SubsystemBase {
 
     private TalonFX intakeMotor;
     private TalonFX wristMotor;
-    private boolean isSingleConeState = false;
+    private DigitalInput limitSwitch;
 
     private IntakeState intakeState;
 
@@ -20,6 +21,7 @@ public class Intake extends SubsystemBase {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
         wristMotor = new TalonFX(Constants.INTAKE_WRIST, "elevatoryiboi");
+        limitSwitch = new DigitalInput(Constants.INTAKE_LIMIT_SWITCH_CHANNEL);
 
         configWristMotor();
         configIntakeMotor();
@@ -27,18 +29,6 @@ public class Intake extends SubsystemBase {
         wristMotor.setSelectedSensorPosition(0);
 
     } 
-
-    public void setSingleConeState(boolean m_isSingleConeState) {
-
-        isSingleConeState = m_isSingleConeState;
-
-    }
-
-    public boolean isSingleConeState() {
-
-        return isSingleConeState;
-
-    }
 
     public void setIntake(double speed) {
 
@@ -51,12 +41,6 @@ public class Intake extends SubsystemBase {
         setWristPosition(state.wristPosition);
 
         intakeState = state;
-
-    }
-
-    public void setWristPosition(double position) {
-
-        wristMotor.set(ControlMode.Position, position);
 
     }
 
@@ -90,13 +74,33 @@ public class Intake extends SubsystemBase {
 
     }
 
-    public void holdIntakePosition(double position) {
-        intakeMotor.set(ControlMode.Position, position);
-    }
-
     public void continuousWristMotion(double speed) {
 
         wristMotor.set(ControlMode.PercentOutput, speed);
+
+    }
+
+    public void homeIntake() {
+
+        if(!limitSwitch.get()) {
+
+            continuousWristMotion(Constants.WRIST_HOMING_VELOCITY);
+
+        } else {
+
+            intakeMotor.set(ControlMode.Velocity, 0);
+
+        }
+
+    }
+
+    public void setWristPosition(double position) {
+
+        if(position == 0) {
+            homeIntake();
+        } else {
+            wristMotor.set(ControlMode.Position, position);
+        }
 
     }
 
@@ -105,7 +109,6 @@ public class Intake extends SubsystemBase {
         INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE),
         INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR),
         INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR),
-        INTAKE_CONE_SINGLE(Constants.WRIST_SINGLE_INTAKE),
         INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION),
         CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE),
         CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE),
@@ -127,7 +130,6 @@ public class Intake extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
-        SmartDashboard.putNumber("intake encoder", getIntakeEncoder());
 
     }
 

@@ -177,22 +177,17 @@ public final class Constants {
     public static final double WRIST_D = 0;
     public static final double WRIST_F = 0.001;
 
-    public static final double INTAKE_P = 1;
-    public static final double INTAKE_I = 0;
-    public static final double INTAKE_D = 0;
-    public static final double INTAKE_F = 0.0;
-
     /* Speeds */
     public static final double OUTTAKE_CONE = -0.9;
     public static final double OUTTAKE_CUBE = 0.9;
     public static final double INTAKE_CONE = 0.9;
     public static final double INTAKE_CUBE = -0.9;
     public static final double INTAKE_STOP = 0;
-    public static final double HOLD_VOLTAGE = 0.2;
+    public static final double HOLD_VOLTAGE = 0.1;
 
     /* Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CONE = 48000;
-    public static final double WRIST_OUTTAKE_MID_CONE = 40562;
+    public static final double WRIST_OUTTAKE_HIGH_CONE = 55422;
+    public static final double WRIST_OUTTAKE_MID_CONE = 45423;
     public static final double WRIST_OUTTAKE_LOW_CONE = 57435;
 
     public static final double WRIST_OUTTAKE_HIGH_CUBE = 50965;
@@ -200,7 +195,7 @@ public final class Constants {
     public static final double WRIST_OUTTAKE_LOW_CUBE = 53965;
 
     public static final double WRIST_INTAKE_CONE_FLOOR = 60816;
-    public static final double WRIST_INTAKE_CONE_SUBSTATION = 46226;
+    public static final double WRIST_INTAKE_CONE_SUBSTATION = 54226;
 
     public static final double WRIST_INTAKE_CUBE = 64248;
     public static final double WRIST_INTAKE_CUBE_FLOOR = 64248;
@@ -210,7 +205,8 @@ public final class Constants {
     public static final double INTAKE_TEST_SPEED = 0.5;
     public static final double HOOD_TEST_SPEED = 0.5;
 
-    public static final double WRIST_SINGLE_INTAKE = 21687;
+    public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 0;
+    public static final double WRIST_HOMING_VELOCITY = 0.5;
 
     /*============================
                 Elevator 
