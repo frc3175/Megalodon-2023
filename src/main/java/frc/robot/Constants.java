@@ -205,6 +205,9 @@ public final class Constants {
     public static final double INTAKE_TEST_SPEED = 0.5;
     public static final double HOOD_TEST_SPEED = 0.5;
 
+    public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 0;
+    public static final double WRIST_HOMING_VELOCITY = 0.5;
+
     /*============================
                 Elevator 
     ==============================*/

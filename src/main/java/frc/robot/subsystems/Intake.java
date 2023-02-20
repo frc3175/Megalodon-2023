@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.CTREConfigs;
@@ -12,6 +13,7 @@ public class Intake extends SubsystemBase {
 
     private TalonFX intakeMotor;
     private TalonFX wristMotor;
+    private DigitalInput limitSwitch;
 
     private IntakeState intakeState;
 
@@ -19,6 +21,7 @@ public class Intake extends SubsystemBase {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
         wristMotor = new TalonFX(Constants.INTAKE_WRIST, "elevatoryiboi");
+        limitSwitch = new DigitalInput(Constants.INTAKE_LIMIT_SWITCH_CHANNEL);
 
         configWristMotor();
         configIntakeMotor();
@@ -38,12 +41,6 @@ public class Intake extends SubsystemBase {
         setWristPosition(state.wristPosition);
 
         intakeState = state;
-
-    }
-
-    public void setWristPosition(double position) {
-
-        wristMotor.set(ControlMode.Position, position);
 
     }
 
@@ -80,6 +77,30 @@ public class Intake extends SubsystemBase {
     public void continuousWristMotion(double speed) {
 
         wristMotor.set(ControlMode.PercentOutput, speed);
+
+    }
+
+    public void homeIntake() {
+
+        if(!limitSwitch.get()) {
+
+            continuousWristMotion(Constants.WRIST_HOMING_VELOCITY);
+
+        } else {
+
+            intakeMotor.set(ControlMode.Velocity, 0);
+
+        }
+
+    }
+
+    public void setWristPosition(double position) {
+
+        if(position == 0) {
+            homeIntake();
+        } else {
+            wristMotor.set(ControlMode.Position, position);
+        }
 
     }
 
