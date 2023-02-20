@@ -125,7 +125,7 @@ public final class Constants {
 
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = (Units.feetToMeters(16.2)); //meters per second (theoretical from SDS)
-    public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12; //radians per second (theoretical calculation)
+    public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12*0.5; //radians per second (theoretical calculation)
     public static final double TURN_IN_PLACE_SPEED = 0.5;
     public static final double A_RATE_LIMITER = 2.0; //Slew Rate Limiter Constant
     
@@ -178,10 +178,10 @@ public final class Constants {
     public static final double WRIST_F = 0.001;
 
     /* Speeds */
-    public static final double OUTTAKE_CONE = -0.5;
-    public static final double OUTTAKE_CUBE = 0.5;
-    public static final double INTAKE_CONE = 0.5;
-    public static final double INTAKE_CUBE = -0.5;
+    public static final double OUTTAKE_CONE = -0.9;
+    public static final double OUTTAKE_CUBE = 0.9;
+    public static final double INTAKE_CONE = 0.9;
+    public static final double INTAKE_CUBE = -0.9;
     public static final double INTAKE_STOP = 0;
     public static final double HOLD_VOLTAGE = 0.1;
 
@@ -190,15 +190,15 @@ public final class Constants {
     public static final double WRIST_OUTTAKE_MID_CONE = 45423;
     public static final double WRIST_OUTTAKE_LOW_CONE = 57435;
 
-    public static final double WRIST_OUTTAKE_HIGH_CUBE = 53965;
+    public static final double WRIST_OUTTAKE_HIGH_CUBE = 50965;
     public static final double WRIST_OUTTAKE_MID_CUBE = 53965;
     public static final double WRIST_OUTTAKE_LOW_CUBE = 53965;
 
     public static final double WRIST_INTAKE_CONE_FLOOR = 60816;
     public static final double WRIST_INTAKE_CONE_SUBSTATION = 54226;
 
-    public static final double WRIST_INTAKE_CUBE = 68807;
-    public static final double WRIST_INTAKE_CUBE_FLOOR = 68807;
+    public static final double WRIST_INTAKE_CUBE = 64248;
+    public static final double WRIST_INTAKE_CUBE_FLOOR = 64248;
 
     public static final double RESET_WRIST = 0;
 
@@ -266,7 +266,7 @@ public final class Constants {
     public static final int SLIDE_CONE_HIGH = 10949;
 
     public static final int SLIDE_CUBE_MID = 8020;
-    public static final int SLIDE_CUBE_HIGH = 25729;
+    public static final int SLIDE_CUBE_HIGH = 21729;
 
     public static final int SLIDE_SUBSTATION = 0;
 
