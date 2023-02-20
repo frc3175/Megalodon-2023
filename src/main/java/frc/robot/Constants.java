@@ -177,6 +177,11 @@ public final class Constants {
     public static final double WRIST_D = 0;
     public static final double WRIST_F = 0.001;
 
+    public static final double INTAKE_P = 1;
+    public static final double INTAKE_I = 0;
+    public static final double INTAKE_D = 0;
+    public static final double INTAKE_F = 0.0;
+
     /* Speeds */
     public static final double OUTTAKE_CONE = -0.9;
     public static final double OUTTAKE_CUBE = 0.9;
@@ -204,6 +209,8 @@ public final class Constants {
 
     public static final double INTAKE_TEST_SPEED = 0.5;
     public static final double HOOD_TEST_SPEED = 0.5;
+
+    public static final double WRIST_SINGLE_INTAKE = 21687;
 
     public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 0;
     public static final double WRIST_HOMING_VELOCITY = 0.5;

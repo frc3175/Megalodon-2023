@@ -187,7 +187,7 @@ public class RobotContainer {
         rightJoy.onTrue(new InstantCommand(() -> m_intake.setIntake(0.5)));
         rightJoy.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
 
-        leftBumper.onTrue(new InstantCommand(() -> m_intake.holdIntakePosition(50000)));
+        //leftBumper.onTrue(new InstantCommand(() -> m_intake.holdIntakePosition(50000)));
         //leftBumper.onFalse(new InstantCommand(() -> m_intake.holdIntakePosition(m_intake.getIntakeEncoder())));
 
 

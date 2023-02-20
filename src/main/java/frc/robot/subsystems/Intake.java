@@ -14,6 +14,7 @@ public class Intake extends SubsystemBase {
     private TalonFX intakeMotor;
     private TalonFX wristMotor;
     private DigitalInput limitSwitch;
+    private boolean isSingleConeState = false;
 
     private IntakeState intakeState;
 
@@ -29,6 +30,18 @@ public class Intake extends SubsystemBase {
         wristMotor.setSelectedSensorPosition(0);
 
     } 
+
+    public void setSingleConeState(boolean m_isSingleConeState) {
+
+        isSingleConeState = m_isSingleConeState;
+
+    }
+
+    public boolean isSingleConeState() {
+
+        return isSingleConeState;
+
+    }
 
     public void setIntake(double speed) {
 
@@ -110,6 +123,7 @@ public class Intake extends SubsystemBase {
         INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR),
         INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR),
         INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION),
+        INTAKE_CONE_SINGLE(Constants.WRIST_SINGLE_INTAKE),
         CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE),
         CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE),
         CUBE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CUBE),
