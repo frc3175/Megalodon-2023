@@ -213,7 +213,7 @@ public final class Constants {
     public static final double WRIST_SINGLE_INTAKE = 21687;
 
     public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 0;
-    public static final double WRIST_HOMING_VELOCITY = 0.5;
+    public static final double WRIST_HOMING_VELOCITY = 0.2;
 
     /*============================
                 Elevator 
@@ -230,7 +230,7 @@ public final class Constants {
     public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
 
     /* Setpoints */
-    public static final int ELEVATOR_DOWN = 1000;
+    public static final int ELEVATOR_DOWN = 0;
 
     public static final int CUBE_HIGH = 203688;
     public static final int CUBE_MID = 118524;
@@ -248,6 +248,10 @@ public final class Constants {
     public static final double ELEVATOR_F = 0.0;
 
     public static final double ELEVATOR_TEST_SPEED = 0.5;
+
+    public static final int ELEVATOR_LIMIT_SWITCH_CHANNEL = 1;
+
+    public static final double ELEVATOR_HOMING_VELOCITY = 0.9;
 
     /*============================
                 Slide

@@ -95,25 +95,32 @@ public class Intake extends SubsystemBase {
 
     public void homeIntake() {
 
-        if(!limitSwitch.get()) {
+      /*   while(intakeMotor.getSelectedSensorVelocity() != 0) {
 
-            continuousWristMotion(Constants.WRIST_HOMING_VELOCITY);
+            if(!limitSwitch.get()) {
 
-        } else {
+                continuousWristMotion(-Constants.WRIST_HOMING_VELOCITY);
+    
+            } else {
+    
+                intakeMotor.set(ControlMode.Velocity, 0);
+                intakeMotor.setSelectedSensorPosition(0);
+    
+            }
 
-            intakeMotor.set(ControlMode.Velocity, 0);
-
-        }
+        } */
 
     }
 
     public void setWristPosition(double position) {
 
-        if(position == 0) {
+        /*if(position == 0) {
             homeIntake();
         } else {
             wristMotor.set(ControlMode.Position, position);
-        }
+        } */
+
+        wristMotor.set(ControlMode.Position, position);
 
     }
 
@@ -144,6 +151,12 @@ public class Intake extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
+        SmartDashboard.putBoolean("intake limit", limitSwitch.get());
+
+        /*if(limitSwitch.get()) {
+            intakeMotor.set(ControlMode.PercentOutput, 0);
+            intakeMotor.setSelectedSensorPosition(0);
+        } */
 
     }
 

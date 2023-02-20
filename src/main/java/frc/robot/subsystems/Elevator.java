@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.math.Conversions;
@@ -15,10 +16,12 @@ public class Elevator extends SubsystemBase {
     private TalonFX elevMotor;
 
     private ElevatorState elevState;
+    private DigitalInput limitSwitch;
 
     public Elevator() {
 
         elevMotor = new WPI_TalonFX(Constants.ELEVATOR_MOTOR, "elevatoryiboi");
+        limitSwitch = new DigitalInput(Constants.ELEVATOR_LIMIT_SWITCH_CHANNEL);
         
         configElevMotor();
 
@@ -28,6 +31,16 @@ public class Elevator extends SubsystemBase {
 
     public void setElevatorSetpoint(double setpoint) {
 
+        /*if(setpoint == 0) {
+
+            if(!limitSwitch.get()) {
+                elevMotor.set(ControlMode.PercentOutput, Constants.ELEVATOR_HOMING_VELOCITY);
+            } else {
+                elevMotor.set(ControlMode.Velocity, 0);
+                elevMotor.setSelectedSensorPosition(0);
+            }
+
+        } */
         elevMotor.set(ControlMode.Position, setpoint);
 
 

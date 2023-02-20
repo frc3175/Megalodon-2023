@@ -82,6 +82,16 @@ public class RobotState extends SubsystemBase {
         }
     
     }
+
+    @Override 
+    public void periodic() {
+
+        /*if(getRobotState() == BotState.RESET_CONE) {
+
+
+        } */
+
+    }
     
 
 }
