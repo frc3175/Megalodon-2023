@@ -8,6 +8,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.AutonOuttake;
 import frc.robot.commands.ResetRobot;
+import frc.robot.commands.SetIntake;
 import frc.robot.commands.SetRobotStateHigh;
 import frc.robot.commands.SetRobotStateLow;
 import frc.robot.commands.SetRobotStateMid;
@@ -36,8 +37,9 @@ public final class Auto {
           new InstantCommand(() -> RobotContainer.m_slide.setSlide(Constants.SLIDE_CONE_HIGH - 3000)),
           new InstantCommand(() -> RobotContainer.m_elevator.setElevatorState(RobotContainer.m_robotState.getRobotState().elevatorState)),
           new WaitCommand(0.8),
-          new ParallelCommandGroup(
+          new SequentialCommandGroup(
           new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState))),
+          new WaitCommand(0.5),
           new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))),
 
           Map.entry("HighCube", new SequentialCommandGroup(new SetRobotStateHigh(RobotContainer.m_robotState, RobotContainer.m_intake),
@@ -50,13 +52,17 @@ public final class Auto {
 
           Map.entry("Low", new SetRobotStateLow(RobotContainer.m_robotState, RobotContainer.m_intake)),
 
+          Map.entry("IntakeState", new SetIntake(RobotContainer.m_intake, RobotContainer.m_robotState)),
+
           Map.entry("Intake", new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState))),
 
           Map.entry("IntakeWrist", new InstantCommand(() -> RobotContainer.m_intake.setWristPosition(Constants.WRIST_INTAKE_CUBE))),
 
-          Map.entry("Outtake", new SequentialCommandGroup(new WaitCommand(0.5), new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))),
+          Map.entry("Outtake", new SequentialCommandGroup(new WaitCommand(1.5), new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))),
 
           Map.entry("Delay1", new WaitCommand(1)),
+
+          Map.entry("Zero", new InstantCommand(() -> RobotContainer.m_drivetrain.m_gyro.setYaw(RobotContainer.m_drivetrain.getYaw().getDegrees() + 180))),
 
           Map.entry("Reset", new SequentialCommandGroup(new ResetRobot(RobotContainer.m_robotState, RobotContainer.m_intake),
           new ParallelCommandGroup(new InstantCommand(() -> RobotContainer.m_slide.setSlideState(RobotContainer.m_robotState.getRobotState().slideState)),
@@ -97,19 +103,24 @@ public final class Auto {
 
   public static CommandBase TWoGamepieceCable() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Cable", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Cable", new PathConstraints(3.5, 3)));
 
   }
 
   public static CommandBase TwoGamepieceNonCable() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-No-Cable", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-No-Cable", new PathConstraints(2.5, 3)));
   }
 
   public static CommandBase PreloadParkCone() {
 
     return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Park-Cone", new PathConstraints(1, 1)));
 
+  }
+
+  public static CommandBase WackAuto() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("WackAuto", new PathConstraints(1, 1)));
   }
 
   private Auto() {

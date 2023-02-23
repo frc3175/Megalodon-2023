@@ -23,6 +23,8 @@ public class CANdleSystem extends SubsystemBase {
         configAll.brightnessScalar = 0.1;
         m_candle.configAllSettings(configAll, 100);
         ledstate = LEDState.CUBE;
+
+        setLEDSTate(ledstate);
     }
 
     public void setLEDSTate(LEDState state) {

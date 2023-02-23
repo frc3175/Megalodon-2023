@@ -140,12 +140,12 @@ public final class Constants {
 
     public static final int CANdleID = 6;
 
-    public static final int PURPLE_R = 191;
-    public static final int PURPLE_G = 64;
+    public static final int PURPLE_R = 255;
+    public static final int PURPLE_G = 0;
     public static final int PURPLE_B = 191;
 
     public static final int YELLOW_R = 255;
-    public static final int YELLOW_G = 255;
+    public static final int YELLOW_G = 130;
     public static final int YELLOW_B = 0;
 
     /*============================
@@ -184,14 +184,14 @@ public final class Constants {
 
     /* Speeds */
     public static final double OUTTAKE_CONE = -0.9;
-    public static final double OUTTAKE_CUBE = 0.9;
+    public static final double OUTTAKE_CUBE = 0.5;
     public static final double INTAKE_CONE = 0.9;
-    public static final double INTAKE_CUBE = -0.9;
+    public static final double INTAKE_CUBE = -0.5;
     public static final double INTAKE_STOP = 0;
     public static final double HOLD_VOLTAGE = 0.1;
 
     /* Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CONE = 55422;
+    public static final double WRIST_OUTTAKE_HIGH_CONE = 52800;
     public static final double WRIST_OUTTAKE_MID_CONE = 45423;
     public static final double WRIST_OUTTAKE_LOW_CONE = 57435;
 
@@ -230,7 +230,7 @@ public final class Constants {
     public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
 
     /* Setpoints */
-    public static final int ELEVATOR_DOWN = 0;
+    public static final int ELEVATOR_DOWN = 1000;
 
     public static final int CUBE_HIGH = 203688;
     public static final int CUBE_MID = 118524;
@@ -274,7 +274,7 @@ public final class Constants {
     public static final int SLIDE_IN = 0;
 
     public static final int SLIDE_CONE_MID = 0;
-    public static final int SLIDE_CONE_HIGH = 10949;
+    public static final int SLIDE_CONE_HIGH = 13000;
 
     public static final int SLIDE_CUBE_MID = 8020;
     public static final int SLIDE_CUBE_HIGH = 21729;

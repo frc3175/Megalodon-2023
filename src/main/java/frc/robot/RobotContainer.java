@@ -194,7 +194,7 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
 
-        return Auto.TWoGamepieceCable();
+        return Auto.TwoGamepieceNonCable();
 
     }
 

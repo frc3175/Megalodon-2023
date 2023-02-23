@@ -42,7 +42,7 @@
       },
       "holonomicAngle": -179.6545606657642,
       "isReversal": false,
-      "velOverride": null,
+      "velOverride": 1.0,
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
@@ -67,7 +67,7 @@
       },
       "holonomicAngle": 0,
       "isReversal": false,
-      "velOverride": null,
+      "velOverride": 3.0,
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
@@ -79,16 +79,16 @@
     },
     {
       "anchorPoint": {
-        "x": 6.8980996114714,
-        "y": 0.9268041173431139
+        "x": 6.968471372840181,
+        "y": 0.7650842652112657
       },
       "prevControl": {
-        "x": 5.03365789451673,
-        "y": 0.8312326254818843
+        "x": 5.104029655885511,
+        "y": 0.6695127733500361
       },
       "nextControl": {
-        "x": 8.762541328426071,
-        "y": 1.0223756092043434
+        "x": 8.83291308979485,
+        "y": 0.8606557570724954
       },
       "holonomicAngle": 0,
       "isReversal": false,
@@ -139,7 +139,7 @@
       "nextControl": null,
       "holonomicAngle": 179.15028953989233,
       "isReversal": false,
-      "velOverride": null,
+      "velOverride": 1.0,
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
@@ -160,7 +160,7 @@
       "position": 2.6545454545455183,
       "names": [
         "CubeMode",
-        "IntakeWRist",
+        "IntakeState",
         "Intake"
       ]
     },
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "position": 3.672727272727261,
+      "position": 3.200000000000014,
       "names": [
         "Reset"
       ]
