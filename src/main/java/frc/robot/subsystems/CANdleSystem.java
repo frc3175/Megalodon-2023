@@ -16,6 +16,7 @@ public class CANdleSystem extends SubsystemBase {
     public LEDState ledstate;
 
     public CANdleSystem() {
+        
         CANdleConfiguration configAll = new CANdleConfiguration();
         configAll.statusLedOffWhenActive = true;
         configAll.disableWhenLOS = false;

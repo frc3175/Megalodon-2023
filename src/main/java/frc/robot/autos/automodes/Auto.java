@@ -78,6 +78,7 @@ public final class Auto {
           Constants.AUTO_ROTATION_CONSTANTS,
           RobotContainer.m_drivetrain::setChassisSpeeds,
           eventMap,
+          true,
           RobotContainer.m_drivetrain
   );
 
@@ -89,11 +90,6 @@ public final class Auto {
     return Commands.none();
   }
 
-  public static CommandBase ThreeGamepieceSafe() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Gamepiece-Safe", new PathConstraints(1, 1)));
-
-  }
 
   public static CommandBase PreloadParkCube() {
 
@@ -116,11 +112,6 @@ public final class Auto {
 
     return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Park-Cone", new PathConstraints(1, 1)));
 
-  }
-
-  public static CommandBase WackAuto() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("WackAuto", new PathConstraints(1, 1)));
   }
 
   private Auto() {

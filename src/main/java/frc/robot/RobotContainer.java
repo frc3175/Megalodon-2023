@@ -83,8 +83,10 @@ public class RobotContainer {
         );
 
         /* Auto Chooser */
-        autoChooser.setDefaultOption("Example Auto", Auto.exampleAuto());
-        autoChooser.addOption("None", Auto.none());
+        autoChooser.setDefaultOption("Cube + Park", Auto.PreloadParkCube());
+        autoChooser.addOption("Cone + Park", Auto.PreloadParkCone());
+        autoChooser.addOption("Cable Preload + 1", Auto.TWoGamepieceCable());
+        autoChooser.addOption("Non-Cable Preload + 1", Auto.TwoGamepieceNonCable());
 
         // Configure the button bindings
         configureButtonBindings();
@@ -194,7 +196,7 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
 
-        return Auto.TwoGamepieceNonCable();
+        return autoChooser.getSelected();
 
     }
 
