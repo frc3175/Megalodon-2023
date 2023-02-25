@@ -5,6 +5,7 @@ import frc.robot.subsystems.Intake.IntakeState;
 import frc.robot.subsystems.Slide.SlideState;
 
 import frc.robot.subsystems.Slide;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -85,6 +86,9 @@ public class RobotState extends SubsystemBase {
 
     @Override 
     public void periodic() {
+
+        SmartDashboard.putBoolean("Gamepiece State", getGamepieceState());
+        SmartDashboard.putString("Robot State", getRobotState().toString());
 
         /*if(getRobotState() == BotState.RESET_CONE) {
 
