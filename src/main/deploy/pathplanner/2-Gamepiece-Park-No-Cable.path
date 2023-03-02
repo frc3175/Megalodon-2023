@@ -159,18 +159,18 @@
     },
     {
       "anchorPoint": {
-        "x": 6.390961165843579,
-        "y": 5.1547017285995205
+        "x": 1.8046663164696304,
+        "y": 2.0949103424047717
       },
       "prevControl": {
-        "x": 6.529500049993703,
-        "y": 5.154487349757107
+        "x": 1.9200270645989066,
+        "y": 2.091518112486596
       },
       "nextControl": {
-        "x": 6.2524222816934545,
-        "y": 5.154916107441934
+        "x": 1.6893055683403542,
+        "y": 2.0983025723229476
       },
-      "holonomicAngle": -45.0,
+      "holonomicAngle": 178.91907581333936,
       "isReversal": false,
       "velOverride": null,
       "isLocked": false,
@@ -184,15 +184,40 @@
     },
     {
       "anchorPoint": {
-        "x": 7.1915274265331135,
-        "y": 3.4653712293478742
+        "x": 3.7992975083571165,
+        "y": 2.149186021095588
       },
       "prevControl": {
-        "x": 7.074766765603588,
-        "y": 3.4485172691782005
+        "x": 3.741617134292478,
+        "y": 2.157666595891028
+      },
+      "nextControl": {
+        "x": 3.856977882421755,
+        "y": 2.1407054463001485
+      },
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 3.7992975083571165,
+        "y": 2.0270657440412516
+      },
+      "prevControl": {
+        "x": 3.80778431588038,
+        "y": 2.0024720771344757
       },
       "nextControl": null,
-      "holonomicAngle": -90.0,
+      "holonomicAngle": 180.0,
       "isReversal": false,
       "velOverride": null,
       "isLocked": false,
@@ -205,28 +230,5 @@
       }
     }
   ],
-  "markers": [
-    {
-      "position": 2.363636363636293,
-      "names": [
-        "CubeMode",
-        "IntakeState",
-        "Intake"
-      ]
-    },
-    {
-      "position": 3.127272727272735,
-      "names": [
-        "Reset"
-      ]
-    },
-    {
-      "position": 6.210909090909038,
-      "names": [
-        "CubeMode",
-        "IntakeState",
-        "Intake"
-      ]
-    }
-  ]
+  "markers": []
 }

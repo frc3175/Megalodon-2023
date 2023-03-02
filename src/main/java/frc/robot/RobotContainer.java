@@ -88,6 +88,11 @@ public class RobotContainer {
         autoChooser.addOption("Cone + Park", Auto.PreloadParkCone());
         autoChooser.addOption("Cable Preload + 1", Auto.TWoGamepieceCable());
         autoChooser.addOption("Non-Cable Preload + 1", Auto.TwoGamepieceNonCable());
+        autoChooser.addOption("Cable Cone + Mobility + Park", Auto.MobilityParkCable());
+        autoChooser.addOption("Non-Cable Cone + Mobility + Park", Auto.MobilityParkNonCable());
+        autoChooser.addOption("Non-Cable Preload + 1 + Park", Auto.TwoHighParkNoCable());
+        autoChooser.addOption("Non-Cable 3 Low", Auto.ThreeLowNonCable());
+        autoChooser.addOption("Cable 3 Low", Auto.ThreeLowCable());
         SmartDashboard.putData("Auto mode", autoChooser);
 
         // Configure the button bindings
@@ -187,8 +192,7 @@ public class RobotContainer {
         dpadUp.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(0.2)));
         dpadUp.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
 
-        rightJoy.onTrue(new InstantCommand(() -> m_intake.setIntake(0.5)));
-        rightJoy.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+        rightJoy.onTrue(new InstantCommand(() -> m_intake.zeroWrist()));
 
         //leftBumper.onTrue(new InstantCommand(() -> m_intake.holdIntakePosition(50000)));
         //leftBumper.onFalse(new InstantCommand(() -> m_intake.holdIntakePosition(m_intake.getIntakeEncoder())));

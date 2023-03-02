@@ -50,7 +50,10 @@ public final class Auto {
 
           Map.entry("Mid", new SetRobotStateMid(RobotContainer.m_robotState, RobotContainer.m_intake)),
 
-          Map.entry("Low", new SetRobotStateLow(RobotContainer.m_robotState, RobotContainer.m_intake)),
+          Map.entry("Low", new SequentialCommandGroup(new SetRobotStateLow(RobotContainer.m_robotState, RobotContainer.m_intake),
+          new InstantCommand(() -> RobotContainer.m_elevator.setElevatorState(RobotContainer.m_robotState.getRobotState().elevatorState)),
+          new ParallelCommandGroup(new InstantCommand(() -> RobotContainer.m_slide.setSlideState(RobotContainer.m_robotState.getRobotState().slideState)),
+          new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState))))),
 
           Map.entry("IntakeState", new SetIntake(RobotContainer.m_intake, RobotContainer.m_robotState)),
 
@@ -94,6 +97,36 @@ public final class Auto {
   public static CommandBase PreloadParkCube() {
 
     return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Park-Cube", new PathConstraints(1, 1)));
+
+  }
+
+  public static CommandBase MobilityParkCable() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-Cable", new PathConstraints(1, 1)));
+
+  }
+
+  public static CommandBase MobilityParkNonCable() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-No-Cable", new PathConstraints(1, 1)));
+
+  }
+
+  public static CommandBase ThreeLowCable() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-Cable", new PathConstraints(4, 3)));
+
+  }
+
+  public static CommandBase ThreeLowNonCable() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-No-Cable", new PathConstraints(1, 1)));
+
+  }
+
+  public static CommandBase TwoHighParkNoCable() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Park-No-Cable", new PathConstraints(1, 1)));
 
   }
 

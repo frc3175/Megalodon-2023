@@ -136,12 +136,15 @@
         "x": 1.775631652004732,
         "y": 0.6859277300931569
       },
-      "nextControl": null,
+      "nextControl": {
+        "x": 1.815544761117325,
+        "y": 0.6843724464046325
+      },
       "holonomicAngle": 179.15028953989233,
       "isReversal": false,
       "velOverride": 1.0,
       "isLocked": false,
-      "isStopPoint": false,
+      "isStopPoint": true,
       "stopEvent": {
         "names": [
           "CubeMode",
@@ -150,6 +153,53 @@
           "Reset"
         ],
         "executionBehavior": "sequential",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 6.703046318315769,
+        "y": 1.4300332784422771
+      },
+      "prevControl": {
+        "x": 6.701701080803264,
+        "y": 1.4133870038319352
+      },
+      "nextControl": {
+        "x": 6.704391555828273,
+        "y": 1.446679553052619
+      },
+      "holonomicAngle": 64.9831065219,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 7.096544988824185,
+        "y": 2.1763238604409954
+      },
+      "prevControl": {
+        "x": 7.097217607580437,
+        "y": 2.1846469977461664
+      },
+      "nextControl": null,
+      "holonomicAngle": 63.43494882292193,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
         "waitBehavior": "none",
         "waitTime": 0
       }
@@ -175,6 +225,14 @@
       "position": 3.200000000000014,
       "names": [
         "Reset"
+      ]
+    },
+    {
+      "position": 5.95636363636352,
+      "names": [
+        "CubeMode",
+        "IntakeState",
+        "Intake"
       ]
     }
   ]
