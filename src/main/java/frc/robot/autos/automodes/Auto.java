@@ -61,7 +61,7 @@ public final class Auto {
 
           Map.entry("IntakeWrist", new InstantCommand(() -> RobotContainer.m_intake.setWristPosition(Constants.WRIST_INTAKE_CUBE))),
 
-          Map.entry("Outtake", new SequentialCommandGroup(new WaitCommand(1.5), new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))),
+          Map.entry("Outtake", new SequentialCommandGroup(new WaitCommand(1.5), new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))), //TODO: CHANGE BACK TO 1.5 DELAYYYYY
 
           Map.entry("Delay1", new WaitCommand(1)),
 
@@ -102,13 +102,13 @@ public final class Auto {
 
   public static CommandBase MobilityParkCable() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-Cable", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-Cable", new PathConstraints(3.5, 3)));
 
   }
 
   public static CommandBase MobilityParkNonCable() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-No-Cable", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-No-Cable", new PathConstraints(3.5, 3)));
 
   }
 
@@ -120,13 +120,13 @@ public final class Auto {
 
   public static CommandBase ThreeLowNonCable() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-No-Cable", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-No-Cable", new PathConstraints(4, 3)));
 
   }
 
   public static CommandBase TwoHighParkNoCable() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Park-No-Cable", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Park-No-Cable", new PathConstraints(3.5, 3)));
 
   }
 

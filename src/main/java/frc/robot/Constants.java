@@ -153,7 +153,7 @@ public final class Constants {
     ==============================*/
 
     public static final int INTAKE_MOTOR = 14;
-    public static final int INTAKE_WRIST = 2;
+    public static final int INTAKE_WRIST = 19;
 
     public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
     public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 10;
@@ -219,7 +219,7 @@ public final class Constants {
                 Elevator 
     ==============================*/
 
-    public static final int ELEVATOR_MOTOR = 19;
+    public static final int ELEVATOR_MOTOR = 30;
 
     public static final boolean ELEVATOR_ENABLE_CURRENT_LIMIT = true;
     public static final int ELEVATOR_CONTINUOUS_CURRENT_LIMIT = 10;

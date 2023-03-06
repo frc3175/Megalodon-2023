@@ -72,6 +72,12 @@ public class Elevator extends SubsystemBase {
 
     }
 
+    public void setElevatorEncoder(double setpoint) {
+
+        elevMotor.setSelectedSensorPosition(setpoint);
+
+    }
+
     public ElevatorState getElevatorState() {
 
         return elevState;
