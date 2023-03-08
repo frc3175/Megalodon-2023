@@ -94,6 +94,12 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_swerveOdometry.resetPosition(Rotation2d.fromDegrees(0.0), getModulePositions(), new Pose2d(13.56, 5.2, Rotation2d.fromDegrees(0.0)));
     }
 
+    public double getPitch() {
+
+        return m_gyro.getPitch();
+
+    }
+
     public SwerveModuleState[] getModuleStates(){
         SwerveModuleState[] states = new SwerveModuleState[4];
         for(SwerveModule mod : m_swerveMods){
