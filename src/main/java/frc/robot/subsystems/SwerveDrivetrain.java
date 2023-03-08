@@ -9,10 +9,12 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
+import edu.wpi.first.math.controller.BangBangController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -20,6 +22,16 @@ public class SwerveDrivetrain extends SubsystemBase {
     public SwerveDriveOdometry m_swerveOdometry;
     public SwerveModule[] m_swerveMods;
     public Pigeon2 m_gyro;
+    double pitchDerivative;
+    double currentPitch = 0;
+    double lastPitch = 0;
+    double counter = 0;
+
+    final double DRIVE_BANG_BANG_FWD = .06;
+	final double DRIVE_BANG_BANG_BACK = -.04;
+	final int DRIVE_BANG_BANG_SP = 10;
+
+    BangBangController m_forward_bang_bang, m_reverse_bang_bang;
 
     public SwerveDrivetrain() {
         m_gyro = new Pigeon2(Constants.PIGEON);
@@ -36,6 +48,11 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw(), getModulePositions());
 
         setOdometryForOdometryAlign();
+
+        m_forward_bang_bang = new BangBangController();
+		m_forward_bang_bang.setSetpoint(DRIVE_BANG_BANG_SP);
+		m_reverse_bang_bang = new BangBangController();
+		m_reverse_bang_bang.setSetpoint(-DRIVE_BANG_BANG_SP);
 
     }
 
@@ -131,8 +148,33 @@ public class SwerveDrivetrain extends SubsystemBase {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) : Rotation2d.fromDegrees(m_gyro.getYaw());
     }
 
+    public double getPitchDerivative() {
+
+        return pitchDerivative;
+
+    }
+
+    public void driveBack() {
+
+        if(counter == 0) {
+
+            Timer m_timer = new Timer();
+            m_timer.start();
+            if(m_timer.get() < 0.1) {
+                drive(new Translation2d(-0.3, 0), 0, true, false);
+            }  else {
+                stopSwerve();
+                counter++;
+            }
+
+        }
+
+
+    }
+
     @Override
     public void periodic(){
+
         m_swerveOdometry.update(getYaw(), getModulePositions());  
 
         for(SwerveModule mod : m_swerveMods){
@@ -146,7 +188,15 @@ public class SwerveDrivetrain extends SubsystemBase {
         SmartDashboard.putNumber("real robot pose rot", getPose().getRotation().getDegrees());
 
         SmartDashboard.putNumber("Gyro", m_gyro.getYaw());
+        SmartDashboard.putNumber("Pitch", getPitch());
+
+        lastPitch = currentPitch;
+        currentPitch = getPitch();
+        pitchDerivative = lastPitch - currentPitch;
+
+        SmartDashboard.putNumber("pitch rate of change", pitchDerivative);
 
 
     }
+
 }

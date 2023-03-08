@@ -58,7 +58,7 @@ public class RobotContainer {
     //private final POVButton dpadUp = new POVButton(operator, 0);
     //private final POVButton dpadDown = new POVButton(operator, 180);
     private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
-    private final JoystickButton leftBumper = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton rightBumper = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
     //private final JoystickButton rightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
     //private final JoystickButton leftStick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
 
@@ -207,6 +207,9 @@ public class RobotContainer {
         elevUp.whileFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
 
         zeroElev.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)));
+
+        rightBumper.whileTrue(new AutoBalance(m_drivetrain));
+        rightBumper.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
 
 
     }
