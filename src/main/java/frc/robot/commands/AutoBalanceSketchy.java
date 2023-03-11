@@ -1,11 +1,9 @@
 package frc.robot.commands;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.SwerveDrivetrain;
 
 public class AutoBalanceSketchy extends CommandBase {
@@ -19,8 +17,6 @@ public class AutoBalanceSketchy extends CommandBase {
         m_drivetrain = drivetrain;
         isReady = false;
         m_timer = new Timer();
-
-       // m_controller = new PIDController(1, 0, 0);
 
         addRequirements(m_drivetrain);
 

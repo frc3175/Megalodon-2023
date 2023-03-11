@@ -12,17 +12,10 @@ import frc.robot.subsystems.Intake;
 
 public class RobotState extends SubsystemBase {
 
-    private Slide m_slide;
-    private Elevator m_elevator;
-    private Intake m_intake;
     private BotState robotState;
     private boolean m_isConeState;
 
     public RobotState(Intake intake, Elevator elevator, Slide slide) {
-
-        m_slide = slide;
-        m_elevator = elevator;
-        m_intake = intake;
 
         setBotState(BotState.RESET_CUBE);
 
@@ -89,11 +82,6 @@ public class RobotState extends SubsystemBase {
 
         SmartDashboard.putBoolean("Gamepiece State", getGamepieceState());
         SmartDashboard.putString("Robot State", getRobotState().toString());
-
-        /*if(getRobotState() == BotState.RESET_CONE) {
-
-
-        } */
 
     }
     
