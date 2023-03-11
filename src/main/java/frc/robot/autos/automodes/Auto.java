@@ -136,6 +136,24 @@ public final class Auto {
 
   }
 
+  public static CommandBase TWOPARKNOCABLE() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2+PARKNOCABLE", new PathConstraints(3.5, 3)));
+
+  }
+
+  public static CommandBase TWOPARKCABLE() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2+PARKCABLE", new PathConstraints(3.5, 3)));
+
+  }
+
+  public static CommandBase PARKCENTER() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("1+PARKCENTER", new PathConstraints(1, 1)));
+
+  }
+
   private Auto() {
     throw new UnsupportedOperationException("This is a utility class!");
   }

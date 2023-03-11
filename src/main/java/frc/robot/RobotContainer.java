@@ -94,6 +94,11 @@ public class RobotContainer {
         autoChooser.addOption("Non-Cable Preload + 1 + Park", Auto.TwoHighParkNoCable());
         autoChooser.addOption("Non-Cable 3 Low", Auto.ThreeLowNonCable());
         autoChooser.addOption("Cable 3 Low", Auto.ThreeLowCable());
+        autoChooser.addOption("Cable 2 + Park", Auto.TwoHighParkCable());
+        autoChooser.addOption("Non-Cable 2 + Park", Auto.TwoHighParkNoCable());
+        autoChooser.addOption("Drivetrain Cable 2 + Park", Auto.TWOPARKCABLE());
+        autoChooser.addOption("Drivetrain Non-Cable 2 + Park", Auto.TWOPARKNOCABLE());
+        autoChooser.addOption("Drivetrain Park Center", Auto.PARKCENTER());
         SmartDashboard.putData("Auto mode", autoChooser);
 
         // Configure the button bindings
