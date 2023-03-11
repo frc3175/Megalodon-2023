@@ -25,10 +25,6 @@ public class RobotState extends SubsystemBase {
 
         robotState = state;
 
-        /*m_slide.setSlideState(state.slideState);
-        m_elevator.setElevatorState(state.elevatorState);
-        m_intake.setIntakeState(state.intakeState); */
-
     }
 
     public BotState getRobotState() {
