@@ -169,6 +169,11 @@ public class SwerveDrivetrain extends SubsystemBase {
 
         }
 
+    }
+
+    public boolean isPitchDerivativeHigh() {
+
+        return Math.abs(getPitchDerivative()) > (15 * 0.02);
 
     }
 
@@ -195,6 +200,7 @@ public class SwerveDrivetrain extends SubsystemBase {
         pitchDerivative = lastPitch - currentPitch;
 
         SmartDashboard.putNumber("pitch rate of change", pitchDerivative);
+        SmartDashboard.putBoolean("is pitch derivative high", isPitchDerivativeHigh());
 
 
     }

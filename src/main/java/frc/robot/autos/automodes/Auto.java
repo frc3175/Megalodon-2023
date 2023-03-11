@@ -6,6 +6,8 @@ import com.pathplanner.lib.auto.SwerveAutoBuilder;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.AutoBalance;
+import frc.robot.commands.AutoBalanceSketchy;
 import frc.robot.commands.AutonOuttake;
 import frc.robot.commands.ResetRobot;
 import frc.robot.commands.SetIntake;
@@ -61,11 +63,15 @@ public final class Auto {
 
           Map.entry("IntakeWrist", new InstantCommand(() -> RobotContainer.m_intake.setWristPosition(Constants.WRIST_INTAKE_CUBE))),
 
-          Map.entry("Outtake", new SequentialCommandGroup(new WaitCommand(1.5), new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))), //TODO: CHANGE BACK TO 1.5 DELAYYYYY
+          Map.entry("Outtake", new SequentialCommandGroup(new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))), //TODO: CHANGE BACK TO 1.5 DELAYYYYY
 
           Map.entry("Delay1", new WaitCommand(1)),
 
           Map.entry("Zero", new InstantCommand(() -> RobotContainer.m_drivetrain.m_gyro.setYaw(RobotContainer.m_drivetrain.getYaw().getDegrees() + 180))),
+
+          Map.entry("AutoBalance", new AutoBalanceSketchy(RobotContainer.m_drivetrain)),
+
+          Map.entry("AutoBalanceFromStation", new AutoBalance(RobotContainer.m_drivetrain)),
 
           Map.entry("Reset", new SequentialCommandGroup(new ResetRobot(RobotContainer.m_robotState, RobotContainer.m_intake),
           new ParallelCommandGroup(new InstantCommand(() -> RobotContainer.m_slide.setSlideState(RobotContainer.m_robotState.getRobotState().slideState)),
@@ -85,31 +91,8 @@ public final class Auto {
           RobotContainer.m_drivetrain
   );
 
-  public static CommandBase exampleAuto() {
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Example Auto", new PathConstraints(1, 1)));
-  }
-
   public static CommandBase none() {
     return Commands.none();
-  }
-
-
-  public static CommandBase PreloadParkCube() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Park-Cube", new PathConstraints(1, 1)));
-
-  }
-
-  public static CommandBase MobilityParkCable() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-Cable", new PathConstraints(3.5, 3)));
-
-  }
-
-  public static CommandBase MobilityParkNonCable() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Mobility-Park-No-Cable", new PathConstraints(3.5, 3)));
-
   }
 
   public static CommandBase ThreeLowCable() {
@@ -127,6 +110,12 @@ public final class Auto {
   public static CommandBase TwoHighParkNoCable() {
 
     return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Park-No-Cable", new PathConstraints(3.5, 3)));
+
+  }
+
+  public static CommandBase TwoHighParkCable() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Park-Cable", new PathConstraints(3.5, 3)));
 
   }
 

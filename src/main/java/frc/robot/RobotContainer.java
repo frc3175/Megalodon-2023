@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -59,6 +60,7 @@ public class RobotContainer {
     //private final POVButton dpadDown = new POVButton(operator, 180);
     private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
     private final JoystickButton rightBumper = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+    private final JoystickButton aButton = new JoystickButton(driver, XboxController.Button.kA.value);
     //private final JoystickButton rightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
     //private final JoystickButton leftStick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
 
@@ -87,12 +89,9 @@ public class RobotContainer {
         );
 
         /* Auto Chooser */
-        autoChooser.setDefaultOption("Cube + Park", Auto.PreloadParkCube());
-        autoChooser.addOption("Cone + Park", Auto.PreloadParkCone());
+        autoChooser.setDefaultOption("Cone + Park", Auto.PreloadParkCone());
         autoChooser.addOption("Cable Preload + 1", Auto.TWoGamepieceCable());
         autoChooser.addOption("Non-Cable Preload + 1", Auto.TwoGamepieceNonCable());
-        autoChooser.addOption("Cable Cone + Mobility + Park", Auto.MobilityParkCable());
-        autoChooser.addOption("Non-Cable Cone + Mobility + Park", Auto.MobilityParkNonCable());
         autoChooser.addOption("Non-Cable Preload + 1 + Park", Auto.TwoHighParkNoCable());
         autoChooser.addOption("Non-Cable 3 Low", Auto.ThreeLowNonCable());
         autoChooser.addOption("Cable 3 Low", Auto.ThreeLowCable());
@@ -210,6 +209,9 @@ public class RobotContainer {
 
         rightBumper.whileTrue(new AutoBalance(m_drivetrain));
         rightBumper.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
+
+        aButton.whileTrue(new AutoBalanceSketchy(m_drivetrain));
+        aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
 
 
     }
