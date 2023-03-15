@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.AutoBalance;
+import frc.robot.commands.AutoBalanceReverse;
 import frc.robot.commands.AutoBalanceSketchy;
 import frc.robot.commands.AutonOuttake;
 import frc.robot.commands.ResetRobot;
@@ -73,6 +74,8 @@ public final class Auto {
 
           Map.entry("AutoBalanceFromStation", new AutoBalance(RobotContainer.m_drivetrain)),
 
+          Map.entry("AutoBalanceReverse", new AutoBalanceReverse(RobotContainer.m_drivetrain)),
+
           Map.entry("Reset", new SequentialCommandGroup(new ResetRobot(RobotContainer.m_robotState, RobotContainer.m_intake),
           new ParallelCommandGroup(new InstantCommand(() -> RobotContainer.m_slide.setSlideState(RobotContainer.m_robotState.getRobotState().slideState)),
           new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState))),
@@ -136,15 +139,10 @@ public final class Auto {
 
   }
 
-  public static CommandBase TWOPARKNOCABLE() {
+  public static CommandBase ONEPARKMOBILITY() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2+PARKNOCABLE", new PathConstraints(3.5, 3)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("1+PARKMOBILITY", new PathConstraints(1.5, 1.5)));
 
-  }
-
-  public static CommandBase TWOPARKCABLE() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2+PARKCABLE", new PathConstraints(3.5, 3)));
 
   }
 

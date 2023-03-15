@@ -16,12 +16,7 @@
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
-        "names": [
-          "ConeMode",
-          "HighCone",
-          "Outtake",
-          "Reset"
-        ],
+        "names": [],
         "executionBehavior": "sequential",
         "waitBehavior": "none",
         "waitTime": 0
@@ -29,12 +24,12 @@
     },
     {
       "anchorPoint": {
-        "x": 3.5945427408681643,
-        "y": 3.3060688871802197
+        "x": 4.085984131221234,
+        "y": 3.3201100697617365
       },
       "prevControl": {
-        "x": 3.5655623585024254,
-        "y": 3.3060688871802197
+        "x": 4.057003748855495,
+        "y": 3.3201100697617365
       },
       "nextControl": null,
       "holonomicAngle": -180.0,
