@@ -28,7 +28,7 @@ public class Elevator extends SubsystemBase {
 
     public void setElevatorSetpoint(double setpoint) {
 
-        elevMotor.set(ControlMode.Position, setpoint);
+        elevMotor.set(ControlMode.MotionMagic, setpoint);
 
 
     }
@@ -102,6 +102,9 @@ public class Elevator extends SubsystemBase {
         elevMotor.configAllSettings(CTREConfigs.elevatorFXConfig);
         elevMotor.setInverted(Constants.ELEVATOR_INVERTED);
         elevMotor.setNeutralMode(Constants.ELEVATOR_NEUTRAL_MODE);
+        elevMotor.configMotionCruiseVelocity(20000);
+        elevMotor.configMotionAcceleration(180000);
+        elevMotor.configMotionSCurveStrength(3);
     }
     
 }

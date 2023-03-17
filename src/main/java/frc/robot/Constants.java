@@ -230,19 +230,19 @@ public final class Constants {
     public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
 
     /* Setpoints */
-    public static final int ELEVATOR_DOWN = 1000;
+    public static final int ELEVATOR_DOWN = 100;
 
-    public static final int CUBE_HIGH = 203688;
-    public static final int CUBE_MID = 118524;
+    public static final int CUBE_HIGH = 100000;
+    public static final int CUBE_MID = 50000;
 
-    public static final int CONE_HIGH = 206301;
-    public static final int CONE_MID = 101656;
+    public static final int CONE_HIGH = 100000;
+    public static final int CONE_MID = 50000;
 
-    public static final int SUBSTATION = 212939;
+    public static final int SUBSTATION = 100000;
     public static final int CLEAR_BUMPER = 5000;
 
     /* Elevator PID */
-    public static final double ELEVATOR_P = 1;
+    public static final double ELEVATOR_P = 0.1;
     public static final double ELEVATOR_I = 0;
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0.0;
