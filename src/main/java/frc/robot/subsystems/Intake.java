@@ -172,6 +172,9 @@ public class Intake extends SubsystemBase {
         wristMotor.configAllSettings(CTREConfigs.wristFXConfig);
         wristMotor.setInverted(Constants.WRIST_INVERTED);
         wristMotor.setNeutralMode(Constants.WRIST_NEUTRAL_MODE);
+        wristMotor.configMotionCruiseVelocity(Constants.WRIST_CRUISE_VELOCITY);
+        wristMotor.configMotionAcceleration(Constants.WRIST_ACCELERATION);
+        wristMotor.configMotionSCurveStrength(Constants.WRIST_CURVE_STRENGTH);
     }
 
 

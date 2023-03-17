@@ -182,6 +182,11 @@ public final class Constants {
     public static final double INTAKE_D = 0;
     public static final double INTAKE_F = 0.0;
 
+    /* Motion Magic */
+    public static final double WRIST_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
+    public static final double WRIST_ACCELERATION = 20000; // falcon ticks/100ms/sec
+    public static final int WRIST_CURVE_STRENGTH = 5; // value between 0 and 8
+
     /* Speeds */
     public static final double OUTTAKE_CONE = -0.9;
     public static final double OUTTAKE_CUBE = 0.5;
@@ -247,6 +252,11 @@ public final class Constants {
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0.0;
 
+    /* Motion Magic */
+    public static final double ELEVATOR_CRUISE_VELOCITY = 20000; // falcon ticks/100ms
+    public static final double ELEVATOR_ACCELERATION = 180000; // falcon ticks/100ms/sec
+    public static final int ELEVATOR_CURVE_STRENGTH = 3; // value between 0 and 8
+
     public static final double ELEVATOR_TEST_SPEED = 0.5;
 
     public static final int ELEVATOR_LIMIT_SWITCH_CHANNEL = 1;
@@ -286,6 +296,11 @@ public final class Constants {
     public static final double SLIDE_I = 0;
     public static final double SLIDE_D = 0;
     public static final double SLIDE_F = 0;
+
+    /* Motion Magic */
+    public static final double SLIDE_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
+    public static final double SLIDE_ACCELERATION = 20000; // falcon ticks/100ms/sec
+    public static final int SLIDE_CURVE_STRENGTH = 5; // number between 1 and 8
 
     public static final double SLIDE_TEST_SPEED = 0.5;
 

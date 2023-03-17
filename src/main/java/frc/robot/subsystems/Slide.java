@@ -98,6 +98,9 @@ public class Slide extends SubsystemBase {
         slideMotor.configAllSettings(CTREConfigs.slideFXConfig);
         slideMotor.setInverted(Constants.SLIDE_INVERTED);
         slideMotor.setNeutralMode(Constants.SLIDE_NEUTRAL_MODE);
+        slideMotor.configMotionCruiseVelocity(Constants.SLIDE_CRUISE_VELOCITY);
+        slideMotor.configMotionAcceleration(Constants.SLIDE_ACCELERATION);
+        slideMotor.configMotionSCurveStrength(Constants.SLIDE_CURVE_STRENGTH);
     }
     
 }

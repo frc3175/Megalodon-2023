@@ -102,9 +102,9 @@ public class Elevator extends SubsystemBase {
         elevMotor.configAllSettings(CTREConfigs.elevatorFXConfig);
         elevMotor.setInverted(Constants.ELEVATOR_INVERTED);
         elevMotor.setNeutralMode(Constants.ELEVATOR_NEUTRAL_MODE);
-        elevMotor.configMotionCruiseVelocity(20000);
-        elevMotor.configMotionAcceleration(180000);
-        elevMotor.configMotionSCurveStrength(3);
+        elevMotor.configMotionCruiseVelocity(Constants.ELEVATOR_CRUISE_VELOCITY);
+        elevMotor.configMotionAcceleration(Constants.ELEVATOR_ACCELERATION);
+        elevMotor.configMotionSCurveStrength(Constants.ELEVATOR_CURVE_STRENGTH);
     }
     
 }
