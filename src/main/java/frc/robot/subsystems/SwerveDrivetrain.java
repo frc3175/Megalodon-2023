@@ -173,7 +173,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     public boolean isPitchDerivativeHigh() {
 
-        return Math.abs(getPitchDerivative()) > (15 * 0.02);
+        return Math.abs(getPitchDerivative()) > (2 * 0.02);
 
     }
 

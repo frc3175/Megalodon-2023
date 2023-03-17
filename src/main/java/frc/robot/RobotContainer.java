@@ -53,6 +53,7 @@ public class RobotContainer {
     private final POVButton zeroElev = new POVButton(operator, 90);
     private final POVButton elevUp = new POVButton(operator, 0);
     private final POVButton elevDown = new POVButton(operator, 180);
+    private final JoystickButton aButton = new JoystickButton(operator, XboxController.Button.kA.value);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
@@ -173,6 +174,9 @@ public class RobotContainer {
         elevUp.whileFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
 
         zeroElev.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)));
+
+        aButton.whileTrue(new AutoBalanceUsingRate(m_drivetrain));
+        aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
 
 
     }
