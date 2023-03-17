@@ -5,10 +5,7 @@ import com.pathplanner.lib.auto.PIDConstants;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
@@ -85,7 +82,7 @@ public final class Constants {
     /* Gyro reversed */
     public static final boolean INVERT_GYRO = false;
 
-    /* Angle Motor PID Values */
+    /* Azimuth Motor PID Values */
     public static final double AZIMUTH_P = 0.2;
     public static final double AZIMUTH_I = 0.0;
     public static final double AZIMUTH_D = 0.1;
@@ -97,10 +94,9 @@ public final class Constants {
     public static final double DRIVE_A = (0.06921 / 12);
 
     /* Drive Motor PID Values */
-    public static final double DRIVE_P = 0.1;  //0.1
+    public static final double DRIVE_P = 0.1;
     public static final double DRIVE_I = 0.0;
     public static final double DRIVE_D = 0.0;
-    //public static final SimpleMotorFeedforward DRIVE_F = new SimpleMotorFeedforward(DRIVE_S, DRIVE_V, DRIVE_A);
     public static final double DRIVE_F = 0;
 
     /* Azimuth Current Limiting */
@@ -126,10 +122,9 @@ public final class Constants {
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = (Units.feetToMeters(16.2)); //meters per second (theoretical from SDS)
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12*0.5; //radians per second (theoretical calculation)
-    public static final double TURN_IN_PLACE_SPEED = 0.5;
     public static final double A_RATE_LIMITER = 2.0; //Slew Rate Limiter Constant
     
-    /* Constraint for the motion profilied robot angle controller */
+    /* Constraint for the motion profiled robot angle controller */
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
         new TrapezoidProfile.Constraints(
             Math.PI, (Math.PI * Math.PI));
@@ -138,49 +133,62 @@ public final class Constants {
                  LEDs 
     ==============================*/
 
+    /* CANdle ID */
     public static final int CANdleID = 6;
 
+    /* Purple RGB */
     public static final int PURPLE_R = 255;
     public static final int PURPLE_G = 0;
     public static final int PURPLE_B = 191;
 
+    /* Yellow RGB */
     public static final int YELLOW_R = 255;
     public static final int YELLOW_G = 130;
     public static final int YELLOW_B = 0;
+
+    /* Red RGB */
+    public static final int RED_R = 255;
+    public static final int RED_G = 0;
+    public static final int RED_B = 0;
+
+    /* Green RGB */
+    public static final int GREEN_R = 0;
+    public static final int GREEN_G = 255;
+    public static final int GREEN_B = 0;
 
     /*============================
                 Intake 
     ==============================*/
 
+    /* Intake CAN IDs */
     public static final int INTAKE_MOTOR = 14;
     public static final int INTAKE_WRIST = 19;
 
+    /* Intake motor current limits */
     public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
     public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 10;
     public static final int INTAKE_PEAK_CURRENT_LIMIT = 30;
     public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
 
+    /* Wrist motor current limits */
     public static final boolean WRIST_ENABLE_CURRENT_LIMIT = true;
     public static final int WRIST_CONTINUOUS_CURRENT_LIMIT = 5;
     public static final int WRIST_PEAK_CURRENT_LIMIT = 30;
     public static final double WRIST_PEAK_CURRENT_DURATION = 0.1;
 
+    /* Motor reversals */
     public static final boolean WRIST_INVERTED = false;
     public static final boolean INTAKE_INVERTED = true;
 
+    /* Intake and wrist neutral modes */
     public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Brake;
     public static final NeutralMode WRIST_NEUTRAL_MODE = NeutralMode.Brake;
 
-    /* Hood PID */
+    /* Wrist PID */
     public static final double WRIST_P = 0.05;
     public static final double WRIST_I = 0;
     public static final double WRIST_D = 0;
     public static final double WRIST_F = 0.001;
-
-    public static final double INTAKE_P = 1;
-    public static final double INTAKE_I = 0;
-    public static final double INTAKE_D = 0;
-    public static final double INTAKE_F = 0.0;
 
     /* Motion Magic */
     public static final double WRIST_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
@@ -188,63 +196,66 @@ public final class Constants {
     public static final int WRIST_CURVE_STRENGTH = 5; // value between 0 and 8
 
     /* Speeds */
-    public static final double OUTTAKE_CONE = -0.9;
-    public static final double OUTTAKE_CUBE = 0.5;
-    public static final double INTAKE_CONE = 0.9;
-    public static final double INTAKE_CUBE = -0.5;
+    public static final double OUTTAKE_CONE = -0.9; //negative
+    public static final double OUTTAKE_CUBE = 0.5; //positive
+    public static final double INTAKE_CONE = 0.9; //positive
+    public static final double INTAKE_CUBE = -0.5; //negative
     public static final double INTAKE_STOP = 0;
-    public static final double HOLD_VOLTAGE = 0.1;
+    public static final double HOLD_VOLTAGE = 0.1; //always running while cone is held
 
     /* Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CONE = 52800;
-    public static final double WRIST_OUTTAKE_MID_CONE = 45423;
-    public static final double WRIST_OUTTAKE_LOW_CONE = 57435;
 
-    public static final double WRIST_OUTTAKE_HIGH_CUBE = 50965;
-    public static final double WRIST_OUTTAKE_MID_CUBE = 53965;
-    public static final double WRIST_OUTTAKE_LOW_CUBE = 53965;
+    /* Cone Placement Positions */
+    public static final double WRIST_OUTTAKE_HIGH_CONE = 52800; //52800 at Esky
+    public static final double WRIST_OUTTAKE_MID_CONE = 45423; //45423 at Esky
+    public static final double WRIST_OUTTAKE_LOW_CONE = 57435; //5745 at Esky
 
-    public static final double WRIST_INTAKE_CONE_FLOOR = 60816;
-    public static final double WRIST_INTAKE_CONE_SUBSTATION = 54226;
+    /* Cube Placement Positions */
+    public static final double WRIST_OUTTAKE_HIGH_CUBE = 50965; //50965 at Esky
+    public static final double WRIST_OUTTAKE_MID_CUBE = 53965; //53965 at Esky
+    public static final double WRIST_OUTTAKE_LOW_CUBE = 53965; //53965 at Esky
 
-    public static final double WRIST_INTAKE_CUBE = 64248;
-    public static final double WRIST_INTAKE_CUBE_FLOOR = 64248;
+    /* Cone Intake Positions */
+    public static final double WRIST_INTAKE_CONE_FLOOR = 60816; //60816 at Esky
+    public static final double WRIST_INTAKE_CONE_SUBSTATION = 54226; //54226 at Esky
+    public static final double WRIST_SINGLE_INTAKE = 23898; //23898 at Esky
 
-    public static final double RESET_WRIST = 0;
+    /* Cube Intake Positions */
+    public static final double WRIST_INTAKE_CUBE = 64248; //64248 at Esky
+    public static final double WRIST_INTAKE_CUBE_FLOOR = 64248; //64248 at Esky
 
-    public static final double INTAKE_TEST_SPEED = 0.5;
-    public static final double HOOD_TEST_SPEED = 0.5;
-
-    public static final double WRIST_SINGLE_INTAKE = 23898;
-
-    public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 0;
-    public static final double WRIST_HOMING_VELOCITY = 0.2;
+    public static final double RESET_WRIST = 0; //Wrist Zero
 
     /*============================
                 Elevator 
     ==============================*/
 
+    /* CAN ID */
     public static final int ELEVATOR_MOTOR = 30;
 
+    /* Elevator Current Limit */
     public static final boolean ELEVATOR_ENABLE_CURRENT_LIMIT = true;
     public static final int ELEVATOR_CONTINUOUS_CURRENT_LIMIT = 10;
     public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 30;
     public static final double ELEVATOR_PEAK_CURRENT_DURATION = 0.1;
 
+    /* Elevator Settings */
     public static final boolean ELEVATOR_INVERTED = true;
     public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
 
     /* Setpoints */
-    public static final int ELEVATOR_DOWN = 100;
+    public static final int ELEVATOR_DOWN = 100; //Elevator Zero
 
-    public static final int CUBE_HIGH = 100000;
-    public static final int CUBE_MID = 50000;
+    /* Cube Placement */
+    public static final int CUBE_HIGH = 100000; //TEST VALUE
+    public static final int CUBE_MID = 50000; //TEST VALUE
 
-    public static final int CONE_HIGH = 100000;
-    public static final int CONE_MID = 50000;
+    /* Cone Placement */
+    public static final int CONE_HIGH = 100000; //TEST VALUE
+    public static final int CONE_MID = 50000; //TEST VALUE
 
-    public static final int SUBSTATION = 100000;
-    public static final int CLEAR_BUMPER = 5000;
+    /* Double Substation */
+    public static final int SUBSTATION = 100000; //TEST VALUE
 
     /* Elevator PID */
     public static final double ELEVATOR_P = 0.1;
@@ -257,39 +268,36 @@ public final class Constants {
     public static final double ELEVATOR_ACCELERATION = 180000; // falcon ticks/100ms/sec
     public static final int ELEVATOR_CURVE_STRENGTH = 3; // value between 0 and 8
 
-    public static final double ELEVATOR_TEST_SPEED = 0.5;
-
-    public static final int ELEVATOR_LIMIT_SWITCH_CHANNEL = 1;
-
-    public static final double ELEVATOR_HOMING_VELOCITY = 0.9;
-
     /*============================
                 Slide
     ==============================*/
 
+    /* Slide CAN ID */
     public static final int SLIDE_MOTOR = 20;
 
+    /* Slide Current Limits */
     public static final boolean SLIDE_ENABLE_CURRENT_LIMIT = true;
     public static final int SLIDE_CONTINUOUS_CURRENT_LIMIT = 10;
     public static final int SLIDE_PEAK_CURRENT_LIMIT = 30;
     public static final double SLIDE_PEAK_CURRENT_DURATION = 0.1;
 
+    /* Slide Settings */
     public static final boolean SLIDE_INVERTED = true;
     public static final NeutralMode SLIDE_NEUTRAL_MODE = NeutralMode.Brake;
 
-    public static final double SLIDE_DELAY_UP = 0;
-
     /* Setpoints */
-    public static final int SLIDE_INTAKE = 0;
-    public static final int SLIDE_IN = 0;
+    public static final int SLIDE_INTAKE = 0; //Should be 0
+    public static final int SLIDE_IN = 0; //Should be 0
 
-    public static final int SLIDE_CONE_MID = 0;
-    public static final int SLIDE_CONE_HIGH = 13000;
+    /* Cone Placement Setpoints */
+    public static final int SLIDE_CONE_MID = 0; //0 at Esky
+    public static final int SLIDE_CONE_HIGH = 13000; //13000 at Esky
 
-    public static final int SLIDE_CUBE_MID = 8020;
-    public static final int SLIDE_CUBE_HIGH = 21729;
+    /* Cube Placement Setpoints */
+    public static final int SLIDE_CUBE_MID = 8020; //8020 at Esky
+    public static final int SLIDE_CUBE_HIGH = 21729; //21729 at Esky
 
-    public static final int SLIDE_SUBSTATION = 0;
+    public static final int SLIDE_SUBSTATION = 0; //Should be 0
 
     /* Slide PID */
     public static final double SLIDE_P = 0.1;
@@ -302,12 +310,11 @@ public final class Constants {
     public static final double SLIDE_ACCELERATION = 20000; // falcon ticks/100ms/sec
     public static final int SLIDE_CURVE_STRENGTH = 5; // number between 1 and 8
 
-    public static final double SLIDE_TEST_SPEED = 0.5;
-
     /*============================
                Kinematics
     ==============================*/
 
+    /* Drivetrain Dimensions */
     public static final double DRIVETRAIN_WIDTH = Units.inchesToMeters(18.75);
     public static final double DRIVETRAIN_LENGTH = Units.inchesToMeters(18.75);
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
@@ -318,20 +325,6 @@ public final class Constants {
         new Translation2d(DRIVETRAIN_LENGTH / 2.0, -DRIVETRAIN_WIDTH / 2.0),
         new Translation2d(-DRIVETRAIN_LENGTH / 2.0, DRIVETRAIN_WIDTH / 2.0),
         new Translation2d(-DRIVETRAIN_LENGTH / 2.0, -DRIVETRAIN_WIDTH / 2.0));
-
-    /*============================
-                Vision
-    ==============================*/
-
-    /**
-     * Physical location of the camera on the robot, relative to the center of the robot.
-     */
-    public static final Transform3d CAMERA_TO_ROBOT =
-        new Transform3d(new Translation3d(-0.33, 0.0, 0.0), new Rotation3d());
-    public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
-
-    public static final double CAMERA_HEIGHT = 0.22;
-    public static final double TAG_HEIGHT = 0.5; //TODO: temporary value
 
     /*============================
                 Auton
@@ -348,10 +341,6 @@ public final class Constants {
     public static final TrapezoidProfile.Constraints X_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(1, 0.5);
     public static final TrapezoidProfile.Constraints Y_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(0.25, 0.5);
     public static final TrapezoidProfile.Constraints THETA_AUTO_CONSTRAINTS = new TrapezoidProfile.Constraints(8, 8); //pi, (pi, pi)
-
-    public static final ProfiledPIDController AUTO_X_CONTROLLER = new ProfiledPIDController(AUTO_P_X_CONTROLLER, 0, 0, X_AUTO_CONSTRAINTS);
-    public static final ProfiledPIDController AUTO_Y_CONTROLLER = new ProfiledPIDController(AUTO_P_Y_CONTROLLER, 0, 0, Y_AUTO_CONSTRAINTS);
-    public static final ProfiledPIDController AUTO_THETA_CONTROLLER = new ProfiledPIDController(AUTO_P_THETA_CONTROLLER, AUTO_I_THETA_CONTROLLER, AUTO_D_THETA_CONTROLLER, THETA_AUTO_CONSTRAINTS);
 
     public static final PIDConstants AUTO_TRANSLATION_CONSTANTS = new PIDConstants(0.01, 0, 0);
     public static final PIDConstants AUTO_ROTATION_CONSTANTS = new PIDConstants(2.8, 0, 0);

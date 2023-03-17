@@ -83,7 +83,6 @@ public class Elevator extends SubsystemBase {
     public enum ElevatorState {
 
         FLOOR(Constants.ELEVATOR_DOWN),
-        CLEAR_BUMPER(Constants.CLEAR_BUMPER),
         SUBSTATION(Constants.SUBSTATION),
         MID_CUBE(Constants.CUBE_MID),
         MID_CONE(Constants.CONE_MID),

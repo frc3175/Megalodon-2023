@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.CTREConfigs;
@@ -14,8 +13,6 @@ public class Slide extends SubsystemBase {
     private TalonFX slideMotor;
 
     private SlideState slideState;
-
-    Timer timer = new Timer();
 
     public Slide() {
 
@@ -29,6 +26,7 @@ public class Slide extends SubsystemBase {
 
     public void setSlide(double setpoint) {
 
+        //TODO: This is where you change the slide into motion magic mode. Change "ControlMode.Position" to "ControlMode.MotionMagic"
         slideMotor.set(ControlMode.Position, setpoint);
 
     }
@@ -53,13 +51,6 @@ public class Slide extends SubsystemBase {
 
     public void setSlideState(SlideState state) {
 
-        timer.reset();
-        timer.start();
-
-        while(timer.get() < state.slideDelay) {
-            //do nothing
-        }
-
         setSlide(state.slideSetpoint);
         this.slideState = state;
 
@@ -76,19 +67,17 @@ public class Slide extends SubsystemBase {
 
     public enum SlideState {
 
-        INTAKE(Constants.SLIDE_INTAKE, 0),
-        RETRACTED(Constants.SLIDE_IN, 0),
-        CUBE_HIGH(Constants.SLIDE_CUBE_HIGH, Constants.SLIDE_DELAY_UP),
-        CUBE_MID(Constants.SLIDE_CUBE_MID, Constants.SLIDE_DELAY_UP),
-        CONE_HIGH(Constants.SLIDE_CONE_HIGH, Constants.SLIDE_DELAY_UP),
-        CONE_MID(Constants.SLIDE_CONE_MID, Constants.SLIDE_DELAY_UP),
-        SUBSTATION(Constants.SLIDE_SUBSTATION, Constants.SLIDE_DELAY_UP);
+        INTAKE(Constants.SLIDE_INTAKE),
+        RETRACTED(Constants.SLIDE_IN),
+        CUBE_HIGH(Constants.SLIDE_CUBE_HIGH),
+        CUBE_MID(Constants.SLIDE_CUBE_MID),
+        CONE_HIGH(Constants.SLIDE_CONE_HIGH),
+        CONE_MID(Constants.SLIDE_CONE_MID),
+        SUBSTATION(Constants.SLIDE_SUBSTATION);
 
         public int slideSetpoint;
-        public double slideDelay;
-        private SlideState(int setpoint, double slideDelay) {
+        private SlideState(int setpoint) {
             this.slideSetpoint = setpoint;
-            this.slideDelay = slideDelay;
         }
 
     }

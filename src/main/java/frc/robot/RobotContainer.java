@@ -37,9 +37,6 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-    private final POVButton zeroElev = new POVButton(operator, 90);
-    private final POVButton elevUp = new POVButton(operator, 0);
-    private final POVButton elevDown = new POVButton(operator, 180);
 
     /* Operator Buttons */
     private final JoystickButton cubeMode = new JoystickButton(operator, XboxController.Button.kStart.value);
@@ -51,17 +48,11 @@ public class RobotContainer {
     private final JoystickButton robotLow = new JoystickButton(operator, XboxController.Button.kB.value);
     private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     private final POVButton singleSubstation = new POVButton(operator, 270);
-    //private final POVButton floor = new POVButton(operator, 90);
 
-    //TODO: test buttons
-    //private final JoystickButton start = new JoystickButton(operator, XboxController.Button.kStart.value);
-    //private final POVButton dpadUp = new POVButton(operator, 0);
-    //private final POVButton dpadDown = new POVButton(operator, 180);
     private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
-    private final JoystickButton rightBumper = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-    private final JoystickButton aButton = new JoystickButton(driver, XboxController.Button.kA.value);
-    //private final JoystickButton rightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
-    //private final JoystickButton leftStick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
+    private final POVButton zeroElev = new POVButton(operator, 90);
+    private final POVButton elevUp = new POVButton(operator, 0);
+    private final POVButton elevDown = new POVButton(operator, 180);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
@@ -172,35 +163,8 @@ public class RobotContainer {
         cubeMode.onTrue(new InstantCommand(() -> m_candleSubsystem.setLEDSTate(LEDState.CUBE))); 
 
         singleSubstation.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(false)));
-        //floor.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(true)));
-
-
-        //TODO: Intake testing code
-
-        /*start.whileTrue(new InstantCommand(() -> m_intake.setWristPosition(50000)));
-
-        dpadUp.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(0.2)));
-        dpadUp.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
-
-        back.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
-        back.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
-
-        rightStick.whileTrue(new InstantCommand(() -> m_intake.setIntake(-0.5)));
-        rightStick.whileFalse(new InstantCommand(() -> m_intake.setIntake(0)));
-
-        leftSTick.whileTrue(new InstantCommand(() -> m_intake.setIntake(0.5)));
-        leftSTick.whileFalse(new InstantCommand(() -> m_intake.setIntake(0))); */
-
-        //dpadDown.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(-0.2)));
-        //dpadDown.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
-
-        //dpadUp.whileTrue(new InstantCommand(() -> m_intake.continuousWristMotion(0.2)));
-        //dpadUp.whileFalse(new InstantCommand(() -> m_intake.continuousWristMotion(0)));
 
         rightJoy.onTrue(new InstantCommand(() -> m_intake.zeroWrist()));
-
-        //leftBumper.onTrue(new InstantCommand(() -> m_intake.holdIntakePosition(50000)));
-        //leftBumper.onFalse(new InstantCommand(() -> m_intake.holdIntakePosition(m_intake.getIntakeEncoder())));
 
         elevDown.whileTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(-0.5)));
         elevDown.whileFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
@@ -209,12 +173,6 @@ public class RobotContainer {
         elevUp.whileFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
 
         zeroElev.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)));
-
-        rightBumper.whileTrue(new AutoBalance(m_drivetrain));
-        rightBumper.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
-
-        aButton.whileTrue(new AutoBalanceSketchy(m_drivetrain));
-        aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
 
 
     }

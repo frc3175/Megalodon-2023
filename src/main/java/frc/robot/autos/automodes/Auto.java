@@ -64,7 +64,7 @@ public final class Auto {
 
           Map.entry("IntakeWrist", new InstantCommand(() -> RobotContainer.m_intake.setWristPosition(Constants.WRIST_INTAKE_CUBE))),
 
-          Map.entry("Outtake", new SequentialCommandGroup(new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))), //TODO: CHANGE BACK TO 1.5 DELAYYYYY
+          Map.entry("Outtake", new SequentialCommandGroup(new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))),
 
           Map.entry("Delay1", new WaitCommand(1)),
 

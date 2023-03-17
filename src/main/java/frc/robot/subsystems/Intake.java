@@ -22,7 +22,6 @@ public class Intake extends SubsystemBase {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
         wristMotor = new TalonFX(Constants.INTAKE_WRIST, "elevatoryiboi");
-        limitSwitch = new DigitalInput(Constants.INTAKE_LIMIT_SWITCH_CHANNEL);
 
         configWristMotor();
         configIntakeMotor();
@@ -93,33 +92,9 @@ public class Intake extends SubsystemBase {
 
     }
 
-    public void homeIntake() {
-
-      /*   while(intakeMotor.getSelectedSensorVelocity() != 0) {
-
-            if(!limitSwitch.get()) {
-
-                continuousWristMotion(-Constants.WRIST_HOMING_VELOCITY);
-    
-            } else {
-    
-                intakeMotor.set(ControlMode.Velocity, 0);
-                intakeMotor.setSelectedSensorPosition(0);
-    
-            }
-
-        } */
-
-    }
-
     public void setWristPosition(double position) {
 
-        /*if(position == 0) {
-            homeIntake();
-        } else {
-            wristMotor.set(ControlMode.Position, position);
-        } */
-
+        //TODO: This is where you change the intake into motion magic mode. Change "ControlMode.Position" to "ControlMode.MotionMagic"
         wristMotor.set(ControlMode.Position, position);
 
     }
