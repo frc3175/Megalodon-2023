@@ -258,7 +258,7 @@ public final class Constants {
     public static final int SUBSTATION = 100000; //TEST VALUE
 
     /* Elevator PID */
-    public static final double ELEVATOR_P = 0.1;
+    public static final double ELEVATOR_P = 1;
     public static final double ELEVATOR_I = 0;
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0.0;
@@ -266,8 +266,8 @@ public final class Constants {
     //TODO: This is where you tune the elevator motion magic constants
     /* Motion Magic */
     public static final double ELEVATOR_CRUISE_VELOCITY = 20000; // falcon ticks/100ms
-    public static final double ELEVATOR_ACCELERATION = 180000; // falcon ticks/100ms/sec
-    public static final int ELEVATOR_CURVE_STRENGTH = 3; // value between 0 and 8
+    public static final double ELEVATOR_ACCELERATION = 100000; // falcon ticks/100ms/sec
+    public static final int ELEVATOR_CURVE_STRENGTH = 4; // value between 0 and 8
 
     /*============================
                 Slide
@@ -309,8 +309,8 @@ public final class Constants {
     //TODO: This is where you tune the slide motion magic constants
     /* Motion Magic */
     public static final double SLIDE_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
-    public static final double SLIDE_ACCELERATION = 20000; // falcon ticks/100ms/sec
-    public static final int SLIDE_CURVE_STRENGTH = 5; // number between 1 and 8
+    public static final double SLIDE_ACCELERATION = 200000; // falcon ticks/100ms/sec
+    public static final int SLIDE_CURVE_STRENGTH = 3; // number between 1 and 8
 
     /*============================
                Kinematics
@@ -356,9 +356,9 @@ public final class Constants {
 
     //TODO: This is where you tune delays on the wrist and slide
     /* Delays */
-    public static final double HIGH_DELAY = 0.8; //How long to delay moving the slide and wrist when going high
-    public static final double MID_DELAY = 0.6; //How long to delay moving the slide and wrist when going mid
-    public static final double RESET_DELAY = 0.3; //How long to delay moving the slide and wrist when going to reset
+    public static final double HIGH_DELAY = 0; //How long to delay moving the slide and wrist when going high
+    public static final double MID_DELAY = 0; //How long to delay moving the slide and wrist when going mid
+    public static final double RESET_DELAY = 0; //How long to delay moving the slide and wrist when going to reset
 
     /*============================
          Controller Constants

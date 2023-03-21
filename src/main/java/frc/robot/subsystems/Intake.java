@@ -13,7 +13,6 @@ public class Intake extends SubsystemBase {
 
     private TalonFX intakeMotor;
     private TalonFX wristMotor;
-    private DigitalInput limitSwitch;
     private boolean isSingleConeState = false;
 
     private IntakeState intakeState;
@@ -126,12 +125,6 @@ public class Intake extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
-        SmartDashboard.putBoolean("intake limit", limitSwitch.get());
-
-        /*if(limitSwitch.get()) {
-            intakeMotor.set(ControlMode.PercentOutput, 0);
-            intakeMotor.setSelectedSensorPosition(0);
-        } */
 
     }
 

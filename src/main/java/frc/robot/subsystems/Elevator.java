@@ -75,7 +75,7 @@ public class Elevator extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("elevator encoder", getElevatorEncoder());
-        SmartDashboard.putNumber("elevator speed", (Conversions.falconToRPM(elevMotor.getSelectedSensorVelocity(), 15) / 6380));
+        SmartDashboard.putNumber("elevator speed", (Conversions.falconToRPM(elevMotor.getSelectedSensorVelocity(), 9) / 6380));
         SmartDashboard.putNumber("elevator current draw", elevMotor.getSupplyCurrent());
 
     }

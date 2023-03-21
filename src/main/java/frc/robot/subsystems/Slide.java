@@ -27,7 +27,7 @@ public class Slide extends SubsystemBase {
     public void setSlide(double setpoint) {
 
         //TODO: This is where you change the slide into motion magic mode. Change "ControlMode.Position" to "ControlMode.MotionMagic"
-        slideMotor.set(ControlMode.Position, setpoint);
+        slideMotor.set(ControlMode.MotionMagic, setpoint);
 
     }
 
