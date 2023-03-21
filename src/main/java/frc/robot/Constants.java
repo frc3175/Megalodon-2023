@@ -3,7 +3,6 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.pathplanner.lib.auto.PIDConstants;
 
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -190,6 +189,7 @@ public final class Constants {
     public static final double WRIST_D = 0;
     public static final double WRIST_F = 0.001;
 
+    //TODO: this is where you tune the wrist motion magic constants
     /* Motion Magic */
     public static final double WRIST_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
     public static final double WRIST_ACCELERATION = 20000; // falcon ticks/100ms/sec
@@ -263,6 +263,7 @@ public final class Constants {
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0.0;
 
+    //TODO: This is where you tune the elevator motion magic constants
     /* Motion Magic */
     public static final double ELEVATOR_CRUISE_VELOCITY = 20000; // falcon ticks/100ms
     public static final double ELEVATOR_ACCELERATION = 180000; // falcon ticks/100ms/sec
@@ -305,6 +306,7 @@ public final class Constants {
     public static final double SLIDE_D = 0;
     public static final double SLIDE_F = 0;
 
+    //TODO: This is where you tune the slide motion magic constants
     /* Motion Magic */
     public static final double SLIDE_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
     public static final double SLIDE_ACCELERATION = 20000; // falcon ticks/100ms/sec
@@ -351,6 +353,12 @@ public final class Constants {
 
     public static final double OPEN_LOOP_RAMP = 0.25;
     public static final double CLOSED_LOOP_RAMP = 0.0;
+
+    //TODO: This is where you tune delays on the wrist and slide
+    /* Delays */
+    public static final double HIGH_DELAY = 0.8; //How long to delay moving the slide and wrist when going high
+    public static final double MID_DELAY = 0.6; //How long to delay moving the slide and wrist when going mid
+    public static final double RESET_DELAY = 0.3; //How long to delay moving the slide and wrist when going to reset
 
     /*============================
          Controller Constants

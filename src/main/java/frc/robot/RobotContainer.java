@@ -47,6 +47,7 @@ public class RobotContainer {
     private final JoystickButton robotMid = new JoystickButton(operator, XboxController.Button.kY.value);
     private final JoystickButton robotLow = new JoystickButton(operator, XboxController.Button.kB.value);
     private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
+    private final JoystickButton retractWrist = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     private final POVButton singleSubstation = new POVButton(operator, 270);
 
     private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
@@ -131,20 +132,20 @@ public class RobotContainer {
         robotHigh.onTrue(new SequentialCommandGroup(new SetRobotStateHigh(m_robotState, m_intake),
         new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
-        new WaitCommand(0.8),
+        new WaitCommand(Constants.HIGH_DELAY),
         new ParallelCommandGroup(
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
         reset.onTrue(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
                                                 new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
                                                 new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState))),
-                                                new WaitCommand(0.3),
+                                                new WaitCommand(Constants.RESET_DELAY),
                                                 new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))));
 
         robotMid.onTrue(new SequentialCommandGroup(new SetRobotStateMid(m_robotState, m_intake),
         new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
-        new WaitCommand(0.6),
+        new WaitCommand(Constants.MID_DELAY),
         new ParallelCommandGroup(
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
@@ -156,7 +157,7 @@ public class RobotContainer {
         substation.onTrue(new SequentialCommandGroup(new SubstationIntake(m_intake, m_robotState),
         new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
-        new WaitCommand(0.8),
+        new WaitCommand(Constants.HIGH_DELAY),
         new ParallelCommandGroup(
         new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)))));
 
@@ -178,6 +179,8 @@ public class RobotContainer {
         aButton.whileTrue(new AutoBalanceUsingRate(m_drivetrain));
         aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
 
+        retractWrist.onTrue(new InstantCommand(() -> m_intake.setWristPosition(0)));
+        retractWrist.onFalse(new InstantCommand(() -> m_intake.setWristPosition(m_robotState.getRobotState().intakeState.wristPosition)));
 
     }
 
