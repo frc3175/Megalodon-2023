@@ -23,7 +23,7 @@ public class CANdleSystem extends SubsystemBase {
         configAll.stripType = LEDStripType.RGB;
         configAll.brightnessScalar = 0.1;
         m_candle.configAllSettings(configAll, 100);
-        ledstate = LEDState.CUBE;
+        ledstate = LEDState.RED;
 
         setLEDSTate(ledstate);
     }
@@ -44,7 +44,8 @@ public class CANdleSystem extends SubsystemBase {
     public enum LEDState {
 
         CUBE(Constants.PURPLE_R, Constants.PURPLE_G, Constants.PURPLE_B),
-        CONE(Constants.YELLOW_R, Constants.YELLOW_G, Constants.YELLOW_B);
+        CONE(Constants.YELLOW_R, Constants.YELLOW_G, Constants.YELLOW_B),
+        RED(Constants.RED_R, Constants.RED_G, Constants.RED_B);
 
         public final int r;
         public final int g;
