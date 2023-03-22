@@ -189,6 +189,17 @@ public final class Constants {
     public static final double WRIST_D = 0;
     public static final double WRIST_F = 0.001;
 
+    //TODO: this is where you tune wrist velocity
+    /* Wrist Velocities */ //NOTE: units are falcon units/100ms
+    public static final int WRIST_RESET_VELOCITY = 0;
+    public static final int WRIST_SINGLE_SUB_VELOCITY = 0;
+    public static final int WRIST_LOW_VELOCITY = 0;
+    public static final int WRIST_MID_CONE_VELOCITY = 0;
+    public static final int WRIST_MID_CUBE_VELOCITY = 0;
+    public static final int WRIST_HIGH_CONE_VELOCITY = 0;
+    public static final int WRIST_HIGH_CUBE_VELOCITY  = 0;
+    public static final int WRIST_DOUBLE_SUB_VELOCITY = 0;
+
     //TODO: this is where you tune the wrist motion magic constants
     /* Motion Magic */
     public static final double WRIST_CRUISE_VELOCITY = 5000; // falcon ticks/100ms

@@ -117,7 +117,7 @@ public class RobotContainer {
 
         intake.onFalse(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
         new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
-        new InstantCommand(() -> m_intake.setWristPosition(Constants.RESET_WRIST))),
+        new InstantCommand(() -> m_intake.setWristPosition(Constants.RESET_WRIST, Constants.WRIST_RESET_VELOCITY))),
         new WaitCommand(0.3),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))));
 
@@ -179,8 +179,8 @@ public class RobotContainer {
         aButton.whileTrue(new AutoBalanceUsingRate(m_drivetrain));
         aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
 
-        retractWrist.onTrue(new InstantCommand(() -> m_intake.setWristPosition(0)));
-        retractWrist.onFalse(new InstantCommand(() -> m_intake.setWristPosition(m_robotState.getRobotState().intakeState.wristPosition)));
+        retractWrist.onTrue(new InstantCommand(() -> m_intake.setWristPosition(0, Constants.WRIST_RESET_VELOCITY)));
+        retractWrist.onFalse(new InstantCommand(() -> m_intake.setWristPosition(m_robotState.getRobotState().intakeState.wristPosition, Constants.WRIST_RESET_VELOCITY)));
 
     }
 
