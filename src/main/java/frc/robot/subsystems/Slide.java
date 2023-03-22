@@ -24,9 +24,9 @@ public class Slide extends SubsystemBase {
 
     }
 
-    public void setSlide(double setpoint) {
+    public void setSlide(double setpoint, double velocity) {
 
-        //TODO: This is where you change the slide into motion magic mode. Change "ControlMode.Position" to "ControlMode.MotionMagic"
+        slideMotor.configMotionCruiseVelocity(velocity);
         slideMotor.set(ControlMode.MotionMagic, setpoint);
 
     }
@@ -51,7 +51,7 @@ public class Slide extends SubsystemBase {
 
     public void setSlideState(SlideState state) {
 
-        setSlide(state.slideSetpoint);
+        setSlide(state.slideSetpoint, state.slideVelocity);
         this.slideState = state;
 
     }
@@ -67,17 +67,19 @@ public class Slide extends SubsystemBase {
 
     public enum SlideState {
 
-        INTAKE(Constants.SLIDE_INTAKE),
-        RETRACTED(Constants.SLIDE_IN),
-        CUBE_HIGH(Constants.SLIDE_CUBE_HIGH),
-        CUBE_MID(Constants.SLIDE_CUBE_MID),
-        CONE_HIGH(Constants.SLIDE_CONE_HIGH),
-        CONE_MID(Constants.SLIDE_CONE_MID),
-        SUBSTATION(Constants.SLIDE_SUBSTATION);
+        INTAKE(Constants.SLIDE_INTAKE, Constants.SLIDE_IN_VELOCITY),
+        RETRACTED(Constants.SLIDE_IN, Constants.SLIDE_IN_VELOCITY),
+        CUBE_HIGH(Constants.SLIDE_CUBE_HIGH, Constants.SLIDE_CUBE_HIGH_VELOCITY),
+        CUBE_MID(Constants.SLIDE_CUBE_MID, Constants.SLIDE_CUBE_MID_VELOCITY),
+        CONE_HIGH(Constants.SLIDE_CONE_HIGH, Constants.SLIDE_CONE_HIGH_VELOCITY),
+        CONE_MID(Constants.SLIDE_CONE_MID, Constants.SLIDE_CONE_MID_VELOCITY),
+        SUBSTATION(Constants.SLIDE_SUBSTATION, Constants.SLIDE_SUBSTATION_VELOCITY);
 
         public int slideSetpoint;
-        private SlideState(int setpoint) {
+        public int slideVelocity;
+        private SlideState(int setpoint, int velocity) {
             this.slideSetpoint = setpoint;
+            slideVelocity =  velocity;
         }
 
     }

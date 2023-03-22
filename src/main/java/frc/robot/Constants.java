@@ -205,6 +205,7 @@ public final class Constants {
 
     /* Positions */
 
+    //TODO: tune wrist positions here
     /* Cone Placement Positions */
     public static final double WRIST_OUTTAKE_HIGH_CONE = 52800; //52800 at Esky
     public static final double WRIST_OUTTAKE_MID_CONE = 45423; //45423 at Esky
@@ -243,6 +244,7 @@ public final class Constants {
     public static final boolean ELEVATOR_INVERTED = true;
     public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
 
+    //TODO: tune elevator setpoints here
     /* Setpoints */
     public static final int ELEVATOR_DOWN = 100; //Elevator Zero
 
@@ -286,9 +288,11 @@ public final class Constants {
     public static final boolean SLIDE_INVERTED = true;
     public static final NeutralMode SLIDE_NEUTRAL_MODE = NeutralMode.Brake;
 
+    //TODO: tune slide setpoints here
     /* Setpoints */
     public static final int SLIDE_INTAKE = 0; //Should be 0
     public static final int SLIDE_IN = 0; //Should be 0
+    public static final int SLIDE_SUBSTATION = 0; //Should be 0
 
     /* Cone Placement Setpoints */
     public static final int SLIDE_CONE_MID = 0; //0 at Esky
@@ -298,7 +302,16 @@ public final class Constants {
     public static final int SLIDE_CUBE_MID = 8020; //8020 at Esky
     public static final int SLIDE_CUBE_HIGH = 21729; //21729 at Esky
 
-    public static final int SLIDE_SUBSTATION = 0; //Should be 0
+    //TODO: tune slide velocities here
+    /* Slide Velocities */
+    //NOTE: all velocities are in falcon ticks/100ms
+    public static final int SLIDE_IN_VELOCITY = 0; //velocity when moving the slide in
+    public static final int SLIDE_SUBSTATION_VELOCITY = 0; //velocity when sending the slide to double sub (0)
+
+    public static final int SLIDE_CONE_MID_VELOCITY = 0; //velocity when going to mid cones
+    public static final int SLIDE_CONE_HIGH_VELOCITY = 0; //velocity when going to high cones
+    public static final int SLIDE_CUBE_HIGH_VELOCITY = 0; //velocity when going to high cubes
+    public static final int SLIDE_CUBE_MID_VELOCITY = 0; //velocity when going to mid cubes
 
     /* Slide PID */
     public static final double SLIDE_P = 0.1;
