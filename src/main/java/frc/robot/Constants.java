@@ -195,11 +195,11 @@ public final class Constants {
     public static final int WRIST_SINGLE_SUB_VELOCITY = 20000;
     public static final int WRIST_LOW_VELOCITY = 20000;
     public static final int WRIST_FLOOR_INTAKE_VELOCITY = 20000;
-    public static final int WRIST_MID_CONE_VELOCITY = 0;
+    public static final int WRIST_MID_CONE_VELOCITY = 12000;
     public static final int WRIST_MID_CUBE_VELOCITY = 5000;
-    public static final int WRIST_HIGH_CONE_VELOCITY = 0;
+    public static final int WRIST_HIGH_CONE_VELOCITY = 6000;
     public static final int WRIST_HIGH_CUBE_VELOCITY  = 5000;
-    public static final int WRIST_DOUBLE_SUB_VELOCITY = 0;
+    public static final int WRIST_DOUBLE_SUB_VELOCITY = 10000;
 
     //TODO: this is where you tune wrist acceleration
     /* Wrist Accelerations */ //NOTE: units are falcon units/100ms/sec
@@ -207,9 +207,9 @@ public final class Constants {
     public static final int WRIST_SINGLE_SUB_ACCEL = 200000;
     public static final int WRIST_LOW_ACCEL = 200000;
     public static final int WRIST_FLOOR_INTAKE_ACCEL = 200000;
-    public static final int WRIST_MID_CONE_ACCEL = 0;
+    public static final int WRIST_MID_CONE_ACCEL = 100000;
     public static final int WRIST_MID_CUBE_ACCEL = 10000;
-    public static final int WRIST_HIGH_CONE_ACCEL = 0;
+    public static final int WRIST_HIGH_CONE_ACCEL = 50000;
     public static final int WRIST_HIGH_CUBE_ACCEL  = 10000;
     public static final int WRIST_DOUBLE_SUB_ACCEL = 10000;
 
@@ -345,7 +345,7 @@ public final class Constants {
     public static final int SLIDE_SUBSTATION_VELOCITY = 0; //velocity when sending the slide to double sub (0)
 
     public static final int SLIDE_CONE_MID_VELOCITY = 5000; //velocity when going to mid cones
-    public static final int SLIDE_CONE_HIGH_VELOCITY = 5000; //velocity when going to high cones
+    public static final int SLIDE_CONE_HIGH_VELOCITY = 1500; //velocity when going to high cones
     public static final int SLIDE_CUBE_HIGH_VELOCITY = 2000; //velocity when going to high cubes
     public static final int SLIDE_CUBE_MID_VELOCITY = 20000; //velocity when going to mid cubes
 
