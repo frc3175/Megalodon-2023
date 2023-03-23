@@ -202,30 +202,30 @@ public final class Constants {
 
     //TODO: this is where you tune wrist acceleration
     /* Wrist Accelerations */ //NOTE: units are falcon units/100ms/sec
-    public static final int WRIST_RESET_ACCEL = 0;
-    public static final int WRIST_SINGLE_SUB_ACCEL = 0;
-    public static final int WRIST_LOW_ACCEL = 0;
+    public static final int WRIST_RESET_ACCEL = 50000;
+    public static final int WRIST_SINGLE_SUB_ACCEL = 50000;
+    public static final int WRIST_LOW_ACCEL = 50000;
     public static final int WRIST_MID_CONE_ACCEL = 0;
-    public static final int WRIST_MID_CUBE_ACCEL = 0;
+    public static final int WRIST_MID_CUBE_ACCEL = 10000;
     public static final int WRIST_HIGH_CONE_ACCEL = 0;
-    public static final int WRIST_HIGH_CUBE_ACCEL  = 0;
-    public static final int WRIST_DOUBLE_SUB_ACCEL = 0;
+    public static final int WRIST_HIGH_CUBE_ACCEL  = 10000;
+    public static final int WRIST_DOUBLE_SUB_ACCEL = 10000;
 
     //TODO: this is where you tune wrist curve strengths
     /* Wrist Curve Strengths */
-    public static final int WRIST_RESET_CURVE = 0;
-    public static final int WRIST_SINGLE_SUB_CURVE = 0;
-    public static final int WRIST_LOW_CURVE = 0;
-    public static final int WRIST_MID_CONE_CURVE = 0;
-    public static final int WRIST_MID_CUBE_CURVE = 0;
-    public static final int WRIST_HIGH_CONE_CURVE = 0;
-    public static final int WRIST_HIGH_CUBE_CURVE  = 0;
-    public static final int WRIST_DOUBLE_SUB_CURVE = 0;
+    public static final int WRIST_RESET_CURVE = 3;
+    public static final int WRIST_SINGLE_SUB_CURVE = 3;
+    public static final int WRIST_LOW_CURVE = 3;
+    public static final int WRIST_MID_CONE_CURVE = 3;
+    public static final int WRIST_MID_CUBE_CURVE = 3;
+    public static final int WRIST_HIGH_CONE_CURVE = 3;
+    public static final int WRIST_HIGH_CUBE_CURVE  = 3;
+    public static final int WRIST_DOUBLE_SUB_CURVE = 3;
 
     //TODO: this is where you tune the wrist motion magic constants
     /* Motion Magic */
     public static final double WRIST_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
-    public static final double WRIST_ACCELERATION = 10000; // falcon ticks/100ms/sec
+    public static final double WRIST_ACCELERATION = 50000; // falcon ticks/100ms/sec
     public static final int WRIST_CURVE_STRENGTH = 3; // value between 0 and 8
 
     /* Speeds */
