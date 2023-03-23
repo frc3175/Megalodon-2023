@@ -194,6 +194,7 @@ public final class Constants {
     public static final int WRIST_RESET_VELOCITY = 5000;
     public static final int WRIST_SINGLE_SUB_VELOCITY = 5000;
     public static final int WRIST_LOW_VELOCITY = 0;
+    public static final int WRIST_FLOOR_INTAKE_VELOCITY = 0;
     public static final int WRIST_MID_CONE_VELOCITY = 0;
     public static final int WRIST_MID_CUBE_VELOCITY = 5000;
     public static final int WRIST_HIGH_CONE_VELOCITY = 0;
@@ -205,6 +206,7 @@ public final class Constants {
     public static final int WRIST_RESET_ACCEL = 50000;
     public static final int WRIST_SINGLE_SUB_ACCEL = 50000;
     public static final int WRIST_LOW_ACCEL = 50000;
+    public static final int WRIST_FLOOR_INTAKE_ACCEL = 0;
     public static final int WRIST_MID_CONE_ACCEL = 0;
     public static final int WRIST_MID_CUBE_ACCEL = 10000;
     public static final int WRIST_HIGH_CONE_ACCEL = 0;
@@ -216,6 +218,7 @@ public final class Constants {
     public static final int WRIST_RESET_CURVE = 3;
     public static final int WRIST_SINGLE_SUB_CURVE = 3;
     public static final int WRIST_LOW_CURVE = 3;
+    public static final int WRIST_FLOOR_INTAKE_CURVE = 0;
     public static final int WRIST_MID_CONE_CURVE = 3;
     public static final int WRIST_MID_CUBE_CURVE = 3;
     public static final int WRIST_HIGH_CONE_CURVE = 3;
