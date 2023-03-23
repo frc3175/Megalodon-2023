@@ -48,7 +48,7 @@ public class Intake extends SubsystemBase {
 
     public void setIntakeState(IntakeState state) {
 
-        setWristPosition(state.wristPosition, state.wristVelocity);
+        setWristPosition(state.wristPosition, state.wristVelocity, state.wristAcceleration, state.wristCurve);
 
         intakeState = state;
 
@@ -90,9 +90,11 @@ public class Intake extends SubsystemBase {
 
     }
 
-    public void setWristPosition(double position, double velocity) {
+    public void setWristPosition(double position, double velocity, double acceleration, int curve) {
 
         wristMotor.configMotionCruiseVelocity(velocity);
+        wristMotor.configMotionAcceleration(acceleration);
+        wristMotor.configMotionSCurveStrength(curve);
         //TODO: This is where you change the intake into motion magic mode. Change "ControlMode.Position" to "ControlMode.MotionMagic"
         wristMotor.set(ControlMode.MotionMagic, position);
 
@@ -100,25 +102,29 @@ public class Intake extends SubsystemBase {
 
     public enum IntakeState {
 
-        INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE, Constants.WRIST_LOW_VELOCITY),
-        INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR, Constants.WRIST_LOW_VELOCITY),
-        INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR, Constants.WRIST_LOW_VELOCITY),
-        INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION, Constants.WRIST_DOUBLE_SUB_VELOCITY),
-        INTAKE_CONE_SINGLE(Constants.WRIST_SINGLE_INTAKE, Constants.WRIST_SINGLE_SUB_VELOCITY),
-        CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE, Constants.WRIST_HIGH_CONE_VELOCITY),
-        CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE, Constants.WRIST_MID_CONE_VELOCITY),
-        CUBE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CUBE, Constants.WRIST_HIGH_CUBE_VELOCITY),
-        CUBE_MID(Constants.WRIST_OUTTAKE_MID_CUBE, Constants.WRIST_MID_CUBE_VELOCITY),
-        CONE_LOW(Constants.WRIST_OUTTAKE_LOW_CONE, Constants.WRIST_LOW_VELOCITY),
-        CUBE_LOW(Constants.WRIST_OUTTAKE_LOW_CUBE, Constants.WRIST_LOW_VELOCITY),
-        STOP_CONE(Constants.RESET_WRIST, Constants.WRIST_RESET_VELOCITY),
-        STOP_CUBE(Constants.RESET_WRIST, Constants.WRIST_RESET_VELOCITY);
+        INTAKE_CUBE(Constants.WRIST_INTAKE_CUBE, Constants.WRIST_LOW_VELOCITY, Constants.WRIST_LOW_ACCEL, Constants.WRIST_LOW_CURVE),
+        INTAKE_CUBE_GROUND(Constants.WRIST_INTAKE_CUBE_FLOOR, Constants.WRIST_LOW_VELOCITY, Constants.WRIST_LOW_ACCEL, Constants.WRIST_LOW_CURVE),
+        INTAKE_CONE_GROUND(Constants.WRIST_INTAKE_CONE_FLOOR, Constants.WRIST_LOW_VELOCITY, Constants.WRIST_LOW_ACCEL, Constants.WRIST_LOW_CURVE),
+        INTAKE_CONE_SUBSTATION(Constants.WRIST_INTAKE_CONE_SUBSTATION, Constants.WRIST_DOUBLE_SUB_VELOCITY, Constants.WRIST_DOUBLE_SUB_ACCEL, Constants.WRIST_DOUBLE_SUB_CURVE),
+        INTAKE_CONE_SINGLE(Constants.WRIST_SINGLE_INTAKE, Constants.WRIST_SINGLE_SUB_VELOCITY, Constants.WRIST_SINGLE_SUB_ACCEL, Constants.WRIST_SINGLE_SUB_CURVE),
+        CONE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CONE, Constants.WRIST_HIGH_CONE_VELOCITY, Constants.WRIST_HIGH_CONE_ACCEL, Constants.WRIST_HIGH_CONE_CURVE),
+        CONE_MID(Constants.WRIST_OUTTAKE_MID_CONE, Constants.WRIST_MID_CONE_VELOCITY, Constants.WRIST_MID_CONE_ACCEL, Constants.WRIST_MID_CONE_CURVE),
+        CUBE_HIGH(Constants.WRIST_OUTTAKE_HIGH_CUBE, Constants.WRIST_HIGH_CUBE_VELOCITY, Constants.WRIST_HIGH_CUBE_ACCEL, Constants.WRIST_HIGH_CUBE_CURVE),
+        CUBE_MID(Constants.WRIST_OUTTAKE_MID_CUBE, Constants.WRIST_MID_CUBE_VELOCITY, Constants.WRIST_MID_CUBE_ACCEL, Constants.WRIST_MID_CUBE_CURVE),
+        CONE_LOW(Constants.WRIST_OUTTAKE_LOW_CONE, Constants.WRIST_LOW_VELOCITY, Constants.WRIST_LOW_ACCEL, Constants.WRIST_LOW_CURVE),
+        CUBE_LOW(Constants.WRIST_OUTTAKE_LOW_CUBE, Constants.WRIST_LOW_VELOCITY, Constants.WRIST_LOW_ACCEL, Constants.WRIST_LOW_CURVE),
+        STOP_CONE(Constants.RESET_WRIST, Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE),
+        STOP_CUBE(Constants.RESET_WRIST, Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE);
 
         public double wristPosition;
         public double wristVelocity;
-        private IntakeState(double wristPosition, double wristVelocity){
+        public double wristAcceleration;
+        public int wristCurve;
+        private IntakeState(double wristPosition, double wristVelocity, double wristAcceleration, int wristCurve){
             this.wristPosition = wristPosition;
             this.wristVelocity = wristVelocity;
+            this.wristAcceleration = wristAcceleration;
+            this.wristCurve = wristCurve;
         }
  
     }
