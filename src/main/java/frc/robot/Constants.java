@@ -191,20 +191,20 @@ public final class Constants {
 
     //TODO: this is where you tune wrist velocity
     /* Wrist Velocities */ //NOTE: units are falcon units/100ms
-    public static final int WRIST_RESET_VELOCITY = 0;
-    public static final int WRIST_SINGLE_SUB_VELOCITY = 0;
+    public static final int WRIST_RESET_VELOCITY = 5000;
+    public static final int WRIST_SINGLE_SUB_VELOCITY = 5000;
     public static final int WRIST_LOW_VELOCITY = 0;
     public static final int WRIST_MID_CONE_VELOCITY = 0;
-    public static final int WRIST_MID_CUBE_VELOCITY = 0;
+    public static final int WRIST_MID_CUBE_VELOCITY = 5000;
     public static final int WRIST_HIGH_CONE_VELOCITY = 0;
-    public static final int WRIST_HIGH_CUBE_VELOCITY  = 0;
+    public static final int WRIST_HIGH_CUBE_VELOCITY  = 5000;
     public static final int WRIST_DOUBLE_SUB_VELOCITY = 0;
 
     //TODO: this is where you tune the wrist motion magic constants
     /* Motion Magic */
     public static final double WRIST_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
-    public static final double WRIST_ACCELERATION = 20000; // falcon ticks/100ms/sec
-    public static final int WRIST_CURVE_STRENGTH = 5; // value between 0 and 8
+    public static final double WRIST_ACCELERATION = 10000; // falcon ticks/100ms/sec
+    public static final int WRIST_CURVE_STRENGTH = 3; // value between 0 and 8
 
     /* Speeds */
     public static final double OUTTAKE_CONE = -0.9; //negative
@@ -218,13 +218,13 @@ public final class Constants {
 
     //TODO: tune wrist positions here
     /* Cone Placement Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CONE = 52800; //52800 at Esky
-    public static final double WRIST_OUTTAKE_MID_CONE = 45423; //45423 at Esky
+    public static final double WRIST_OUTTAKE_HIGH_CONE = 49985; //52800 at Esky
+    public static final double WRIST_OUTTAKE_MID_CONE = 44542; //45423 at Esky
     public static final double WRIST_OUTTAKE_LOW_CONE = 57435; //5745 at Esky
 
     /* Cube Placement Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CUBE = 50965; //50965 at Esky
-    public static final double WRIST_OUTTAKE_MID_CUBE = 53965; //53965 at Esky
+    public static final double WRIST_OUTTAKE_HIGH_CUBE = 29752; //50965 at Esky
+    public static final double WRIST_OUTTAKE_MID_CUBE = 0; //53965 at Esky
     public static final double WRIST_OUTTAKE_LOW_CUBE = 53965; //53965 at Esky
 
     /* Cone Intake Positions */
@@ -260,18 +260,18 @@ public final class Constants {
     public static final int ELEVATOR_DOWN = 100; //Elevator Zero
 
     /* Cube Placement */
-    public static final int CUBE_HIGH = 100000; //TEST VALUE
-    public static final int CUBE_MID = 50000; //TEST VALUE
+    public static final int CUBE_HIGH = 117334; //TEST VALUE
+    public static final int CUBE_MID = 31647; //TEST VALUE
 
     /* Cone Placement */
-    public static final int CONE_HIGH = 100000; //TEST VALUE
-    public static final int CONE_MID = 50000; //TEST VALUE
+    public static final int CONE_HIGH = 114467; //TEST VALUE
+    public static final int CONE_MID = 51572; //TEST VALUE
 
     /* Double Substation */
     public static final int SUBSTATION = 100000; //TEST VALUE
 
     /* Elevator PID */
-    public static final double ELEVATOR_P = 1;
+    public static final double ELEVATOR_P = 0.1;
     public static final double ELEVATOR_I = 0;
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0.0;
@@ -279,8 +279,8 @@ public final class Constants {
     //TODO: This is where you tune the elevator motion magic constants
     /* Motion Magic */
     public static final double ELEVATOR_CRUISE_VELOCITY = 20000; // falcon ticks/100ms
-    public static final double ELEVATOR_ACCELERATION = 100000; // falcon ticks/100ms/sec
-    public static final int ELEVATOR_CURVE_STRENGTH = 4; // value between 0 and 8
+    public static final double ELEVATOR_ACCELERATION = 250000; // falcon ticks/100ms/sec
+    public static final int ELEVATOR_CURVE_STRENGTH = 5; // value between 0 and 8
 
     /*============================
                 Slide
@@ -307,22 +307,22 @@ public final class Constants {
 
     /* Cone Placement Setpoints */
     public static final int SLIDE_CONE_MID = 0; //0 at Esky
-    public static final int SLIDE_CONE_HIGH = 13000; //13000 at Esky
+    public static final int SLIDE_CONE_HIGH = 11377; //13000 at Esky
 
     /* Cube Placement Setpoints */
-    public static final int SLIDE_CUBE_MID = 8020; //8020 at Esky
-    public static final int SLIDE_CUBE_HIGH = 21729; //21729 at Esky
+    public static final int SLIDE_CUBE_MID = 22063; //8020 at Esky
+    public static final int SLIDE_CUBE_HIGH = 16971; //21729 at Esky
 
     //TODO: tune slide velocities here
     /* Slide Velocities */
     //NOTE: all velocities are in falcon ticks/100ms
-    public static final int SLIDE_IN_VELOCITY = 0; //velocity when moving the slide in
+    public static final int SLIDE_IN_VELOCITY = 5000; //velocity when moving the slide in
     public static final int SLIDE_SUBSTATION_VELOCITY = 0; //velocity when sending the slide to double sub (0)
 
-    public static final int SLIDE_CONE_MID_VELOCITY = 0; //velocity when going to mid cones
-    public static final int SLIDE_CONE_HIGH_VELOCITY = 0; //velocity when going to high cones
-    public static final int SLIDE_CUBE_HIGH_VELOCITY = 0; //velocity when going to high cubes
-    public static final int SLIDE_CUBE_MID_VELOCITY = 0; //velocity when going to mid cubes
+    public static final int SLIDE_CONE_MID_VELOCITY = 5000; //velocity when going to mid cones
+    public static final int SLIDE_CONE_HIGH_VELOCITY = 5000; //velocity when going to high cones
+    public static final int SLIDE_CUBE_HIGH_VELOCITY = 2000; //velocity when going to high cubes
+    public static final int SLIDE_CUBE_MID_VELOCITY = 20000; //velocity when going to mid cubes
 
     /* Slide PID */
     public static final double SLIDE_P = 0.1;
@@ -333,8 +333,8 @@ public final class Constants {
     //TODO: This is where you tune the slide motion magic constants
     /* Motion Magic */
     public static final double SLIDE_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
-    public static final double SLIDE_ACCELERATION = 200000; // falcon ticks/100ms/sec
-    public static final int SLIDE_CURVE_STRENGTH = 3; // number between 1 and 8
+    public static final double SLIDE_ACCELERATION = 100000; // falcon ticks/100ms/sec
+    public static final int SLIDE_CURVE_STRENGTH = 2; // number between 1 and 8
 
     /*============================
                Kinematics
@@ -342,7 +342,7 @@ public final class Constants {
 
     /* Drivetrain Dimensions */
     public static final double DRIVETRAIN_WIDTH = Units.inchesToMeters(18.75);
-    public static final double DRIVETRAIN_LENGTH = Units.inchesToMeters(18.75);
+    public static final double DRIVETRAIN_LENGTH = Units.inchesToMeters(22.75);
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 

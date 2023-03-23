@@ -94,7 +94,7 @@ public class Intake extends SubsystemBase {
 
         wristMotor.configMotionCruiseVelocity(velocity);
         //TODO: This is where you change the intake into motion magic mode. Change "ControlMode.Position" to "ControlMode.MotionMagic"
-        wristMotor.set(ControlMode.Position, position);
+        wristMotor.set(ControlMode.MotionMagic, position);
 
     }
 
