@@ -185,10 +185,10 @@ public final class Constants {
 
     //TODO: this is where you tube intake pid
     /*Intake PID */
-    public static final double INTAKE_P = 0.01;
+    public static final double INTAKE_P = 0.1;
     public static final double INTAKE_I = 0;
-    public static final double INTAKE_D = 0.4;
-    public static final double INTAKE_F = 0.046;
+    public static final double INTAKE_D = 0;
+    public static final double INTAKE_F = 0.0495;
 
     /* Wrist PID */
     public static final double WRIST_P = 0.05;
@@ -239,12 +239,12 @@ public final class Constants {
     public static final int WRIST_CURVE_STRENGTH = 3; // value between 0 and 8
 
     /* Speeds */
-    public static final double OUTTAKE_CONE = -18000; //negative
-    public static final double OUTTAKE_CUBE = 10000; //positive
-    public static final double INTAKE_CONE = 18000; //positive
-    public static final double INTAKE_CUBE = -10000; //negative
+    public static final double OUTTAKE_CONE = -3190; //negative
+    public static final double OUTTAKE_CUBE = 3190; //positive
+    public static final double INTAKE_CONE = 3190; //positive
+    public static final double INTAKE_CUBE = -3190; //negative
     public static final double INTAKE_STOP = 0;
-    public static final double HOLD_VOLTAGE = 2000; //always running while cone is held
+    public static final double HOLD_VOLTAGE = 638; //always running while cone is held
 
     /* Positions */
 

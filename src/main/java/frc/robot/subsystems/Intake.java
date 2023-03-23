@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.math.Conversions;
 import frc.robot.CTREConfigs;
 import frc.robot.Constants;
 
@@ -42,7 +43,9 @@ public class Intake extends SubsystemBase {
 
     public void setIntake(double speed) {
 
-        intakeMotor.set(ControlMode.Velocity, speed);
+        double falconSpeed = Conversions.RPMToFalcon(speed, 1.0);
+
+        intakeMotor.set(ControlMode.Velocity, falconSpeed);
 
     }
 
