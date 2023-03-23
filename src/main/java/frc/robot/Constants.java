@@ -240,11 +240,11 @@ public final class Constants {
 
     /* Speeds */
     public static final double OUTTAKE_CONE = -3190; //negative
-    public static final double OUTTAKE_CUBE = 3190; //positive
+    public static final double OUTTAKE_CUBE = 800; //positive
     public static final double INTAKE_CONE = 3190; //positive
     public static final double INTAKE_CUBE = -3190; //negative
     public static final double INTAKE_STOP = 0;
-    public static final double HOLD_VOLTAGE = 638; //always running while cone is held
+    public static final double HOLD_VOLTAGE = 100; //always running while cone is held
 
     /* Positions */
 
@@ -338,8 +338,8 @@ public final class Constants {
     public static final int SLIDE_SUBSTATION = 0; //Should be 0
 
     /* Cone Placement Setpoints */
-    public static final int SLIDE_CONE_MID = 0; //0 at Esky
-    public static final int SLIDE_CONE_HIGH = 11377; //13000 at Esky
+    public static final int SLIDE_CONE_MID = 4000; //0 at Esky
+    public static final int SLIDE_CONE_HIGH = 15377; //13000 at Esky
 
     /* Cube Placement Setpoints */
     public static final int SLIDE_CUBE_MID = 22063; //8020 at Esky
