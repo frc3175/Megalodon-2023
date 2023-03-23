@@ -135,8 +135,8 @@ public class Intake extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
-        SmartDashboard.putNumber("intake speed",intakeMotor.getSelectedSensorVelocity());
-
+        SmartDashboard.putNumber("intake speed", intakeMotor.getSelectedSensorVelocity());
+        SmartDashboard.putNumber("intake", intakeMotor.getSelectedSensorPosition());
     }
 
     public void configIntakeMotor() {
