@@ -134,7 +134,8 @@ public class RobotContainer {
         new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))),
         new WaitCommand(Constants.HIGH_DELAY),
-        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState))));
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)),
+        new TeleAutoOuttake(m_intake, m_robotState)));
 
         reset.onTrue(new SequentialCommandGroup(new ResetRobot(m_robotState, m_intake),
                                                 new ParallelCommandGroup(new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
@@ -147,7 +148,8 @@ public class RobotContainer {
         new InstantCommand(() -> m_slide.setSlideState(m_robotState.getRobotState().slideState)),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState))),
         new WaitCommand(Constants.MID_DELAY),
-        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState))));
+        new InstantCommand(() -> m_intake.setIntakeState(m_robotState.getRobotState().intakeState)),
+        new TeleAutoOuttake(m_intake, m_robotState)));
 
         robotLow.onTrue(new SequentialCommandGroup(new SetRobotStateLow(m_robotState, m_intake),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),
