@@ -70,6 +70,12 @@ public final class CTREConfigs {
             Constants.INTAKE_PEAK_CURRENT_DURATION);
 
         intakeFXConfig.supplyCurrLimit = intakeSupplyLimit;
+        intakeFXConfig.slot0.kP = Constants.INTAKE_P;
+        intakeFXConfig.slot0.kI = Constants.INTAKE_I;
+        intakeFXConfig.slot0.kD = Constants.INTAKE_D;
+        intakeFXConfig.slot0.kF = Constants.INTAKE_F;
+
+        intakeFXConfig.supplyCurrLimit = intakeSupplyLimit;
 
         /* Wrist Motor Configuration */
         SupplyCurrentLimitConfiguration wristSupplyLimit = new SupplyCurrentLimitConfiguration(

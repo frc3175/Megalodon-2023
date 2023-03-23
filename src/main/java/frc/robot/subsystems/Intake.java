@@ -42,7 +42,7 @@ public class Intake extends SubsystemBase {
 
     public void setIntake(double speed) {
 
-        intakeMotor.set(ControlMode.PercentOutput, speed);
+        intakeMotor.set(ControlMode.Velocity, speed);
 
     }
 
@@ -95,7 +95,6 @@ public class Intake extends SubsystemBase {
         wristMotor.configMotionCruiseVelocity(velocity);
         wristMotor.configMotionAcceleration(acceleration);
         wristMotor.configMotionSCurveStrength(curve);
-        //TODO: This is where you change the intake into motion magic mode. Change "ControlMode.Position" to "ControlMode.MotionMagic"
         wristMotor.set(ControlMode.MotionMagic, position);
 
     }
@@ -133,6 +132,7 @@ public class Intake extends SubsystemBase {
     public void periodic() {
 
         SmartDashboard.putNumber("wrist encoder", wristMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("intake speed",intakeMotor.getSelectedSensorVelocity());
 
     }
 
