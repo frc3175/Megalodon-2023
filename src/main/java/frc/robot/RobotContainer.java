@@ -37,6 +37,7 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton shootCube =  new JoystickButton(driver, XboxController.Button.kRightBumper.value);
 
     /* Operator Buttons */
     private final JoystickButton cubeMode = new JoystickButton(operator, XboxController.Button.kStart.value);
@@ -189,6 +190,9 @@ public class RobotContainer {
 
         retractWrist.onTrue(new InstantCommand(() -> m_intake.setWristPosition(0, Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE)));
         retractWrist.onFalse(new InstantCommand(() -> m_intake.setWristPosition(m_robotState.getRobotState().intakeState.wristPosition, Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE)));
+
+        shootCube.whileTrue(new InstantCommand(() -> m_intake.setIntake(Constants.SHOOT_CUBE)));
+        shootCube.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
 
     }
 

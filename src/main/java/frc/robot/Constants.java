@@ -241,6 +241,7 @@ public final class Constants {
     /* Speeds */
     public static final double OUTTAKE_CONE = -3190; //negative
     public static final double OUTTAKE_CUBE = 800; //positive
+    public static final double SHOOT_CUBE = 3190; //positive
     public static final double INTAKE_CONE = 3190; //positive
     public static final double INTAKE_CUBE = -3190; //negative
     public static final double INTAKE_STOP = 0;
