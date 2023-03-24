@@ -61,7 +61,7 @@ public class TeleAutoOuttake extends CommandBase {
         if(!
         m_robotState.getGamepieceState()){
 
-            m_robotState.setBotState(BotState.RESET_CONE);
+            m_robotState.setBotState(BotState.RESET_CUBE);
             m_slide.setSlideState(m_robotState.getRobotState().slideState);
             m_intake.setIntakeState(m_robotState.getRobotState().intakeState);
             m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState);

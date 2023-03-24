@@ -37,19 +37,22 @@ public final class Auto {
           Map.entry("HoldVoltage", new InstantCommand(() -> RobotContainer.m_intake.setIntake(Constants.HOLD_VOLTAGE))),
 
           Map.entry("HighCone", new SequentialCommandGroup(new SetRobotStateHigh(RobotContainer.m_robotState, RobotContainer.m_intake),
-          new InstantCommand(() -> RobotContainer.m_slide.setSlide(Constants.SLIDE_CONE_HIGH - 3000, Constants.SLIDE_CONE_HIGH_VELOCITY)),
-          new InstantCommand(() -> RobotContainer.m_elevator.setElevatorState(RobotContainer.m_robotState.getRobotState().elevatorState)),
-          new WaitCommand(0.8),
-          new SequentialCommandGroup(
-          new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState))),
-          new WaitCommand(0.5),
-          new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))),
+          new ParallelCommandGroup(
+          new InstantCommand(() -> RobotContainer.m_slide.setSlideState(RobotContainer.m_robotState.getRobotState().slideState)),
+          new InstantCommand(() -> RobotContainer.m_elevator.setElevatorState(RobotContainer.m_robotState.getRobotState().elevatorState))),
+          new WaitCommand(Constants.HIGH_DELAY),
+          new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState)),
+          new WaitCommand(1),
+          new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState, RobotContainer.m_slide, RobotContainer.m_elevator))),
 
           Map.entry("HighCube", new SequentialCommandGroup(new SetRobotStateHigh(RobotContainer.m_robotState, RobotContainer.m_intake),
-          new InstantCommand(() -> RobotContainer.m_elevator.setElevatorState(RobotContainer.m_robotState.getRobotState().elevatorState)),
-          new WaitCommand(0.8),
-          new ParallelCommandGroup(new InstantCommand(() -> RobotContainer.m_slide.setSlide(Constants.SLIDE_CUBE_HIGH, Constants.SLIDE_CUBE_HIGH_VELOCITY)),
-          new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState))))),
+          new ParallelCommandGroup(
+          new InstantCommand(() -> RobotContainer.m_slide.setSlideState(RobotContainer.m_robotState.getRobotState().slideState)),
+          new InstantCommand(() -> RobotContainer.m_elevator.setElevatorState(RobotContainer.m_robotState.getRobotState().elevatorState))),
+          new WaitCommand(Constants.HIGH_DELAY),
+          new InstantCommand(() -> RobotContainer.m_intake.setIntakeState(RobotContainer.m_robotState.getRobotState().intakeState)),
+          new WaitCommand(1),
+          new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState, RobotContainer.m_slide, RobotContainer.m_elevator))),
 
           Map.entry("Mid", new SetRobotStateMid(RobotContainer.m_robotState, RobotContainer.m_intake)),
 
@@ -64,7 +67,7 @@ public final class Auto {
 
           Map.entry("IntakeWrist", new InstantCommand(() -> RobotContainer.m_intake.setWristPosition(Constants.WRIST_INTAKE_CUBE, Constants.WRIST_LOW_VELOCITY, Constants.WRIST_LOW_ACCEL, Constants.WRIST_LOW_CURVE))),
 
-          Map.entry("Outtake", new SequentialCommandGroup(new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState))),
+          Map.entry("Outtake", new SequentialCommandGroup(new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState, RobotContainer.m_slide, RobotContainer.m_elevator))),
 
           Map.entry("Delay1", new WaitCommand(1)),
 
