@@ -130,16 +130,9 @@ public final class Auto {
 
   }
 
-  public static CommandBase ONEPARKMOBILITY() {
+  public static CommandBase PreloadMobilityPark() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("1+PARKMOBILITY", new PathConstraints(1.5, 1.5)));
-
-
-  }
-
-  public static CommandBase PARKCENTER() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("1+PARKCENTER", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Mobility-Park", new PathConstraints(2, 3)));
 
   }
 
