@@ -19,8 +19,7 @@
         "names": [
           "ConeMode",
           "HoldVoltage",
-          "HighCone",
-          "Reset"
+          "HighCone"
         ],
         "executionBehavior": "sequential",
         "waitBehavior": "none",
@@ -149,8 +148,7 @@
         "names": [
           "Stop",
           "HighCube",
-          "Outtake",
-          "Reset"
+          "Outtake"
         ],
         "executionBehavior": "sequential",
         "waitBehavior": "none",

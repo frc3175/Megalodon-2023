@@ -85,11 +85,8 @@ public class RobotContainer {
         autoChooser.setDefaultOption("Cone + Park", Auto.PreloadParkCone());
         autoChooser.addOption("Cable Preload + 1", Auto.TWoGamepieceCable());
         autoChooser.addOption("Non-Cable Preload + 1", Auto.TwoGamepieceNonCable());
-        autoChooser.addOption("Non-Cable Preload + 1 + Park", Auto.TwoHighParkNoCable());
         autoChooser.addOption("Non-Cable 3 Low", Auto.ThreeLowNonCable());
         autoChooser.addOption("Cable 3 Low", Auto.ThreeLowCable());
-        autoChooser.addOption("Cable 2 + Park", Auto.TwoHighParkCable());
-        autoChooser.addOption("Non-Cable 2 + Park", Auto.TwoHighParkNoCable());
         autoChooser.addOption("Drivetrain Park Center", Auto.PARKCENTER());
         autoChooser.addOption("Drivetrain 1 + parkmobility", Auto.ONEPARKMOBILITY());
         SmartDashboard.putData("Auto mode", autoChooser);

@@ -113,18 +113,6 @@ public final class Auto {
 
   }
 
-  public static CommandBase TwoHighParkNoCable() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Park-No-Cable", new PathConstraints(3.5, 3)));
-
-  }
-
-  public static CommandBase TwoHighParkCable() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Park-Cable", new PathConstraints(3.5, 3)));
-
-  }
-
   public static CommandBase TWoGamepieceCable() {
 
     return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Cable", new PathConstraints(3.5, 3)));

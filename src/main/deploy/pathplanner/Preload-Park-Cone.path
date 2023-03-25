@@ -19,8 +19,7 @@
         "names": [
           "ConeMode",
           "HighCone",
-          "Outtake",
-          "Reset"
+          "Outtake"
         ],
         "executionBehavior": "sequential",
         "waitBehavior": "none",
@@ -29,12 +28,12 @@
     },
     {
       "anchorPoint": {
-        "x": 3.5945427408681643,
-        "y": 3.3060688871802197
+        "x": 4.09,
+        "y": 3.32
       },
       "prevControl": {
-        "x": 3.5655623585024254,
-        "y": 3.3060688871802197
+        "x": 4.061019617634261,
+        "y": 3.32
       },
       "nextControl": null,
       "holonomicAngle": -180.0,
