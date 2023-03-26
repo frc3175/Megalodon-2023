@@ -256,7 +256,7 @@ public final class Constants {
     public static final double WRIST_OUTTAKE_LOW_CONE = 57435; //5745 at Esky
 
     /* Cube Placement Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CUBE = 29752; //50965 at Esky
+    public static final double WRIST_OUTTAKE_HIGH_CUBE = 40000; //50965 at Esky
     public static final double WRIST_OUTTAKE_MID_CUBE = 0; //53965 at Esky
     public static final double WRIST_OUTTAKE_LOW_CUBE = 53965; //53965 at Esky
 

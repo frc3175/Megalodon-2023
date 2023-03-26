@@ -55,7 +55,7 @@ public class RobotContainer {
     private final POVButton zeroElev = new POVButton(operator, 90);
     private final POVButton elevUp = new POVButton(operator, 0);
     private final POVButton elevDown = new POVButton(operator, 180);
-    private final JoystickButton aButton = new JoystickButton(operator, XboxController.Button.kA.value);
+    private final JoystickButton aButton = new JoystickButton(driver, XboxController.Button.kA.value);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
