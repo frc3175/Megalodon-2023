@@ -21,8 +21,6 @@ public class AutoBalanceUsingRate extends CommandBase {
 
         //THIS IS RUN USING THE A BUTTON
 
-        //TODO: This is where you tune the auto balance using rate of change. The number in the parentheses that is being
-            //  compared to getPitchDerivative() is the number that you should be tuning.
         if(m_drivetrain.getPitchDerivative() < (-1 * 0.02)) {
             m_drivetrain.stopSwerve();
         } else {

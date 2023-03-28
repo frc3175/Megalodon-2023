@@ -183,7 +183,6 @@ public final class Constants {
     public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Brake;
     public static final NeutralMode WRIST_NEUTRAL_MODE = NeutralMode.Brake;
 
-    //TODO: this is where you tube intake pid
     /*Intake PID */
     public static final double INTAKE_P = 0.1;
     public static final double INTAKE_I = 0;
@@ -196,7 +195,6 @@ public final class Constants {
     public static final double WRIST_D = 0;
     public static final double WRIST_F = 0.001;
 
-    //TODO: this is where you tune wrist velocity
     /* Wrist Velocities */ //NOTE: units are falcon units/100ms
     public static final int WRIST_RESET_VELOCITY = 20000;
     public static final int WRIST_SINGLE_SUB_VELOCITY = 20000;
@@ -208,7 +206,6 @@ public final class Constants {
     public static final int WRIST_HIGH_CUBE_VELOCITY  = 5000;
     public static final int WRIST_DOUBLE_SUB_VELOCITY = 10000;
 
-    //TODO: this is where you tune wrist acceleration
     /* Wrist Accelerations */ //NOTE: units are falcon units/100ms/sec
     public static final int WRIST_RESET_ACCEL = 200000;
     public static final int WRIST_SINGLE_SUB_ACCEL = 200000;
@@ -220,7 +217,6 @@ public final class Constants {
     public static final int WRIST_HIGH_CUBE_ACCEL  = 10000;
     public static final int WRIST_DOUBLE_SUB_ACCEL = 10000;
 
-    //TODO: this is where you tune wrist curve strengths
     /* Wrist Curve Strengths */
     public static final int WRIST_RESET_CURVE = 3;
     public static final int WRIST_SINGLE_SUB_CURVE = 3;
@@ -232,7 +228,6 @@ public final class Constants {
     public static final int WRIST_HIGH_CUBE_CURVE  = 3;
     public static final int WRIST_DOUBLE_SUB_CURVE = 3;
 
-    //TODO: this is where you tune the wrist motion magic constants
     /* Motion Magic */
     public static final double WRIST_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
     public static final double WRIST_ACCELERATION = 50000; // falcon ticks/100ms/sec
@@ -249,7 +244,6 @@ public final class Constants {
 
     /* Positions */
 
-    //TODO: tune wrist positions here
     /* Cone Placement Positions */
     public static final double WRIST_OUTTAKE_HIGH_CONE = 49985; //52800 at Esky
     public static final double WRIST_OUTTAKE_MID_CONE = 44542; //45423 at Esky
@@ -290,7 +284,6 @@ public final class Constants {
     public static final boolean ELEVATOR_INVERTED = true;
     public static final NeutralMode ELEVATOR_NEUTRAL_MODE = NeutralMode.Coast;
 
-    //TODO: tune elevator setpoints here
     /* Setpoints */
     public static final int ELEVATOR_DOWN = 100; //Elevator Zero
 
@@ -305,6 +298,7 @@ public final class Constants {
     /* Double Substation */
     public static final int SUBSTATION = 100000; //TEST VALUE
 
+    //TODO: tune elevator single sub setpoint here
     /* Single Substation */
     public static final int ELEVATOR_SINGLE_SUB = 0;
 
@@ -314,7 +308,6 @@ public final class Constants {
     public static final double ELEVATOR_D = 0;
     public static final double ELEVATOR_F = 0.0;
 
-    //TODO: This is where you tune the elevator motion magic constants
     /* Motion Magic */
     public static final double ELEVATOR_CRUISE_VELOCITY = 20000; // falcon ticks/100ms
     public static final double ELEVATOR_ACCELERATION = 250000; // falcon ticks/100ms/sec
@@ -337,7 +330,6 @@ public final class Constants {
     public static final boolean SLIDE_INVERTED = true;
     public static final NeutralMode SLIDE_NEUTRAL_MODE = NeutralMode.Brake;
 
-    //TODO: tune slide setpoints here
     /* Setpoints */
     public static final int SLIDE_INTAKE = 0; //Should be 0
     public static final int SLIDE_IN = 0; //Should be 0
@@ -345,6 +337,7 @@ public final class Constants {
     /* Double Sub */
     public static final int SLIDE_SUBSTATION = 0; //Should be 0
 
+    //TODO: tune slide single sub setpoint here
     /* Single Sub */
     public static final int SLIDE_SINGLE_SUB = 0;
 
@@ -356,11 +349,12 @@ public final class Constants {
     public static final int SLIDE_CUBE_MID = 22063; //8020 at Esky
     public static final int SLIDE_CUBE_HIGH = 16971; //21729 at Esky
 
-    //TODO: tune slide velocities here
     /* Slide Velocities */
     //NOTE: all velocities are in falcon ticks/100ms
     public static final int SLIDE_IN_VELOCITY = 5000; //velocity when moving the slide in
     public static final int SLIDE_SUBSTATION_VELOCITY = 0; //velocity when sending the slide to double sub (0)
+
+    //TODO: tune slide single sub velocity here
     public static final int SLIDE_SINGLE_SUB_VELOCITY = 20000;
 
     public static final int SLIDE_CONE_MID_VELOCITY = 5000; //velocity when going to mid cones
@@ -374,7 +368,6 @@ public final class Constants {
     public static final double SLIDE_D = 0;
     public static final double SLIDE_F = 0;
 
-    //TODO: This is where you tune the slide motion magic constants
     /* Motion Magic */
     public static final double SLIDE_CRUISE_VELOCITY = 5000; // falcon ticks/100ms
     public static final double SLIDE_ACCELERATION = 100000; // falcon ticks/100ms/sec
@@ -422,7 +415,6 @@ public final class Constants {
     public static final double OPEN_LOOP_RAMP = 0.25;
     public static final double CLOSED_LOOP_RAMP = 0.0;
 
-    //TODO: This is where you tune delays on the wrist and slide
     /* Delays */
     public static final double HIGH_DELAY = 0; //How long to delay moving the slide and wrist when going high
     public static final double MID_DELAY = 0; //How long to delay moving the slide and wrist when going mid
