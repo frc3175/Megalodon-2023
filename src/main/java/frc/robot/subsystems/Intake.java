@@ -13,7 +13,7 @@ public class Intake extends SubsystemBase {
 
     private TalonFX intakeMotor;
     private TalonFX wristMotor;
-    private boolean isSingleConeState = false;
+    private boolean isSingleConeState = true;
 
     private IntakeState intakeState;
 

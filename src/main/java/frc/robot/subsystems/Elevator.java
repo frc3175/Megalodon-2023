@@ -87,6 +87,7 @@ public class Elevator extends SubsystemBase {
         MID_CUBE(Constants.CUBE_MID),
         MID_CONE(Constants.CONE_MID),
         HIGH_CUBE(Constants.CUBE_HIGH),
+        SINGLE_SUB(Constants.ELEVATOR_SINGLE_SUB),
         HIGH_CONE(Constants.CONE_HIGH);
 
         public final int elevSetpoint;

@@ -73,6 +73,7 @@ public class Slide extends SubsystemBase {
         CUBE_MID(Constants.SLIDE_CUBE_MID, Constants.SLIDE_CUBE_MID_VELOCITY),
         CONE_HIGH(Constants.SLIDE_CONE_HIGH, Constants.SLIDE_CONE_HIGH_VELOCITY),
         CONE_MID(Constants.SLIDE_CONE_MID, Constants.SLIDE_CONE_MID_VELOCITY),
+        SINGLE_SUB(Constants.SLIDE_SINGLE_SUB, Constants.SLIDE_SINGLE_SUB_VELOCITY),
         SUBSTATION(Constants.SLIDE_SUBSTATION, Constants.SLIDE_SUBSTATION_VELOCITY);
 
         public int slideSetpoint;

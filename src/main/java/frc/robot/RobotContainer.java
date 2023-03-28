@@ -50,7 +50,7 @@ public class RobotContainer {
     private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     private final JoystickButton retractWrist = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     private final POVButton singleSubstation = new POVButton(operator, 270);
-    //private final POVButton floorCone = new POVButton(operator, 90);
+    private final POVButton floorCone = new POVButton(operator, 90);
 
     /* private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
     private final POVButton elevUp = new POVButton(operator, 0);
@@ -169,7 +169,8 @@ public class RobotContainer {
         coneMode.onTrue(new InstantCommand(() ->m_candleSubsystem.setLEDSTate(LEDState.CONE)));
         cubeMode.onTrue(new InstantCommand(() -> m_candleSubsystem.setLEDSTate(LEDState.CUBE))); 
 
-        singleSubstation.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(false)));
+        singleSubstation.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(true)));
+        floorCone.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(false)));
 
         /* rightJoy.onTrue(new InstantCommand(() -> m_intake.zeroWrist()));
 

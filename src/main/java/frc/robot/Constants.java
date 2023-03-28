@@ -305,6 +305,9 @@ public final class Constants {
     /* Double Substation */
     public static final int SUBSTATION = 100000; //TEST VALUE
 
+    /* Single Substation */
+    public static final int ELEVATOR_SINGLE_SUB = 0;
+
     /* Elevator PID */
     public static final double ELEVATOR_P = 0.1;
     public static final double ELEVATOR_I = 0;
@@ -338,7 +341,12 @@ public final class Constants {
     /* Setpoints */
     public static final int SLIDE_INTAKE = 0; //Should be 0
     public static final int SLIDE_IN = 0; //Should be 0
+
+    /* Double Sub */
     public static final int SLIDE_SUBSTATION = 0; //Should be 0
+
+    /* Single Sub */
+    public static final int SLIDE_SINGLE_SUB = 0;
 
     /* Cone Placement Setpoints */
     public static final int SLIDE_CONE_MID = 4000; //0 at Esky
@@ -353,6 +361,7 @@ public final class Constants {
     //NOTE: all velocities are in falcon ticks/100ms
     public static final int SLIDE_IN_VELOCITY = 5000; //velocity when moving the slide in
     public static final int SLIDE_SUBSTATION_VELOCITY = 0; //velocity when sending the slide to double sub (0)
+    public static final int SLIDE_SINGLE_SUB_VELOCITY = 20000;
 
     public static final int SLIDE_CONE_MID_VELOCITY = 5000; //velocity when going to mid cones
     public static final int SLIDE_CONE_HIGH_VELOCITY = 1500; //velocity when going to high cones
