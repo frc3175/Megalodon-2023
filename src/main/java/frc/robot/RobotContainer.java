@@ -50,12 +50,12 @@ public class RobotContainer {
     private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     private final JoystickButton retractWrist = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     private final POVButton singleSubstation = new POVButton(operator, 270);
+    //private final POVButton floorCone = new POVButton(operator, 90);
 
-    private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
-    private final POVButton zeroElev = new POVButton(operator, 90);
+    /* private final JoystickButton rightJoy = new JoystickButton(operator, XboxController.Button.kRightStick.value);
     private final POVButton elevUp = new POVButton(operator, 0);
     private final POVButton elevDown = new POVButton(operator, 180);
-    private final JoystickButton aButton = new JoystickButton(driver, XboxController.Button.kA.value);
+    private final JoystickButton aButton = new JoystickButton(driver, XboxController.Button.kA.value);  */
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
@@ -171,7 +171,7 @@ public class RobotContainer {
 
         singleSubstation.onTrue(new InstantCommand(() -> m_intake.setSingleConeState(false)));
 
-        rightJoy.onTrue(new InstantCommand(() -> m_intake.zeroWrist()));
+        /* rightJoy.onTrue(new InstantCommand(() -> m_intake.zeroWrist()));
 
         elevDown.whileTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(-0.5)));
         elevDown.whileFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
@@ -179,10 +179,8 @@ public class RobotContainer {
         elevUp.whileTrue(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0.5)));
         elevUp.whileFalse(new InstantCommand(() -> m_elevator.setElevatorSpeeed(0)));
 
-        zeroElev.onTrue(new InstantCommand(() -> m_elevator.setElevatorSetpoint(0)));
-
         aButton.whileTrue(new AutoBalanceUsingRate(m_drivetrain));
-        aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve()));
+        aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve())); */
 
         retractWrist.onTrue(new InstantCommand(() -> m_intake.setWristPosition(0, Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE)));
         retractWrist.onFalse(new InstantCommand(() -> m_intake.setWristPosition(m_robotState.getRobotState().intakeState.wristPosition, Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE)));

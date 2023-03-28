@@ -75,7 +75,7 @@ public final class Auto {
 
           Map.entry("AutoBalance", new AutoBalanceSketchy(RobotContainer.m_drivetrain)),
 
-          Map.entry("AutoBalanceFromStation", new AutoBalance(RobotContainer.m_drivetrain)),
+          Map.entry("AutoBalanceFromStation", new AutoBalance(RobotContainer.m_drivetrain, RobotContainer.m_robotState, RobotContainer.m_intake)),
 
           Map.entry("AutoBalanceReverse", new AutoBalanceReverse(RobotContainer.m_drivetrain)),
 

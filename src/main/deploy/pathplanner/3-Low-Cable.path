@@ -122,7 +122,8 @@
       "stopEvent": {
         "names": [
           "CubeMode",
-          "Outtake"
+          "Outtake",
+          "Zero"
         ],
         "executionBehavior": "sequential",
         "waitBehavior": "none",
