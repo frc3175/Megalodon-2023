@@ -33,7 +33,7 @@ public class RobotContainer {
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
     private final int rotationAxis = XboxController.Axis.kRightX.value;
-    private final int evade = XboxController.Axis.kRightBumper.value);
+    //private final int evade = XboxController.Button.kRightBumper.value;
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
@@ -79,7 +79,7 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
                 () -> false,
-                () -> driver.getRawAxis(evade)
+                () -> driver.getRightBumper()
             )
         );
 
