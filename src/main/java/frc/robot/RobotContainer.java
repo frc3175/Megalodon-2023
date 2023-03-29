@@ -88,7 +88,7 @@ public class RobotContainer {
         autoChooser.addOption("BLUE Non-Cable 2", Auto.TwoGamepieceNonCableBlue());
         autoChooser.addOption("BLUE Non-Cable 3", Auto.ThreeLowNonCableBlue());
         autoChooser.addOption("BLUE Cable 3", Auto.ThreeLowCableBlue());
-        autoChooser.setDefaultOption("RED 1 + Balance", Auto.PreloadParkConeRed());
+        autoChooser.addOption("RED 1 + Balance", Auto.PreloadParkConeRed());
         autoChooser.addOption("RED 1 + Mobillity + Balance + Yeet", Auto.PreloadMobilityParkRed());
         autoChooser.addOption("RED Cable 2", Auto.TWoGamepieceCableRed());
         autoChooser.addOption("RED Non-Cable 2", Auto.TwoGamepieceNonCableRed());
@@ -198,7 +198,7 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-
+        
         return autoChooser.getSelected();
 
     }

@@ -91,6 +91,12 @@ public class SwerveDrivetrain extends SubsystemBase {
         }
     }    
 
+    public void teleResetGyro() {
+
+        m_gyro.setYaw(getYaw().getDegrees() + 180);
+
+    }
+ 
     public Pose2d getPose() {
         return m_swerveOdometry.getPoseMeters();
     }
