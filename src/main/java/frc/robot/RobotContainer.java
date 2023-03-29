@@ -82,12 +82,18 @@ public class RobotContainer {
         );
 
         /* Auto Chooser */
-        autoChooser.setDefaultOption("Cone + Park", Auto.PreloadParkCone());
-        autoChooser.addOption("Cone + Mobility + Park", Auto.PreloadMobilityPark());
-        autoChooser.addOption("Cable Preload + 1", Auto.TWoGamepieceCable());
-        autoChooser.addOption("Non-Cable Preload + 1", Auto.TwoGamepieceNonCable());
-        autoChooser.addOption("Non-Cable 3", Auto.ThreeLowNonCable());
-        autoChooser.addOption("Cable 3", Auto.ThreeLowCable());
+        autoChooser.setDefaultOption("BLUE 1 + Balance", Auto.PreloadParkConeBlue());
+        autoChooser.addOption("BLUE 1 + Mobility + Balance + Yeet", Auto.PreloadMobilityParkBlue());
+        autoChooser.addOption("BLUE Cable 2", Auto.TWoGamepieceCableBlue());
+        autoChooser.addOption("BLUE Non-Cable 2", Auto.TwoGamepieceNonCableBlue());
+        autoChooser.addOption("BLUE Non-Cable 3", Auto.ThreeLowNonCableBlue());
+        autoChooser.addOption("BLUE Cable 3", Auto.ThreeLowCableBlue());
+        autoChooser.setDefaultOption("RED 1 + Balance", Auto.PreloadParkConeRed());
+        autoChooser.addOption("RED 1 + Mobillity + Balance + Yeet", Auto.PreloadMobilityParkRed());
+        autoChooser.addOption("RED Cable 2", Auto.TWoGamepieceCableRed());
+        autoChooser.addOption("RED Non-Cable 2", Auto.TwoGamepieceNonCableRed());
+        autoChooser.addOption("RED Non-Cable 3", Auto.ThreeLowNonCableRed());
+        autoChooser.addOption("RED Cable 3", Auto.threeLowCableRed());
         SmartDashboard.putData("Auto mode", autoChooser);
 
         // Configure the button bindings

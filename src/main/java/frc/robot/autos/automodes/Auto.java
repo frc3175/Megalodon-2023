@@ -101,38 +101,73 @@ public final class Auto {
     return Commands.none();
   }
 
-  public static CommandBase ThreeLowCable() {
+  public static CommandBase ThreeLowCableBlue() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-Cable", new PathConstraints(4, 3)));
-
-  }
-
-  public static CommandBase ThreeLowNonCable() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-No-Cable", new PathConstraints(4, 3)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-Cable-Blue", new PathConstraints(4, 3)));
 
   }
 
-  public static CommandBase TWoGamepieceCable() {
+  public static CommandBase ThreeLowNonCableBlue() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Cable", new PathConstraints(3.5, 3)));
-
-  }
-
-  public static CommandBase TwoGamepieceNonCable() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-No-Cable", new PathConstraints(2.5, 3)));
-  }
-
-  public static CommandBase PreloadParkCone() {
-
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Park-Cone", new PathConstraints(1, 1)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-No-Cable-Blue", new PathConstraints(4, 3)));
 
   }
 
-  public static CommandBase PreloadMobilityPark() {
+  public static CommandBase TWoGamepieceCableBlue() {
 
-    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Mobility-Park", new PathConstraints(2, 3)));
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Cable-Blue", new PathConstraints(3.5, 3)));
+
+  }
+
+  public static CommandBase TwoGamepieceNonCableBlue() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-No-Cable-Blue", new PathConstraints(2.5, 3)));
+  }
+
+  public static CommandBase PreloadParkConeBlue() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Park-Cone-Blue", new PathConstraints(1, 1)));
+
+  }
+
+  public static CommandBase PreloadMobilityParkBlue() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Mobility-Park-Blue", new PathConstraints(2, 3)));
+
+  }
+
+  public static CommandBase threeLowCableRed() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-Cable-Red", new PathConstraints(4, 3)));
+
+  }
+
+  public static CommandBase ThreeLowNonCableRed() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-No-Cable-Red", new PathConstraints(4, 3)));
+
+  }
+
+  public static CommandBase TWoGamepieceCableRed() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-Cable-Red", new PathConstraints(3.5, 3)));
+
+  }
+
+  public static CommandBase TwoGamepieceNonCableRed() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("2-Gamepiece-No-Cable-Red", new PathConstraints(2.5, 3)));
+  }
+
+  public static CommandBase PreloadParkConeRed() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Park-Cone-Red", new PathConstraints(1, 1)));
+
+  }
+
+  public static CommandBase PreloadMobilityParkRed() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Mobility-Park-Red", new PathConstraints(2, 3)));
 
   }
 
