@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.autos.automodes.Auto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -38,6 +39,7 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kX.value);
     private final JoystickButton outtake = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     private final JoystickButton shootCube =  new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+    private final JoystickButton evade = new JoystickButton(driver, XboxController.Axis.kRightTrigger.value);
 
     /* Operator Buttons */
     private final JoystickButton cubeMode = new JoystickButton(operator, XboxController.Button.kStart.value);
