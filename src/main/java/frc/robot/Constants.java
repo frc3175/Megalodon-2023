@@ -204,7 +204,7 @@ public final class Constants {
     public static final int WRIST_MID_CUBE_VELOCITY = 5000;
     public static final int WRIST_HIGH_CONE_VELOCITY = 6000;
     public static final int WRIST_HIGH_CUBE_VELOCITY  = 5000;
-    public static final int WRIST_DOUBLE_SUB_VELOCITY = 10000;
+    public static final int WRIST_DOUBLE_SUB_VELOCITY = 20000;
 
     /* Wrist Accelerations */ //NOTE: units are falcon units/100ms/sec
     public static final int WRIST_RESET_ACCEL = 200000;
@@ -257,7 +257,7 @@ public final class Constants {
     /* Cone Intake Positions */
     public static final double WRIST_INTAKE_CONE_FLOOR = 60816; //60816 at Esky
     //DOUBLE SUBSTATION:
-    public static final double WRIST_INTAKE_CONE_SUBSTATION = 54226; //54226 at Esky
+    public static final double WRIST_INTAKE_CONE_SUBSTATION = 25088; //54226 at Esky
     //SINGLE SUBSTATION:
     public static final double WRIST_SINGLE_INTAKE = 23898; //23898 at Esky
 
@@ -296,7 +296,7 @@ public final class Constants {
     public static final int CONE_MID = 51572; //TEST VALUE
 
     /* Double Substation */
-    public static final int SUBSTATION = 100000; //TEST VALUE
+    public static final int SUBSTATION = 42000; //TEST VALUE
 
     //TODO: tune elevator single sub setpoint here
     /* Single Substation */
