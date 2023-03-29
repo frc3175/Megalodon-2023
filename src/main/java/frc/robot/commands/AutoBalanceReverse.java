@@ -24,7 +24,7 @@ public class AutoBalanceReverse extends CommandBase {
         if(m_drivetrain.getPitch() < 12){
             m_drivetrain.stopSwerve();
         } else {
-            m_drivetrain.drive(new Translation2d(-0.2, 0), 0, false, false);
+            m_drivetrain.drive(new Translation2d(-0.2, 0), 0, false, false, false);
         }
 
     } 

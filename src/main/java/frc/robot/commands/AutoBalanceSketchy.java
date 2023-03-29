@@ -36,13 +36,13 @@ public class AutoBalanceSketchy extends CommandBase {
         if(!isReady) {
 
             if(m_drivetrain.getPitch() < 12) {
-                m_drivetrain.drive(new Translation2d(-0.8, 0), 0, false, false);
+                m_drivetrain.drive(new Translation2d(-0.8, 0), 0, false, false, false);
             } else if(m_drivetrain.getPitch() > 12 && m_timer.get() < 2.2) {
                 m_timer.start();
             } else if(m_drivetrain.getPitch() > 12 && m_timer.get() > 2.2){
                 isReady = true;
             } else {
-                m_drivetrain.drive(new Translation2d(-0.8, 0), 0, false, false);
+                m_drivetrain.drive(new Translation2d(-0.8, 0), 0, false, false, false);
             }
 
         } else {
@@ -50,7 +50,7 @@ public class AutoBalanceSketchy extends CommandBase {
             if(m_drivetrain.getPitch() < 12){
                 m_drivetrain.stopSwerve();
             } else {
-                m_drivetrain.drive(new Translation2d(-0.2, 0), 0, false, false);
+                m_drivetrain.drive(new Translation2d(-0.2, 0), 0, false, false, false);
             }
 
         }
