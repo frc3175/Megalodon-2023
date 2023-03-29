@@ -21,8 +21,9 @@ public class SwerveDrive extends CommandBase {
     private BooleanSupplier m_robotCentricSup;
     private SlewRateLimiter m_xAxisARateLimiter;
     private SlewRateLimiter m_yAxisARateLimiter;
+    private BooleanSupplier m_isEvadingSup;
 
-    public SwerveDrive(SwerveDrivetrain drivetrain, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup) {
+    public SwerveDrive(SwerveDrivetrain drivetrain, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup, BooleanSupplier isEvadingSup) {
 
         m_drivetrain = drivetrain;
         addRequirements(m_drivetrain);
@@ -31,6 +32,7 @@ public class SwerveDrive extends CommandBase {
         m_strafeSup = strafeSup;
         m_rotationSup = rotationSup;
         m_robotCentricSup = robotCentricSup;
+        m_isEvadingSup = isEvadingSup;
 
         m_xAxisARateLimiter = new SlewRateLimiter(Constants.A_RATE_LIMITER);
         m_yAxisARateLimiter = new SlewRateLimiter(Constants.A_RATE_LIMITER);
@@ -59,7 +61,8 @@ public class SwerveDrive extends CommandBase {
             new Translation2d(xAxisFiltered, yAxisFiltered).times(Constants.MAX_SPEED), 
             rAxisSquared * Constants.MAX_ANGULAR_VELOCITY, 
             !m_robotCentricSup.getAsBoolean(), 
-            true
+            true,
+            m_isEvadingSup.getAsBoolean()
         );
 
     }

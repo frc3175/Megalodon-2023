@@ -24,7 +24,7 @@ public class AutoBalanceUsingRate extends CommandBase {
         if(m_drivetrain.getPitchDerivative() < (-1 * 0.02)) {
             m_drivetrain.stopSwerve();
         } else {
-            m_drivetrain.drive(new Translation2d(-0.2, 0), 0, false, false);
+            m_drivetrain.drive(new Translation2d(-0.2, 0), 0, false, false, false);
         }
 
     } 
