@@ -47,16 +47,5 @@ public class AutoBalance extends CommandBase {
         }
 
     }
-
-    @Override
-    public void end(boolean isFinished) {
-
-        if((m_robotState.getGamepieceState())) {
-            m_intake.setIntake(Constants.OUTTAKE_CONE);
-        } else {
-            m_intake.setIntake(Constants.OUTTAKE_CUBE);
-        }
-
-    }
     
 }

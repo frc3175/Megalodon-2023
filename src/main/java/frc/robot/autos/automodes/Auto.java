@@ -15,6 +15,7 @@ import frc.robot.commands.SetIntake;
 import frc.robot.commands.SetRobotStateHigh;
 import frc.robot.commands.SetRobotStateLow;
 import frc.robot.commands.SetRobotStateMid;
+import frc.robot.commands.TurnTo180;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -69,7 +70,11 @@ public final class Auto {
 
           Map.entry("Outtake", new SequentialCommandGroup(new AutonOuttake(RobotContainer.m_intake, RobotContainer.m_robotState, RobotContainer.m_slide, RobotContainer.m_elevator))),
 
+          Map.entry("Shoot", new InstantCommand(() -> RobotContainer.m_intake.setIntake(3190))),
+
           Map.entry("Delay1", new WaitCommand(1)),
+
+          Map.entry("TurnTo180", new TurnTo180(RobotContainer.m_drivetrain)),
 
           Map.entry("Zero", new InstantCommand(() -> RobotContainer.m_drivetrain.m_gyro.setYaw(RobotContainer.m_drivetrain.getYaw().getDegrees() + 180))),
 

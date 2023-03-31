@@ -85,8 +85,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    RobotContainer.m_drivetrain.teleResetGyro();
-
   }
 
   /** This function is called periodically during operator control. */
