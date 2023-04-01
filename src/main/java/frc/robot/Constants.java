@@ -202,7 +202,7 @@ public final class Constants {
     public static final int WRIST_FLOOR_INTAKE_VELOCITY = 20000;
     public static final int WRIST_MID_CONE_VELOCITY = 12000;
     public static final int WRIST_MID_CUBE_VELOCITY = 5000;
-    public static final int WRIST_HIGH_CONE_VELOCITY = 6000;
+    public static final int WRIST_HIGH_CONE_VELOCITY = 5000;
     public static final int WRIST_HIGH_CUBE_VELOCITY  = 5000;
     public static final int WRIST_DOUBLE_SUB_VELOCITY = 20000;
 
@@ -245,7 +245,7 @@ public final class Constants {
     /* Positions */
 
     /* Cone Placement Positions */
-    public static final double WRIST_OUTTAKE_HIGH_CONE = 49985; //52800 at Esky
+    public static final double WRIST_OUTTAKE_HIGH_CONE = 52985; //52800 at Esky
     public static final double WRIST_OUTTAKE_MID_CONE = 44542; //45423 at Esky
     public static final double WRIST_OUTTAKE_LOW_CONE = 57435; //5745 at Esky
 
@@ -343,7 +343,7 @@ public final class Constants {
 
     /* Cone Placement Setpoints */
     public static final int SLIDE_CONE_MID = 4000; //0 at Esky
-    public static final int SLIDE_CONE_HIGH = 15377; //13000 at Esky
+    public static final int SLIDE_CONE_HIGH = 17377; //13000 at Esky
 
     /* Cube Placement Setpoints */
     public static final int SLIDE_CUBE_MID = 22063; //8020 at Esky

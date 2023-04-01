@@ -191,7 +191,7 @@ public class RobotContainer {
         /* aButton.whileTrue(new AutoBalanceUsingRate(m_drivetrain));
         aButton.onFalse(new InstantCommand(() -> m_drivetrain.stopSwerve())); */
 
-        retractWrist.onTrue(new InstantCommand(() -> m_intake.setWristPosition((m_robotState.getRobotState().intakeState.wristPosition - 5000), Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE)));
+        retractWrist.onTrue(new InstantCommand(() -> m_intake.setWristPosition((m_robotState.getRobotState().intakeState.wristPosition - 15000), Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE)));
         retractWrist.onFalse(new InstantCommand(() -> m_intake.setWristPosition(m_robotState.getRobotState().intakeState.wristPosition, Constants.WRIST_RESET_VELOCITY, Constants.WRIST_RESET_ACCEL, Constants.WRIST_RESET_CURVE)));
 
         retractWrist.whileTrue(new InstantCommand(() -> m_intake.setIntake(Constants.HOLD_VOLTAGE)));

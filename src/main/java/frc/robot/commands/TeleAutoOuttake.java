@@ -40,7 +40,7 @@ public class TeleAutoOuttake extends CommandBase {
 
         if(!m_robotState.getGamepieceState()) {
 
-            if(timer.get() < 0.4) {
+            if(timer.get() < 0.5) {
                 m_intake.setIntake(Constants.OUTTAKE_CUBE);
             }
 
@@ -72,7 +72,7 @@ public class TeleAutoOuttake extends CommandBase {
     @Override
     public boolean isFinished() {
 
-        if(timer.get() < 0.4) {
+        if(timer.get() < 0.5) {
             return false;
         } else {
             return true;
