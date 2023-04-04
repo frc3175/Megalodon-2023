@@ -240,7 +240,7 @@ public final class Constants {
     public static final double INTAKE_CONE = 3190; //positive
     public static final double INTAKE_CUBE = -1500; //negative
     public static final double INTAKE_STOP = 0;
-    public static final double HOLD_VOLTAGE = 100; //always running while cone is held
+    public static final double HOLD_VOLTAGE = 200; //always running while cone is held
 
     /* Positions */
 
@@ -293,7 +293,7 @@ public final class Constants {
 
     /* Cone Placement */
     public static final int CONE_HIGH = 114467; //TEST VALUE
-    public static final int CONE_MID = 51572; //TEST VALUE
+    public static final int CONE_MID = 54572; //TEST VALUE
 
     /* Double Substation */
     public static final int SUBSTATION = 42000; //TEST VALUE
