@@ -46,13 +46,13 @@ public class SwerveDrive extends CommandBase {
     @Override
     public void execute() {
 
-        double multiplier = 1;
+        /*double multiplier = 1;
 
         if(m_robotState.getRobotState() == BotState.INTAKE_CONE_SUBSTATION) {
             multiplier = 0.25;
         } else {
             multiplier = 1;
-        }
+        } */
 
         /* Get Values, Deadband */
         double xAxis = MathUtil.applyDeadband(m_translationSup.getAsDouble(), Constants.STICK_DEADBAND);
@@ -70,7 +70,7 @@ public class SwerveDrive extends CommandBase {
 
         /* Drive */ 
         m_drivetrain.drive(
-            new Translation2d(xAxisFiltered, yAxisFiltered).times(Constants.MAX_SPEED * multiplier), 
+            new Translation2d(xAxisFiltered, yAxisFiltered).times(Constants.MAX_SPEED), 
             rAxisSquared * Constants.MAX_ANGULAR_VELOCITY, 
             !m_robotCentricSup.getAsBoolean(), 
             true,
