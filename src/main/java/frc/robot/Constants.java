@@ -257,7 +257,7 @@ public final class Constants {
     /* Cone Intake Positions */
     public static final double WRIST_INTAKE_CONE_FLOOR = 60816; //60816 at Esky
     //DOUBLE SUBSTATION:
-    public static final double WRIST_INTAKE_CONE_SUBSTATION = 26588; //54226 at Esky
+    public static final double WRIST_INTAKE_CONE_SUBSTATION = 25088; //54226 at Esky
     //SINGLE SUBSTATION:
     public static final double WRIST_SINGLE_INTAKE = 23898; //23898 at Esky
 
