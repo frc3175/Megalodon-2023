@@ -1,6 +1,8 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
+import frc.robot.RobotState;
+import frc.robot.RobotState.BotState;
 import frc.robot.subsystems.SwerveDrivetrain;
 
 import java.util.function.BooleanSupplier;
@@ -14,7 +16,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class SwerveDrive extends CommandBase {
 
-    private SwerveDrivetrain m_drivetrain;    
+    private SwerveDrivetrain m_drivetrain;   
+    private RobotState m_robotState; 
     private DoubleSupplier m_translationSup;
     private DoubleSupplier m_strafeSup;
     private DoubleSupplier m_rotationSup;
@@ -23,10 +26,11 @@ public class SwerveDrive extends CommandBase {
     private SlewRateLimiter m_yAxisARateLimiter;
     private BooleanSupplier m_isEvadingSup;
 
-    public SwerveDrive(SwerveDrivetrain drivetrain, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup, BooleanSupplier isEvadingSup) {
+    public SwerveDrive(SwerveDrivetrain drivetrain, RobotState robotState, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup, BooleanSupplier isEvadingSup) {
 
         m_drivetrain = drivetrain;
-        addRequirements(m_drivetrain);
+        m_robotState = robotState;
+        addRequirements(m_drivetrain, m_robotState);
 
         m_translationSup = translationSup;
         m_strafeSup = strafeSup;
@@ -41,6 +45,14 @@ public class SwerveDrive extends CommandBase {
 
     @Override
     public void execute() {
+
+        double multiplier = 1;
+
+        if(m_robotState.getRobotState() == BotState.INTAKE_CONE_SUBSTATION) {
+            multiplier = 0.25;
+        } else {
+            multiplier = 1;
+        }
 
         /* Get Values, Deadband */
         double xAxis = MathUtil.applyDeadband(m_translationSup.getAsDouble(), Constants.STICK_DEADBAND);
@@ -58,7 +70,7 @@ public class SwerveDrive extends CommandBase {
 
         /* Drive */ 
         m_drivetrain.drive(
-            new Translation2d(xAxisFiltered, yAxisFiltered).times(Constants.MAX_SPEED), 
+            new Translation2d(xAxisFiltered, yAxisFiltered).times(Constants.MAX_SPEED * multiplier), 
             rAxisSquared * Constants.MAX_ANGULAR_VELOCITY, 
             !m_robotCentricSup.getAsBoolean(), 
             true,
