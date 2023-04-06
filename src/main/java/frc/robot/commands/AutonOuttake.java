@@ -42,7 +42,7 @@ public class AutonOuttake extends CommandBase {
                 m_intake.setIntake(Constants.OUTTAKE_CONE);
             }
         } else {
-            if(m_timer.get() < 0.6) {
+            if(m_timer.get() < 0.4) {
                 m_intake.setIntake(Constants.OUTTAKE_CUBE);
             } 
         }

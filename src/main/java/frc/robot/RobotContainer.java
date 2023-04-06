@@ -75,7 +75,6 @@ public class RobotContainer {
         m_drivetrain.setDefaultCommand(
             new SwerveDrive(
                 m_drivetrain, 
-                m_robotState,
                 () -> -driver.getRawAxis(translationAxis), 
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
