@@ -45,15 +45,13 @@ public class SwerveDrive extends CommandBase {
     @Override
     public void execute() {
 
-        double multiplier = 1 - m_speedLimiter.getAsDouble();
+        /*double multiplier = 1;
 
-        if(multiplier < 0.25) {
+        if(m_robotState.getRobotState() == BotState.INTAKE_CONE_SUBSTATION) {
             multiplier = 0.25;
-        } else if(multiplier > 0.9) {
+        } else {
             multiplier = 1;
-        }
-
-        SmartDashboard.putNumber("speed limiter", multiplier);
+        } */
 
         /* Get Values, Deadband */
         double xAxis = MathUtil.applyDeadband(m_translationSup.getAsDouble(), Constants.STICK_DEADBAND);
