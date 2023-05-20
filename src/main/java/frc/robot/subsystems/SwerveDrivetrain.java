@@ -12,6 +12,8 @@ import java.util.Arrays;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.controller.BangBangController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -55,6 +57,9 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw(), getModulePositions());
 
         setOdometryForOdometryAlign();
+
+        UsbCamera m_camera = CameraServer.startAutomaticCapture();
+        m_camera.setResolution(100, 100);
 
         m_forward_bang_bang = new BangBangController();
 		m_forward_bang_bang.setSetpoint(DRIVE_BANG_BANG_SP);

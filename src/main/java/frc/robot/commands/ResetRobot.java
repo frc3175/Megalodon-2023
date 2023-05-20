@@ -31,7 +31,7 @@ public class ResetRobot extends CommandBase {
         } else {
 
             m_robotState.setBotState(BotState.RESET_CUBE);
-            m_intake.setIntake(Constants.INTAKE_STOP);
+            m_intake.setIntake(Constants.CUBE_HOLD_VOLTAGE);
 
         }
         
