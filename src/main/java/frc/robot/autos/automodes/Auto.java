@@ -141,6 +141,12 @@ public final class Auto {
 
   }
 
+  public static CommandBase OnlyMobilityBalance() {
+
+    return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Only-Mobility-Balance", new PathConstraints(2, 3)));
+
+  }
+
   public static CommandBase threeLowCableRed() {
 
     return autoBuilder.fullAuto(PathPlanner.loadPathGroup("3-Low-Cable-Red", new PathConstraints(4, 3)));
@@ -175,6 +181,8 @@ public final class Auto {
     return autoBuilder.fullAuto(PathPlanner.loadPathGroup("Preload-Mobility-Park-Red", new PathConstraints(2, 3)));
 
   }
+
+
 
   private Auto() {
     throw new UnsupportedOperationException("This is a utility class!");

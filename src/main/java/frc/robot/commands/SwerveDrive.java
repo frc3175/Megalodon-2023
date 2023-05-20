@@ -9,21 +9,23 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 public class SwerveDrive extends CommandBase {
 
-    private SwerveDrivetrain m_drivetrain;    
+    private SwerveDrivetrain m_drivetrain;   
     private DoubleSupplier m_translationSup;
     private DoubleSupplier m_strafeSup;
     private DoubleSupplier m_rotationSup;
+    private DoubleSupplier m_speedLimiter;
     private BooleanSupplier m_robotCentricSup;
     private SlewRateLimiter m_xAxisARateLimiter;
     private SlewRateLimiter m_yAxisARateLimiter;
     private BooleanSupplier m_isEvadingSup;
 
-    public SwerveDrive(SwerveDrivetrain drivetrain, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup, BooleanSupplier isEvadingSup) {
+    public SwerveDrive(SwerveDrivetrain drivetrain, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, DoubleSupplier speedLimiter, BooleanSupplier robotCentricSup, BooleanSupplier isEvadingSup) {
 
         m_drivetrain = drivetrain;
         addRequirements(m_drivetrain);
@@ -31,6 +33,7 @@ public class SwerveDrive extends CommandBase {
         m_translationSup = translationSup;
         m_strafeSup = strafeSup;
         m_rotationSup = rotationSup;
+        m_speedLimiter = speedLimiter;
         m_robotCentricSup = robotCentricSup;
         m_isEvadingSup = isEvadingSup;
 
@@ -41,6 +44,16 @@ public class SwerveDrive extends CommandBase {
 
     @Override
     public void execute() {
+
+        double multiplier = 1 - m_speedLimiter.getAsDouble();
+
+        if(multiplier < 0.25) {
+            multiplier = 0.25;
+        } else if(multiplier > 0.9) {
+            multiplier = 1;
+        }
+
+        SmartDashboard.putNumber("speed limiter", multiplier);
 
         /* Get Values, Deadband */
         double xAxis = MathUtil.applyDeadband(m_translationSup.getAsDouble(), Constants.STICK_DEADBAND);
@@ -58,7 +71,7 @@ public class SwerveDrive extends CommandBase {
 
         /* Drive */ 
         m_drivetrain.drive(
-            new Translation2d(xAxisFiltered, yAxisFiltered).times(Constants.MAX_SPEED), 
+            new Translation2d(xAxisFiltered, yAxisFiltered).times(Constants.MAX_SPEED * multiplier), 
             rAxisSquared * Constants.MAX_ANGULAR_VELOCITY, 
             !m_robotCentricSup.getAsBoolean(), 
             true,

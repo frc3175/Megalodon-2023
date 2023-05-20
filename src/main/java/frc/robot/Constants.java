@@ -70,7 +70,7 @@ public final class Constants {
 
         /* Back Right Module - Module 3 */
         public static final class Mod3 {
-            public static final int DRIVE_MOTOR_ID = 3;
+            public static final int DRIVE_MOTOR_ID = 14;
             public static final int ANGLE_MOTOR_ID = 5;
             public static final int CANCODER_ID = 12;
             public static final Rotation2d ANGLE_OFFSET = Rotation2d.fromDegrees(237.90);
@@ -241,12 +241,13 @@ public final class Constants {
     public static final double INTAKE_CUBE = -1500; //negative
     public static final double INTAKE_STOP = 0;
     public static final double HOLD_VOLTAGE = 200; //always running while cone is held
+    public static final double CUBE_HOLD_VOLTAGE = -100;
 
     /* Positions */
 
     /* Cone Placement Positions */
     public static final double WRIST_OUTTAKE_HIGH_CONE = 52985; //52800 at Esky
-    public static final double WRIST_OUTTAKE_MID_CONE = 44542; //45423 at Esky
+    public static final double WRIST_OUTTAKE_MID_CONE = 45423; //45423 at Esky
     public static final double WRIST_OUTTAKE_LOW_CONE = 57435; //5745 at Esky
 
     /* Cube Placement Positions */
@@ -293,7 +294,7 @@ public final class Constants {
 
     /* Cone Placement */
     public static final int CONE_HIGH = 114467; //TEST VALUE
-    public static final int CONE_MID = 54572; //TEST VALUE
+    public static final int CONE_MID = 60993; //TEST VALUE
 
     /* Double Substation */
     public static final int SUBSTATION = 42000; //TEST VALUE
@@ -339,10 +340,10 @@ public final class Constants {
 
     //TODO: tune slide single sub setpoint here
     /* Single Sub */
-    public static final int SLIDE_SINGLE_SUB = 0;
+    public static final int SLIDE_SINGLE_SUB = 1534;
 
     /* Cone Placement Setpoints */
-    public static final int SLIDE_CONE_MID = 4000; //0 at Esky
+    public static final int SLIDE_CONE_MID = 0; //0 at Esky
     public static final int SLIDE_CONE_HIGH = 17377; //13000 at Esky
 
     /* Cube Placement Setpoints */

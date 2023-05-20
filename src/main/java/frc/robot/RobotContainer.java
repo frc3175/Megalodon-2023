@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -50,6 +51,7 @@ public class RobotContainer {
     private final JoystickButton robotLow = new JoystickButton(operator, XboxController.Button.kB.value);
     private final JoystickButton intake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     private final JoystickButton retractWrist = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    private final POVButton backUp = new POVButton(driver, 270);
     private final POVButton singleSubstation = new POVButton(operator, 270);
     private final POVButton floorCone = new POVButton(operator, 90);
 
@@ -78,24 +80,20 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(translationAxis), 
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
+                () -> operator.getLeftTriggerAxis(),
                 () -> false,
                 () -> driver.getRightBumper()
             )
         );
 
         /* Auto Chooser */
-        autoChooser.setDefaultOption("BLUE 1 + Balance", Auto.PreloadParkConeBlue());
-        autoChooser.addOption("BLUE 1 + Mobility + Balance + Yeet", Auto.PreloadMobilityParkBlue());
-        autoChooser.addOption("BLUE Cable 2", Auto.TWoGamepieceCableBlue());
-        autoChooser.addOption("BLUE Non-Cable 2", Auto.TwoGamepieceNonCableBlue());
-        autoChooser.addOption("BLUE Non-Cable 3", Auto.ThreeLowNonCableBlue());
-        autoChooser.addOption("BLUE Cable 3", Auto.ThreeLowCableBlue());
-        autoChooser.addOption("RED 1 + Balance", Auto.PreloadParkConeRed());
-        autoChooser.addOption("RED 1 + Mobillity + Balance + Yeet", Auto.PreloadMobilityParkRed());
-        autoChooser.addOption("RED Cable 2", Auto.TWoGamepieceCableRed());
-        autoChooser.addOption("RED Non-Cable 2", Auto.TwoGamepieceNonCableRed());
-        autoChooser.addOption("RED Non-Cable 3", Auto.ThreeLowNonCableRed());
-        autoChooser.addOption("RED Cable 3", Auto.threeLowCableRed());
+        autoChooser.setDefaultOption("1 + Balance", Auto.PreloadParkConeBlue());
+        autoChooser.addOption("1 + Mobility + Balance", Auto.OnlyMobilityBalance());
+        autoChooser.addOption("1 + Mobility + Balance + Pickup", Auto.PreloadMobilityParkBlue());
+        autoChooser.addOption("Cable 2", Auto.TWoGamepieceCableBlue());
+        autoChooser.addOption("Non-Cable 2", Auto.TwoGamepieceNonCableBlue());
+        autoChooser.addOption("Cable 3", Auto.ThreeLowCableBlue());
+        autoChooser.addOption("Non-Cable 3", Auto.ThreeLowNonCableBlue());
         SmartDashboard.putData("Auto mode", autoChooser);
 
         // Configure the button bindings
@@ -199,6 +197,8 @@ public class RobotContainer {
 
         shootCube.onTrue(new InstantCommand(() -> m_intake.setIntake(Constants.SHOOT_CUBE)));
         shootCube.onFalse(new InstantCommand(() -> m_intake.setIntake(0)));
+
+        backUp.onTrue(new SingleSubLineup(m_drivetrain));
 
     }
 
