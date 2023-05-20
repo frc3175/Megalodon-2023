@@ -2,7 +2,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotState;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SwerveDrivetrain;
@@ -12,7 +11,7 @@ public class AutoBalance extends CommandBase {
     private SwerveDrivetrain m_drivetrain;
     private RobotState m_robotState;
     private Intake m_intake;
-
+ 
     public AutoBalance(SwerveDrivetrain drivetrain, RobotState robotState, Intake intake) {
 
         m_drivetrain = drivetrain;
