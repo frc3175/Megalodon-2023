@@ -121,8 +121,7 @@ public final class Constants {
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = (Units.feetToMeters(16.2)); //meters per second (theoretical from SDS)
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12*0.5; //radians per second (theoretical calculation)
-    public static final double A_RATE_LIMITER = 2.0; //Slew Rate Limiter Constant
-    
+    public static final double A_RATE_LIMITER = 1.5; //Slew Rate Limiter Constant    
     /* Constraint for the motion profiled robot angle controller */
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
         new TrapezoidProfile.Constraints(

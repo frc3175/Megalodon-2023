@@ -59,6 +59,7 @@ public class RobotContainer {
     private final POVButton elevUp = new POVButton(operator, 0);
     private final POVButton elevDown = new POVButton(operator, 180);
     // private final JoystickButton aButton = new JoystickButton(driver, XboxController.Button.kA.value);
+    private final JoystickButton music = new JoystickButton(driver, XboxController.Button.kY.value);
 
     /* Subsystems */
     public static final SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
@@ -112,6 +113,8 @@ public class RobotContainer {
         /* Driver Buttons */
 
         zeroGyro.onTrue(new InstantCommand(() -> m_drivetrain.zeroGyro()));
+
+        music.whileTrue(new InstantCommand(() -> m_intake.play()));
         
         intake.whileTrue(new SequentialCommandGroup(new SetIntake(m_intake, m_robotState),
         new InstantCommand(() -> m_elevator.setElevatorState(m_robotState.getRobotState().elevatorState)),

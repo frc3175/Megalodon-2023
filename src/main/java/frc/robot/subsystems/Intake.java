@@ -1,7 +1,10 @@
 package frc.robot.subsystems;
 
+import java.util.ArrayList;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.music.Orchestra;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,17 +20,44 @@ public class Intake extends SubsystemBase {
 
     private IntakeState intakeState;
 
+    Orchestra orchestra;
+    ; //, new TalonFX(5), new TalonFX(6), new TalonFX(7) 
+        String[] songs = new String[] {"happy" };
+
     public Intake() {
 
         intakeMotor = new TalonFX(Constants.INTAKE_MOTOR, "elevatoryiboi");
         wristMotor = new TalonFX(Constants.INTAKE_WRIST, "elevatoryiboi");
+
+        TalonFX[] motors = {intakeMotor, wristMotor};
 
         configWristMotor();
         configIntakeMotor();
 
         wristMotor.setSelectedSensorPosition(0);
 
+        ArrayList<TalonFX> instruments = new ArrayList<TalonFX>();
+
+        for (int i = 0; i < motors.length; ++i) {
+        instruments.add(motors[i]);
+        }
+
+        orchestra = new Orchestra(instruments);
+
+        loadSong(0);
+
     } 
+
+    private void loadSong(int selection) {
+        orchestra.loadMusic(songs[selection]);
+        System.out.println("Song selected is: " + songs[selection]);
+    }
+
+    public void play() {
+
+        orchestra.play();
+
+    }
 
     public void setSingleConeState(boolean m_isSingleConeState) {
 
